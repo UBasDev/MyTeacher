@@ -1,0 +1,23 @@
+﻿using CoreService.Application.Repositories;
+using CoreService.Application.Repositories.GenericRepository;
+using CoreService.Application.Repositories.ProfileRepository;
+using CoreService.Persistence.Repositories;
+using CoreService.Persistence.Repositories.GenericRepository;
+using CoreService.Persistence.Repositories.ProfileRepository;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CoreService.Persistence.Registrations
+{
+    public static class PersistenceRegistration
+    {
+        public static void AddPersistenceRegistrations(this IServiceCollection services)
+        {
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+        }
+    }
+}
