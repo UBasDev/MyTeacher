@@ -15,4 +15,8 @@
   <ItemGroup>
     <Folder Include="LogFiles\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\_helpers\RabbitMQ\RabbitMQ\RabbitMQ.csproj" />
+  </ItemGroup>
 </Project>

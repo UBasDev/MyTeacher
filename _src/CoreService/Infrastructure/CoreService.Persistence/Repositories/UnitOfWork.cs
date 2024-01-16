@@ -1,7 +1,12 @@
 ﻿using CoreService.Application.Contexts;
 using CoreService.Application.Repositories;
 using CoreService.Application.Repositories.ProfileRepository;
+using CoreService.Application.Repositories.UserRepository;
+using CoreService.Domain.Entities.Profile;
+using CoreService.Domain.Entities.User;
 using CoreService.Persistence.Repositories.ProfileRepository;
+using CoreService.Persistence.Repositories.UserRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +20,8 @@ namespace CoreService.Persistence.Repositories
         private readonly ApplicationDbContext _dbContext;
         private IProfileReadRepository _profileReadRepository;
         private IProfileWriteRepository _profileWriteRepository;
+        private IUserReadRepository _userReadRepository;
+        private IUserWriteRepository _userWriteRepository;
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -37,8 +44,39 @@ namespace CoreService.Persistence.Repositories
             }
         }
 
+        public IUserReadRepository UserReadRepository
+        {
+            get
+            {
+                _userReadRepository = new UserReadRepository(_dbContext);
+                return _userReadRepository;
+            }
+        }
+
+        public IUserWriteRepository UserWriteRepository
+        {
+            get
+            {
+                _userWriteRepository = new UserWriteRepository(_dbContext);
+                return _userWriteRepository;
+            }
+        }
+
         public void SaveChanges() => _dbContext.SaveChanges();
 
         public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
+
+        private bool _disposed = false;
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed && disposing)
+                _dbContext.Dispose();
+            _disposed = true;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

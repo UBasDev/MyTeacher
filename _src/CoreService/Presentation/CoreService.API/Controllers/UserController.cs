@@ -5,65 +5,37 @@ using System.Text.Json;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using CoreService.Application.Repositories;
+using CoreService.Domain.Entities.User;
+using CoreService.Domain.Entities.Profile;
+using Newtonsoft.Json;
+using RabbitMQ.Abstracts;
 
 namespace CoreService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IUnitOfWork unitOfWork, IRabbitMqPublisherService rabbitMqService) : ControllerBase
     {
-        [HttpPost("[action]")]
-        public async Task<IActionResult> CreateSingleUser()
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly IRabbitMqPublisherService _rabbitMqService = rabbitMqService;
+        [HttpGet("[action]")]
+        public IActionResult CreateSingleUser()
         {
-            var factory = new ConnectionFactory()
-            {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest",
-                VirtualHost = "/",
-                ClientProvidedName = "Rabbit Sender App1"
-            };
+            _unitOfWork.UserWriteRepository.InsertSingle(UserEntity.CreateNewUser("ali1", "ali1@gmail.com", "salt1", "hash1", ProfileEntity.CreateNewProfile(31)));
+            return Ok();
+        }
 
-            //factory.Uri = new Uri(uriString: "amqp://guest:guest@localhost:5672");
-
-            var conn = factory.CreateConnection();
-
-            var channel = conn.CreateModel();
-
-            const string exchangeName1 = "DemoExchange1";
-            const string routingKey1 = "demo-routing-key1";
-            const string queueName1 = "DemoQueue1";
-
-            channel.ExchangeDeclare(exchangeName1, ExchangeType.Direct);
-
-            channel.QueueDeclare(
-                queue: queueName1,
-
-                durable: true, //Eğer true alırsa, bu message broker restart edilse bile bu queue korunacaktır ve silinmeyecektir
-
-                exclusive: false, //
-
-                autoDelete: false, //Eğer true alırsa, bu queue'nun last consumerı unsubscribe edildiği zaman, bu queue da silinecektir.
-
-                arguments: null
-            );
-
-            channel.QueueBind(queue: queueName1, exchange: exchangeName1, routingKey: routingKey1, arguments: null);
-
-            //channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
-
-            var jsonString = JsonSerializer.Serialize<string>(value: "Merhabalar, bu mesajı queueye gönderiyorum.", options: new JsonSerializerOptions()
-            {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            });
-
-            var body = Encoding.UTF8.GetBytes("Merhabalar, bu mesajı queueye gönderiyorum.");
-
-            channel.BasicPublish(exchange: exchangeName1, routingKey: routingKey1, basicProperties: null, body: body);
-
-            channel.Close();
-
-            conn.Close();
+        [HttpGet("[action]")]
+        public IActionResult PublishSingleMessageSync()
+        {
+            _rabbitMqService.PublishMessageSync("Merhabalar, bu mesajı sync olarak queueye gönderiyorum.");
+            return Ok();
+        }
+        [HttpGet("PublishSingleMessageAsync")]
+        public async Task<IActionResult> PublishSingleMessageAsync()
+        {
+            await _rabbitMqService.PublishMessageAsync("Merhabalar, bu mesajı async olarak queueye gönderiyorum.");
             return Ok();
         }
     }

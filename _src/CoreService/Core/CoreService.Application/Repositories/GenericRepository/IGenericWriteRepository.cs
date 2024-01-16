@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Repositories.GenericRepository
 {
-    public interface IGenericWriteRepository<TEntity> where TEntity : class
+    public interface IGenericWriteRepository<TEntity>
     {
         void InsertSingle(TEntity entity);
         Task InsertSingleAsync(TEntity entity);

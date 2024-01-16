@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.GenericRepository
 {
-    public abstract class GenericReadRepository<TEntity> : IGenericReadRepository<TEntity> where TEntity : BaseEntity
+    public abstract class GenericReadRepository<TEntity, TId> : IGenericReadRepository<TEntity> where TEntity : BaseEntity<TId>
     {
         protected readonly ApplicationDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;

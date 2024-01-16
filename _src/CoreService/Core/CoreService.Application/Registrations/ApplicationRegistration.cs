@@ -15,7 +15,7 @@ namespace CoreService.Application.Registrations
     {
         public static void AddApplicationRegistrations(this IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("User ID=postgres;Password=admin;Server=localhost;Port=5432;Database=MyTeacher-Core;Pooling=true;Connection Lifetime=0;", opt => { opt.EnableRetryOnFailure(); }));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("User ID=postgres;Password=admin;Server=localhost;Port=5432;Database=MyTeacher-Core;Include Error Detail=true;Pooling=true;Connection Lifetime=0;", opt => { opt.EnableRetryOnFailure(); }));
         }
     }
 }

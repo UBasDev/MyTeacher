@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.GenericRepository
 {
-    public abstract class GenericWriteRepository<TEntity> : IGenericWriteRepository<TEntity> where TEntity : BaseEntity
+    public abstract class GenericWriteRepository<TEntity, TId> : IGenericWriteRepository<TEntity> where TEntity : BaseEntity<TId>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
