@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Repositories.GenericRepository
 {
-    public interface IGenericReadRepository<TEntity> where TEntity : class
+    public interface IGenericReadRepository<TEntity>
     {
         IEnumerable<TEntity> GetAll();
         Task<IEnumerable<TEntity>> GetAllAsync();

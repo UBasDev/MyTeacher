@@ -16,7 +16,7 @@ namespace CoreService.Application.Contexts
 
         public DbSet<ProfileEntity> Profiles => Set<ProfileEntity>();
         //public DbSet<RoleEntity> Roles => Set<RoleEntity>();
-        //public DbSet<UserEntity> Users => Set<UserEntity>();
+        public DbSet<UserEntity> Users => Set<UserEntity>();
 
     }
 }

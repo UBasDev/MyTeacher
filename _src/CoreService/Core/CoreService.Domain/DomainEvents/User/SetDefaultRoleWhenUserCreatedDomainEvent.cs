@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.DomainEvents.User
 {
-    public class UserEntityCreatedDomainEvent : INotification
+    public class SetDefaultRoleWhenUserCreatedDomainEvent(ProfileEntity profile) : INotification
     {
-        public ProfileEntity Profile { get; set; }
-        public UserEntityCreatedDomainEvent(ProfileEntity profile)
-        {
-            Profile = profile;
-        }
+        public ProfileEntity Profile { get; } = profile;
     }
 }

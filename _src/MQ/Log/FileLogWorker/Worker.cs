@@ -4,17 +4,14 @@ using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
 using System.Reflection;
+using RabbitMQ.Abstracts;
 
 namespace FileLogWorker
 {
-    public class Worker : BackgroundService
+    public class Worker(ILogger<Worker> logger, IRabbitMqPublisherService rabbitMqService) : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
-
-        public Worker(ILogger<Worker> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<Worker> _logger = logger;
+        private readonly IRabbitMqPublisherService _rabbitMqService = rabbitMqService;
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {

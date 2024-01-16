@@ -12,7 +12,7 @@ namespace CoreService.API.Controllers
         [HttpGet("[action]")]
         public IActionResult Test1()
         {
-            var profile1 = new ProfileEntity(15);
+            var profile1 = ProfileEntity.CreateNewProfile(15);
             _unitOfWork.ProfileWriteRepository.InsertSingle(profile1);
             _unitOfWork.SaveChanges();
             return Ok();
