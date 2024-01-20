@@ -18,7 +18,7 @@ builder.Services.Configure<AppSettings>(configuration.GetSection(nameof(AppSetti
 
 //builder.Services.AddHostedService<Worker>();
 
-builder.Services.AddHostedService<FileLogConsumer>();
+builder.Services.AddHostedService<FileLogRabbitMqConsumer>();
 builder.Services.AddSingleton(appSettings.RabbitMqSettings);
 builder.Services.AddSingleton<IRabbitMqConsumerService, RabbitMqConsumerService>();
 

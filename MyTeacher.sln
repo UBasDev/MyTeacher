@@ -31,14 +31,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileLog.WORKER", "_src\MQ\L
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DockerFiles", "DockerFiles", "{9D9CFF7A-1FB0-4C21-9177-F930CEBCD608}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
+		DockerFiles\docker-compose.yml = DockerFiles\docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_helpers", "_helpers", "{876BEF1C-A460-4865-AC67-81B2BE7773ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{2CB95C3E-3C42-4215-A49A-0F59BA56E46E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ", "_helpers\RabbitMQ\RabbitMQ\RabbitMQ.csproj", "{55246EFE-A4A6-43C5-A5BB-7BBCF2189627}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ", "_helpers\RabbitMQ\RabbitMQ\RabbitMQ.csproj", "{55246EFE-A4A6-43C5-A5BB-7BBCF2189627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
