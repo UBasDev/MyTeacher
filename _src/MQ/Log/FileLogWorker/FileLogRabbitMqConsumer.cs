@@ -8,16 +8,15 @@ using System.Threading.Tasks;
 
 namespace FileLog.WORKER
 {
-    public class FileLogConsumer(ILogger<FileLogConsumer> logger, IRabbitMqConsumerService rabbitMqConsumerService) : BackgroundService
+    public class FileLogRabbitMqConsumer(ILogger<FileLogRabbitMqConsumer> logger, IRabbitMqConsumerService rabbitMqConsumerService) : BackgroundService
     {
-        private readonly ILogger<FileLogConsumer> _logger = logger;
+        private readonly ILogger<FileLogRabbitMqConsumer> _logger = logger;
         private readonly IRabbitMqConsumerService _rabbitMqConsumerService = rabbitMqConsumerService;
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            //_rabbitMqConsumerService.ConsumeAll(async (message) => await Test1(message));
-            //await _rabbitMqConsumerService.ConsumeAllAsync(AsyncExample1);
-            _rabbitMqConsumerService.ConsumeAllSync(SyncExample1);
+            await _rabbitMqConsumerService.ConsumeAllAsync(AsyncExample1);
+            //_rabbitMqConsumerService.ConsumeAllSync(SyncExample1);
         }
         private void SyncExample1(string messageFromQueue)
         {

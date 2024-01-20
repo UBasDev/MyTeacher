@@ -34,7 +34,9 @@ namespace RabbitMQ.Concretes
             await Task.Run(() =>
             {
                 var body = Encoding.UTF8.GetBytes(message);
-                _channel.BasicPublish(exchange: "DemoExchange1", routingKey: "demo-routing-key1", basicProperties: null, body: body);
+                var properties = _channel.CreateBasicProperties();
+                properties.DeliveryMode = 2;
+                _channel.BasicPublish(exchange: _rabbitMqSettings.ExchangeName, routingKey: _rabbitMqSettings.RoutingKey, basicProperties: properties, body: body);
             });
         }
 
