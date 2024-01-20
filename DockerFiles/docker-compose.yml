@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    container_name: myteacher-elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    restart: always
+    ports:
+      - 9200:9200
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    networks:
+      - my-custom-network
+
+  kibana:
+    container_name: myteacher-kibana
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    restart: always
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200
+    networks:
+      - my-custom-network
+
+  redis:
+    container_name: myteacher-redis
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - my-custom-network
+
+  rabbitmq:
+    container_name: myteacher-rabbitmq
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - my-custom-network
+      
+  flyimg:
+    container_name: a101sos-flyimg
+    image: "flyimg/flyimg-build"
+    ports:
+      - 4080:80
+      #volumes:
+      #- ${PWD}/_assets/config/flyimg/parameters.yml:/var/www/html/config/parameters.yml:rw
+    restart: always
+  
+networks:
+  my-custom-network:
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
