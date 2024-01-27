@@ -10,14 +10,15 @@ namespace CoreService.Domain.Entities.Profile
 {
     public class ProfileEntity : BaseEntity<Guid>
     {
-        private ProfileEntity(UInt16 age)
+        private ProfileEntity(UInt16 age, Guid userId)
         {
             Age = age;
+            UserId = userId;
         }
         public UInt16 Age { get; set; }
-        public static ProfileEntity CreateNewProfile(UInt16 age)
+        public static ProfileEntity CreateNewProfile(UInt16 age, Guid userId)
         {
-            return new ProfileEntity(age);
+            return new ProfileEntity(age, userId);
         }
         public Guid UserId { get; set; }
         public UserEntity User { get; set; }

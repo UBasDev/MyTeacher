@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.DomainEvents.User
 {
-    public class SetDefaultRoleWhenUserCreatedDomainEvent(ProfileEntity profile) : INotification
+    public class CreateNewProfileWhenUserCreatedDomainEvent(Guid createdUserId, UInt16 age) : INotification
     {
-        public ProfileEntity Profile { get; } = profile;
+        public Guid CreatedUserId { get; } = createdUserId;
+        public UInt16 Age { get; set; } = age;
     }
 }

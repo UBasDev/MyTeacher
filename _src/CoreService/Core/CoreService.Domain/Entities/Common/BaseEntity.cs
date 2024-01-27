@@ -19,7 +19,7 @@ namespace CoreService.Domain.Entities.Common
         public bool IsDeleted { get; protected set; } = false;
 
         private ICollection<INotification> domainEvents;
-        //public ICollection<INotification> DomainEvents => domainEvents;
+        public ICollection<INotification> DomainEvents => domainEvents;
 
         protected void AddDomainEvents(INotification notification)
         {

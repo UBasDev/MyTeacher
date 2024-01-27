@@ -10,19 +10,25 @@ using CoreService.Domain.Entities.User;
 using CoreService.Domain.Entities.Profile;
 using Newtonsoft.Json;
 using RabbitMQ.Abstracts;
+using MediatR;
+using CoreService.Domain.DomainEvents.User;
 
 namespace CoreService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(IUnitOfWork unitOfWork, IRabbitMqPublisherService rabbitMqService) : ControllerBase
+    public class UserController(IUnitOfWork unitOfWork, IRabbitMqPublisherService rabbitMqService, IPublisher publisher) : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IRabbitMqPublisherService _rabbitMqService = rabbitMqService;
+        private readonly IPublisher _publisher = publisher;
         [HttpGet("[action]")]
-        public IActionResult CreateSingleUser()
+        public async Task<IActionResult> CreateSingleUser(CancellationToken cancellationToken)
         {
-            _unitOfWork.UserWriteRepository.InsertSingle(UserEntity.CreateNewUser("ali1", "ali1@gmail.com", "salt1", "hash1", ProfileEntity.CreateNewProfile(31)));
+            var userToCreate = UserEntity.CreateNewUser("ali1", "ali1@gmail.com", "salt1", "hash1");
+            await _unitOfWork.UserWriteRepository.InsertSingleAsync(userToCreate);
+            await _unitOfWork.SaveChangesAsync();
+            await _publisher.Publish(new CreateNewProfileWhenUserCreatedDomainEvent(userToCreate.Id, 33), cancellationToken);
             return Ok();
         }
 
