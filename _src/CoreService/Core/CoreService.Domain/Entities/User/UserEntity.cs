@@ -23,7 +23,7 @@ namespace CoreService.Domain.Entities.User
             PasswordHash = passwordHash ?? throw new Exception($"{nameof(passwordHash)} field cannot be empty");
             //Role = role ?? throw new Exception($"{nameof(role)} field cannot be empty");
 
-            AddDomainEvents(new SetDefaultRoleWhenUserCreatedDomainEvent(profile));
+            //AddDomainEvents(new CreateNewProfileWhenUserCreatedDomainEvent());
 
             Profile = profile ?? throw new Exception($"{nameof(profile)} field cannot be empty");
         }
@@ -33,9 +33,9 @@ namespace CoreService.Domain.Entities.User
         public string PasswordHash { get; private set; } = string.Empty;
         //public RoleEntity Role { get; private set; } = new();
         public ProfileEntity Profile { get; set; }
-        public static UserEntity CreateNewUser(string username, string email, string passwordSalt, string passwordHash, ProfileEntity profile)
+        public static UserEntity CreateNewUser(string username, string email, string passwordSalt, string passwordHash)
         {
-            return new UserEntity(username, email, passwordSalt, passwordHash, profile);
+            return new UserEntity(username, email, passwordSalt, passwordHash);
         }
 
         public void ChangeUsername(string newUsername)
