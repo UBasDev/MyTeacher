@@ -19,18 +19,21 @@ namespace CoreService.Application.Features.Commands.User.Login
         {
             var response = new LoginCommandResponse();
             var foundUser = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Username == request.Username).FirstOrDefaultAsync();
+
             if (foundUser == null)
             {
-                response.IsSuccessfull = false;
+                response.IsSuccessful = false;
                 response.ErrorMessage = "There is no user with given username";
                 return response;
             }
             if (foundUser.PasswordHash != UserEntity.ComputeHash(request.Password, foundUser.PasswordSalt))
             {
-                response.IsSuccessfull = false;
+                response.IsSuccessful = false;
                 response.ErrorMessage = "Your password is wrong";
                 return response;
             }
+            response.SuccessMessage.Username = foundUser.Username;
+            response.SuccessMessage.Email = foundUser.Email;
             return response;
         }
     }
