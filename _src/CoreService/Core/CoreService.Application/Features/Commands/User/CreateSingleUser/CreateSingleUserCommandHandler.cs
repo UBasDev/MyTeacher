@@ -22,15 +22,17 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
             var isUserWithSameUsernameAlreadyExists = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Username == request.Username).AsNoTracking().AnyAsync(cancellationToken);
             if (isUserWithSameUsernameAlreadyExists)
             {
-                response.IsSuccessfull = false;
+                response.IsSuccessful = false;
                 response.ErrorMessage = "This username is already taken";
+                response.StatusCode = 400;
                 return response;
             }
             var isUserWithSameEmailAlreadyExists = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Email == request.Email).AsNoTracking().AnyAsync(cancellationToken);
             if (isUserWithSameEmailAlreadyExists)
             {
-                response.IsSuccessfull = false;
+                response.IsSuccessful = false;
                 response.ErrorMessage = "This email is already taken";
+                response.StatusCode = 400;
                 return response;
             }
             var userToCreate = UserEntity.CreateNewUser(request.Username, request.Email, request.Password);
@@ -38,6 +40,7 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
             await _unitOfWork.UserWriteRepository.InsertSingleAsync(userToCreate);
             await _unitOfWork.SaveChangesAsync();
             await _publisher.Publish(new CreateNewProfileWhenUserCreatedDomainEvent(userToCreate.Id, request.Age), cancellationToken);
+            response.SuccessMessage = "You've been successfully registered";
             return response;
         }
 

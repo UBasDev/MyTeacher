@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\_helpers\libs\MyTeacher.Helper\MyTeacher.Helper.csproj" />
     <ProjectReference Include="..\..\..\..\_helpers\RabbitMQ\RabbitMQ\RabbitMQ.csproj" />
     <ProjectReference Include="..\CoreService.Domain\CoreService.Domain.csproj" />
   </ItemGroup>
