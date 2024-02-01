@@ -17,6 +17,7 @@ builder.Services.Configure<AppSettings>(configuration.GetSection(nameof(AppSetti
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,7 +26,7 @@ builder.Services.AddApplicationRegistrations();
 builder.Services.AddPersistenceRegistrations(appSettings);
 
 var app = builder.Build();
-
+app.AddApplicationMiddlewares();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

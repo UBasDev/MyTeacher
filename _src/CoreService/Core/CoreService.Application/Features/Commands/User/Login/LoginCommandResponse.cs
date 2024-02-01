@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Features.Commands.User.Login
 {
-    public class LoginCommandResponse : BaseResponse<LoginCommandResponseDto>
+    public class LoginCommandResponse : BaseResponse<LoginCommandResponseModel>
     {
     }
 }
