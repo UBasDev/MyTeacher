@@ -6,30 +6,25 @@ using System.Threading.Tasks;
 
 namespace MyTeacher.Helper.Responses
 {
-    public abstract class BaseResponse<T>
+    public class BaseResponse<T>
     {
-        protected BaseResponse()
+        public BaseResponse()
         {
-            isSuccessful = true;
             if (typeof(T).IsClass && typeof(T) != typeof(string)) SuccessMessage = Activator.CreateInstance<T>();
             else SuccessMessage = default;
-            ErrorMessage = null;
-            StatusCode = 200;
-            ServerTime = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
         }
-        private bool isSuccessful;
+        private bool isSuccessful = true;
         public bool IsSuccessful
         {
             get => isSuccessful;
             set
             {
                 isSuccessful = value;
-                SuccessMessage = default;
+                SuccessMessage = default; //Burası sadece `false` aldığında set edileceği için `if(value == false) kontrolü koymaya gerek yoktur.`
             }
         }
         public T? SuccessMessage { get; set; }
-        public string? ErrorMessage { get; set; }
-        public virtual int StatusCode { get; set; }
-        public int ServerTime { get; set; }
+        public string? ErrorMessage { get; set; } = null;
+        public int ServerTime { get; set; } = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
     }
 }

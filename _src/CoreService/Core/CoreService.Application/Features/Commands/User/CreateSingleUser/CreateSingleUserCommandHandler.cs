@@ -2,6 +2,7 @@
 using CoreService.Domain.DomainEvents.User;
 using CoreService.Domain.Entities.User;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,11 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Features.Commands.User.CreateSingleUser
 {
-    internal class CreateSingleUserCommandHandler(IUnitOfWork unitOfWork, IPublisher publisher) : IRequestHandler<CreateSingleUserCommandRequest, CreateSingleUserCommandResponse>
+    internal class CreateSingleUserCommandHandler(IUnitOfWork unitOfWork, IPublisher publisher, IHttpContextAccessor httpContextAccessor) : IRequestHandler<CreateSingleUserCommandRequest, CreateSingleUserCommandResponse>
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IPublisher _publisher = publisher;
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         public async Task<CreateSingleUserCommandResponse> Handle(CreateSingleUserCommandRequest request, CancellationToken cancellationToken)
         {
             var response = new CreateSingleUserCommandResponse();
@@ -24,7 +26,7 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
             {
                 response.IsSuccessful = false;
                 response.ErrorMessage = "This username is already taken";
-                response.StatusCode = 400;
+                _httpContextAccessor.HttpContext.Response.StatusCode = 400;
                 return response;
             }
             var isUserWithSameEmailAlreadyExists = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Email == request.Email).AsNoTracking().AnyAsync(cancellationToken);
@@ -32,7 +34,7 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
             {
                 response.IsSuccessful = false;
                 response.ErrorMessage = "This email is already taken";
-                response.StatusCode = 400;
+                _httpContextAccessor.HttpContext.Response.StatusCode = 400;
                 return response;
             }
             var userToCreate = UserEntity.CreateNewUser(request.Username, request.Email, request.Password);
