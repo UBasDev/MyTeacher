@@ -1,5 +1,4 @@
 ﻿using CoreService.Application.Contexts;
-using CoreService.Application.Middlewares;
 using CoreService.Application.Models;
 using CoreService.Application.Repositories;
 using CoreService.Application.Repositories.GenericRepository;
@@ -18,10 +17,10 @@ namespace CoreService.Application.Registrations
 {
     public static class ApplicationRegistration
     {
-        public static void AddApplicationRegistrations(this IServiceCollection services)
+        public static void AddApplicationRegistrations(this IServiceCollection services, string databaseConnectionUrl)
         {
             services.AddSingleton<UserModel>();
-            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("User ID=postgres;Password=admin;Server=localhost;Port=5432;Database=MyTeacher-Core;Include Error Detail=true;Pooling=true;Connection Lifetime=0;", opt => { opt.EnableRetryOnFailure(); }));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(databaseConnectionUrl, opt => { opt.EnableRetryOnFailure(); }));
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
@@ -30,7 +29,7 @@ namespace CoreService.Application.Registrations
         }
         public static void AddApplicationMiddlewares(this IApplicationBuilder app)
         {
-            app.UseMiddleware<JwtMiddleware>();
+
         }
     }
 }

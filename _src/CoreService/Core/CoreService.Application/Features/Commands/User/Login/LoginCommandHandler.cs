@@ -16,12 +16,11 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Features.Commands.User.Login
 {
-    public class LoginCommandHandler(IUnitOfWork unitOfWork, ILogger<LoginCommandHandler> logger, UserModel userModel, IHttpContextAccessor httpContextAccessor) : IRequestHandler<LoginCommandRequest, LoginCommandResponse>
+    public class LoginCommandHandler(IUnitOfWork unitOfWork, ILogger<LoginCommandHandler> logger, UserModel userModel) : IRequestHandler<LoginCommandRequest, LoginCommandResponse>
     {
         private readonly ILogger<LoginCommandHandler> _logger = logger;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly UserModel _userModel = userModel;
-        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         public async Task<LoginCommandResponse> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
         {
             var response = new LoginCommandResponse();
@@ -31,14 +30,12 @@ namespace CoreService.Application.Features.Commands.User.Login
             {
                 response.IsSuccessful = false;
                 response.ErrorMessage = "There is no user with given username";
-                _httpContextAccessor.HttpContext.Response.StatusCode = 400;
                 return response;
             }
             if (foundUser.PasswordHash != UserEntity.ComputeHash(request.Password, foundUser.PasswordSalt))
             {
                 response.IsSuccessful = false;
                 response.ErrorMessage = "Your password is wrong";
-                _httpContextAccessor.HttpContext.Response.StatusCode = 400;
                 return response;
             }
             response.SuccessMessage.AccessToken = GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, TimeSpan.FromSeconds(30));
