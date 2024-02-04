@@ -6,8 +6,9 @@ using RabbitMQ.Abstracts;
 using MediatR;
 using CoreService.Application.Features.Commands.User.CreateSingleUser;
 using CoreService.Application.Features.Commands.User.Login;
-using CoreService.Application.Attributes;
 using CoreService.Application.Models;
+using MyTeacher.Helper.Attributes;
+using MyTeacher.Helper.Models;
 
 namespace CoreService.API.Controllers
 {
@@ -38,6 +39,7 @@ namespace CoreService.API.Controllers
         [HttpGet("[action]")]
         public IActionResult Authorized1()
         {
+            var x1 = _userModel;
             return Ok("Tokenın kabul edildi");
         }
 
