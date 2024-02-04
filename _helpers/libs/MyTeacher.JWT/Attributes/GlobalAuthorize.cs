@@ -58,7 +58,7 @@ namespace MyTeacher.Helper.Attributes
                 };
                 return;
             }
-            if (AllowedRoles.Length > 1)
+            if (AllowedRoles.Length > 0)
             {
                 var isRoleExist = AllowedRoles.Any(r => r.Equals(userClaims?.Role));
                 if (!isRoleExist)
