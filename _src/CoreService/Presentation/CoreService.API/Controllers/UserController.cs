@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RabbitMQ.Client;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Abstracts;
 using MediatR;
 using CoreService.Application.Features.Commands.User.CreateSingleUser;
 using CoreService.Application.Features.Commands.User.Login;
-using CoreService.Application.Models;
 using MyTeacher.Helper.Attributes;
 using MyTeacher.Helper.Models;
 
@@ -24,14 +20,16 @@ namespace CoreService.API.Controllers
         {
             var response = await _mediator.Send(requestBody, cancellationToken);
             if (!response.IsSuccessful) Response.StatusCode = 400;
+            response.TraceId = HttpContext.TraceIdentifier;
             return response;
         }
-
         [HttpPost("[action]")]
         public async Task<LoginCommandResponse> Login([FromBody] LoginCommandRequest requestBody, CancellationToken cancellationToken)
         {
+
             var response = await _mediator.Send(requestBody, cancellationToken);
             if (!response.IsSuccessful) Response.StatusCode = 400;
+            response.TraceId = HttpContext.TraceIdentifier;
             return response;
         }
 
