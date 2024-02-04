@@ -6,6 +6,7 @@ using MediatR.NotificationPublishers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MyTeacher.Helper.Middlewares;
 using MyTeacher.Helper.Models;
 using MyTeacher.JWT.Abstracts;
 using MyTeacher.JWT.TokenGenerator;
@@ -40,7 +41,7 @@ namespace CoreService.Application.Registrations
         }
         public static void AddApplicationMiddlewares(this IApplicationBuilder app)
         {
-
+            app.UseMiddleware<GlobalExceptionMiddleware>();
         }
     }
 }

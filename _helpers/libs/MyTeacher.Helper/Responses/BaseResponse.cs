@@ -25,6 +25,7 @@ namespace MyTeacher.Helper.Responses
         }
         public T? SuccessMessage { get; set; }
         public string? ErrorMessage { get; set; } = null;
+        public string TraceId { get; set; } = string.Empty;
         public int ServerTime { get; set; } = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
     }
 }

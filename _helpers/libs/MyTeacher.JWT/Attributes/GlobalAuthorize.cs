@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mime;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -26,12 +27,7 @@ namespace MyTeacher.Helper.Attributes
             var jwtToken = context.HttpContext.Request.Headers.FirstOrDefault(h => h.Key == "Authorization").Value;
             if (string.IsNullOrEmpty(jwtToken))
             {
-                var response = new BaseResponse<string>()
-                {
-                    ErrorMessage = "You are not allowed here",
-                    IsSuccessful = false,
-                    SuccessMessage = null
-                };
+                var response = BaseErrorResponse.BuildBaseErrorResponse("You are not allowed here", context.HttpContext.TraceIdentifier);
                 context.Result = new ContentResult()
                 {
                     Content = JsonSerializer.Serialize(response),
@@ -44,12 +40,7 @@ namespace MyTeacher.Helper.Attributes
             (string? errorMessage, UserModel? userClaims) = ValidateToken(jwtToken.ToString().Split(" ")[1], jwtSettings);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                var response = new BaseResponse<string>()
-                {
-                    ErrorMessage = errorMessage,
-                    IsSuccessful = false,
-                    SuccessMessage = null
-                };
+                var response = BaseErrorResponse.BuildBaseErrorResponse(errorMessage, context.HttpContext.TraceIdentifier);
                 context.Result = new ContentResult()
                 {
                     Content = JsonSerializer.Serialize(response),
@@ -63,12 +54,7 @@ namespace MyTeacher.Helper.Attributes
                 var isRoleExist = AllowedRoles.Any(r => r.Equals(userClaims?.Role));
                 if (!isRoleExist)
                 {
-                    var response = new BaseResponse<string>()
-                    {
-                        ErrorMessage = "Your role is not allowed",
-                        IsSuccessful = false,
-                        SuccessMessage = null
-                    };
+                    var response = BaseErrorResponse.BuildBaseErrorResponse("Your role is not allowed", context.HttpContext.TraceIdentifier);
                     context.Result = new ContentResult()
                     {
                         Content = JsonSerializer.Serialize(response),
