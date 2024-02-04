@@ -18,6 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\_helpers\libs\MyTeacher.JWT\MyTeacher.JWT.csproj" />
 		<ProjectReference Include="..\..\Core\CoreService.Application\CoreService.Application.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\CoreService.Persistence\CoreService.Persistence.csproj" />
 	</ItemGroup>

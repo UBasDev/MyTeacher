@@ -23,11 +23,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\_helpers\libs\MyTeacher.Helper\MyTeacher.Helper.csproj" />
+    <ProjectReference Include="..\..\..\..\_helpers\libs\MyTeacher.JWT\MyTeacher.JWT.csproj" />
     <ProjectReference Include="..\..\..\..\_helpers\RabbitMQ\RabbitMQ\RabbitMQ.csproj" />
     <ProjectReference Include="..\CoreService.Domain\CoreService.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Attributes\" />
     <Folder Include="Extensions\" />
     <Folder Include="Features\Queries\" />
     <Folder Include="Middlewares\" />

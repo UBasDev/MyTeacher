@@ -1,6 +1,7 @@
 using CoreService.Application.Models;
 using CoreService.Application.Registrations;
 using CoreService.Persistence.Registrations;
+using MyTeacher.Helper.Attributes;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
@@ -22,7 +23,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddApplicationRegistrations(appSettings.DatabaseConnectionUrl);
+builder.Services.AddApplicationRegistrations(appSettings.DatabaseConnectionUrl, appSettings.JwtTokenSettings);
 builder.Services.AddPersistenceRegistrations(appSettings);
 
 var app = builder.Build();
