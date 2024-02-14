@@ -5,17 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MyTeacher.Helper.Models;
 using MyTeacher.Helper.Responses;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using Serilog.Context;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Mime;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MyTeacher.Helper.Attributes
 {
@@ -30,7 +26,7 @@ namespace MyTeacher.Helper.Attributes
                 var response = BaseErrorResponse.BuildBaseErrorResponse("You are not allowed here", context.HttpContext.TraceIdentifier);
                 context.Result = new ContentResult()
                 {
-                    Content = JsonSerializer.Serialize(response),
+                    Content = JsonConvert.SerializeObject(response),
                     ContentType = MediaTypeNames.Application.Json,
                     StatusCode = StatusCodes.Status401Unauthorized
                 };
@@ -43,7 +39,7 @@ namespace MyTeacher.Helper.Attributes
                 var response = BaseErrorResponse.BuildBaseErrorResponse(errorMessage, context.HttpContext.TraceIdentifier);
                 context.Result = new ContentResult()
                 {
-                    Content = JsonSerializer.Serialize(response),
+                    Content = JsonConvert.SerializeObject(response),
                     ContentType = MediaTypeNames.Application.Json,
                     StatusCode = StatusCodes.Status401Unauthorized
                 };
@@ -57,18 +53,18 @@ namespace MyTeacher.Helper.Attributes
                     var response = BaseErrorResponse.BuildBaseErrorResponse("Your role is not allowed", context.HttpContext.TraceIdentifier);
                     context.Result = new ContentResult()
                     {
-                        Content = JsonSerializer.Serialize(response),
+                        Content = JsonConvert.SerializeObject(response),
                         ContentType = MediaTypeNames.Application.Json,
                         StatusCode = StatusCodes.Status403Forbidden
                     };
                     return;
                 }
             }
-            var userModel = context.HttpContext.RequestServices.GetRequiredService<UserModel>();
-            userModel.Username = userClaims?.Username;
-            userModel.Role = userClaims?.Role;
-            userModel.Email = userClaims?.Email;
-            userModel.Id = userClaims?.Id;
+            if (userClaims != null)
+            {
+                LogContext.PushProperty("user_id", userClaims.Id);
+                context.HttpContext.Items["RequestUser"] = userClaims;
+            }
         }
         private static (string?, UserModel?) ValidateToken(string authToken, JwtTokenSettings jwtSettings)
         {

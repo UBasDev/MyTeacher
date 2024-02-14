@@ -44,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{C50C1A59-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTeacher.Helper", "_helpers\libs\MyTeacher.Helper\MyTeacher.Helper.csproj", "{179D1C6F-ADEF-4835-92BF-A844B3D1B2A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTeacher.JWT", "_helpers\libs\MyTeacher.JWT\MyTeacher.JWT.csproj", "{C42391E5-0F7A-4D6C-8573-CE9AE923FF29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTeacher.JWT", "_helpers\libs\MyTeacher.JWT\MyTeacher.JWT.csproj", "{C42391E5-0F7A-4D6C-8573-CE9AE923FF29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
