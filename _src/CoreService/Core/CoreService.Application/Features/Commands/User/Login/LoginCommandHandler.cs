@@ -40,8 +40,8 @@ namespace CoreService.Application.Features.Commands.User.Login
                 response.ErrorMessage = "Your password is wrong";
                 return response;
             }
-            response.SuccessMessage.AccessToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(30));
-            response.SuccessMessage.RefreshToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(60));
+            response.SuccessMessage.AccessToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(300));
+            response.SuccessMessage.RefreshToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(600));
             return response;
         }
     }

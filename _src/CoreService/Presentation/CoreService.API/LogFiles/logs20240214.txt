@@ -1,0 +1,808 @@
+2024-02-14 11:16:52.590 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 11:16:52.618 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 11:16:52.622 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 11:16:52.631 +03:00 [INF] Hosting environment: Development
+2024-02-14 11:16:52.633 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 11:16:55.924 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger - null null
+2024-02-14 11:16:56.084 +03:00 [INF] HTTP GET /swagger responded 301 in 16.2744 ms
+2024-02-14 11:16:56.092 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger - 301 0 null 178.1375ms
+2024-02-14 11:16:56.100 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 11:16:56.195 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 88.6404 ms
+2024-02-14 11:16:56.200 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 100.1782ms
+2024-02-14 11:16:56.212 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/swagger-ui.css - null null
+2024-02-14 11:16:56.222 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/swagger-ui-standalone-preset.js - null null
+2024-02-14 11:16:56.222 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/swagger-ui-bundle.js - null null
+2024-02-14 11:16:56.224 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 11:16:56.235 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 11:16:56.287 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 63.6153ms
+2024-02-14 11:16:56.305 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-02-14 11:16:56.310 +03:00 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 81.5224 ms
+2024-02-14 11:16:56.311 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-02-14 11:16:56.314 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/swagger-ui.css - 200 143943 text/css 101.6742ms
+2024-02-14 11:16:56.324 +03:00 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 93.6705 ms
+2024-02-14 11:16:56.332 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 111.0244ms
+2024-02-14 11:16:56.352 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-02-14 11:16:56.355 +03:00 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 119.7370 ms
+2024-02-14 11:16:56.358 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 137.7151ms
+2024-02-14 11:16:56.380 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 144.9211ms
+2024-02-14 11:16:56.501 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 11:16:56.519 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/favicon-32x32.png - null null
+2024-02-14 11:16:56.524 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-02-14 11:16:56.528 +03:00 [INF] HTTP GET /swagger/favicon-32x32.png responded 200 in 4.5591 ms
+2024-02-14 11:16:56.533 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/favicon-32x32.png - 200 628 image/png 14.6459ms
+2024-02-14 11:16:56.578 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 73.7316 ms
+2024-02-14 11:16:56.582 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 81.273ms
+2024-02-14 11:19:44.803 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 11:19:44.836 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 11:19:44.845 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 11:19:44.847 +03:00 [INF] Hosting environment: Development
+2024-02-14 11:19:44.850 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 11:19:45.176 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 11:19:45.370 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 106.2650 ms
+2024-02-14 11:19:45.394 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 226.7242ms
+2024-02-14 11:19:45.427 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 11:19:45.427 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 11:19:45.446 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 19.378ms
+2024-02-14 11:19:45.471 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 44.1829ms
+2024-02-14 11:19:45.603 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 11:19:45.670 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 57.3140 ms
+2024-02-14 11:19:45.681 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 86.5282ms
+2024-02-14 11:20:33.508 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 52
+2024-02-14 11:20:33.614 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:20:33.632 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:20:34.136 +03:00 [INF] Test logu atıyorum
+2024-02-14 11:20:34.886 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 11:20:34.972 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 11:20:34.981 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1342.6979ms
+2024-02-14 11:20:34.983 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:20:34.986 +03:00 [INF] HTTP POST /api/User/Login responded 400 in 1466.8579 ms
+2024-02-14 11:20:34.992 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 400 null application/json; charset=utf-8 1484.008ms
+2024-02-14 11:21:04.971 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 11:21:04.977 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:21:04.980 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:21:04.984 +03:00 [INF] Test logu atıyorum
+2024-02-14 11:21:05.026 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 11:21:05.549 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 11:21:05.553 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 571.1774ms
+2024-02-14 11:21:05.555 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:21:05.558 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 581.6092 ms
+2024-02-14 11:21:05.561 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 590.3266ms
+2024-02-14 11:21:49.882 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 11:21:49.888 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:21:49.890 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:21:49.895 +03:00 [INF] Test logu atıyorum
+2024-02-14 11:21:49.916 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 11:21:49.927 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 11:21:49.930 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 37.1412ms
+2024-02-14 11:21:49.933 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:21:49.935 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 46.9064 ms
+2024-02-14 11:21:49.937 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 55.74ms
+2024-02-14 11:21:58.940 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 11:21:58.944 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:21:58.947 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:21:58.978 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 11:21:58.985 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 35.4163ms
+2024-02-14 11:21:58.988 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:21:58.989 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 45.9368 ms
+2024-02-14 11:21:58.992 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 52.2669ms
+2024-02-14 11:22:07.619 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 11:22:07.622 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:22:07.624 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:22:07.628 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 11:22:07.630 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.4268ms
+2024-02-14 11:22:07.633 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:22:07.634 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 12.1081 ms
+2024-02-14 11:22:07.637 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 18.0534ms
+2024-02-14 11:22:28.263 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 11:22:28.266 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:22:28.268 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:22:28.271 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 11:22:28.273 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 2.6322ms
+2024-02-14 11:22:28.276 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:22:28.279 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 12.4957 ms
+2024-02-14 11:22:28.282 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 18.8722ms
+2024-02-14 11:23:09.257 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 11:23:09.261 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:23:09.263 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:23:09.266 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 11:23:09.269 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.0279ms
+2024-02-14 11:23:09.271 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:23:09.274 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 13.0786 ms
+2024-02-14 11:23:09.276 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 19.533ms
+2024-02-14 11:32:13.750 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 11:32:13.777 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 11:32:13.815 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 11:32:13.817 +03:00 [INF] Hosting environment: Development
+2024-02-14 11:32:13.819 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 11:32:14.109 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 11:32:14.251 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 83.3825 ms
+2024-02-14 11:32:14.258 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 152.9139ms
+2024-02-14 11:32:14.301 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 11:32:14.305 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 11:32:14.313 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 12.1172ms
+2024-02-14 11:32:14.345 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.8144ms
+2024-02-14 11:32:14.403 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 11:32:14.478 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 72.2408 ms
+2024-02-14 11:32:14.483 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 80.2424ms
+2024-02-14 11:33:09.650 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 11:33:09.671 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:33:09.693 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:33:09.962 +03:00 [INF] Test logu atıyorum
+2024-02-14 11:33:10.714 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 11:33:10.860 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 11:33:10.869 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1171.4064ms
+2024-02-14 11:33:10.872 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 11:33:10.874 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1212.9182 ms
+2024-02-14 11:33:10.882 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1231.1677ms
+2024-02-14 11:33:29.440 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 11:33:29.446 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:33:29.450 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:33:29.481 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 11:33:29.486 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 33.0203ms
+2024-02-14 11:33:29.489 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:33:29.491 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 45.2968 ms
+2024-02-14 11:33:29.494 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 54.0894ms
+2024-02-14 11:34:10.089 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 11:34:10.093 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:34:10.095 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 11:34:10.098 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 11:34:10.100 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.3241ms
+2024-02-14 11:34:10.102 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 11:34:10.104 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 11.6758 ms
+2024-02-14 11:34:10.107 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 17.4531ms
+2024-02-14 15:38:04.794 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 15:38:04.820 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 15:38:04.827 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 15:38:04.829 +03:00 [INF] Hosting environment: Development
+2024-02-14 15:38:04.831 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 15:38:21.771 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 15:38:21.880 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 66.0916 ms
+2024-02-14 15:38:21.888 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 120.4289ms
+2024-02-14 15:38:21.907 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 15:38:21.911 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 15:38:21.918 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 10.7506ms
+2024-02-14 15:38:21.950 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.9564ms
+2024-02-14 15:38:21.991 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 15:38:22.056 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 60.0320 ms
+2024-02-14 15:38:22.059 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 68.1214ms
+2024-02-14 15:38:31.110 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:38:31.127 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:38:31.143 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:38:31.371 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:38:32.062 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:38:32.220 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:38:32.231 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1083.0683ms
+2024-02-14 15:38:32.240 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:38:32.243 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1125.8410 ms
+2024-02-14 15:38:32.251 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1141.6134ms
+2024-02-14 15:38:43.736 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:38:43.742 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:38:43.745 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:38:43.749 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:38:43.792 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:38:43.803 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:38:43.806 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 58.449ms
+2024-02-14 15:38:43.808 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:38:43.810 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 68.8135 ms
+2024-02-14 15:38:43.813 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 77.5393ms
+2024-02-14 15:39:08.250 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:39:08.258 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:39:08.260 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:39:08.265 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:39:08.281 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:39:08.296 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:39:08.299 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 36.1258ms
+2024-02-14 15:39:08.301 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:39:08.303 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 45.1780 ms
+2024-02-14 15:39:08.307 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 57.7428ms
+2024-02-14 15:39:39.908 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:39:39.912 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:39:39.914 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:39:39.918 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:39:39.923 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:39:39.934 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:39:39.937 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 19.92ms
+2024-02-14 15:39:39.939 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:39:39.942 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 30.3925 ms
+2024-02-14 15:39:39.945 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 37.4553ms
+2024-02-14 15:40:01.817 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:40:01.821 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:40:01.824 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:40:11.411 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 15:40:11.418 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 9591.127ms
+2024-02-14 15:40:11.420 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:40:11.423 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 9602.1161 ms
+2024-02-14 15:40:11.426 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 9608.727ms
+2024-02-14 15:40:33.801 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:40:33.804 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:40:33.808 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:40:33.811 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:40:33.815 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:40:33.828 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:40:33.830 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 19.4019ms
+2024-02-14 15:40:33.833 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:40:33.836 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 31.4069 ms
+2024-02-14 15:40:33.839 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 38.205ms
+2024-02-14 15:40:50.060 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:40:50.064 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:40:50.067 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:40:56.173 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 15:40:56.177 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 6107.8658ms
+2024-02-14 15:40:56.179 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:40:56.181 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 6116.9809 ms
+2024-02-14 15:40:56.184 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 6123.3081ms
+2024-02-14 15:41:18.826 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:41:18.830 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:41:18.832 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:41:26.310 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 15:41:26.313 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 7478.5273ms
+2024-02-14 15:41:26.315 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:41:26.317 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 7487.3173 ms
+2024-02-14 15:41:26.320 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 7494.241ms
+2024-02-14 15:41:28.741 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:41:28.744 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:41:28.747 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:41:28.750 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:41:28.755 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:41:28.767 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:41:28.770 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 20.1703ms
+2024-02-14 15:41:28.772 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:41:28.774 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 30.0611 ms
+2024-02-14 15:41:28.777 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 36.7711ms
+2024-02-14 15:41:36.013 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:41:36.016 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:41:36.019 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:41:53.518 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 15:41:53.523 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 17501.369ms
+2024-02-14 15:41:53.525 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:41:53.527 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 17510.7031 ms
+2024-02-14 15:41:53.530 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 17516.8074ms
+2024-02-14 15:41:58.705 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 15:41:58.708 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:41:58.710 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:41:58.713 +03:00 [INF] Test logu atıyorum
+2024-02-14 15:41:58.717 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 15:41:58.733 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 15:41:58.736 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 22.699ms
+2024-02-14 15:41:58.738 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 15:41:58.740 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 32.5016 ms
+2024-02-14 15:41:58.743 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 38.4339ms
+2024-02-14 15:42:06.373 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:42:06.376 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:42:06.379 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:42:13.186 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 15:42:13.191 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 6809.7062ms
+2024-02-14 15:42:13.193 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:42:13.195 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 6818.8999 ms
+2024-02-14 15:42:13.198 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 6825.0046ms
+2024-02-14 15:57:01.539 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 15:57:01.579 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 15:57:01.589 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 15:57:01.592 +03:00 [INF] Hosting environment: Development
+2024-02-14 15:57:01.595 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 15:57:05.061 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 15:57:05.161 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 61.4083 ms
+2024-02-14 15:57:05.168 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 110.8267ms
+2024-02-14 15:57:05.201 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 15:57:05.205 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 15:57:05.216 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 14.722ms
+2024-02-14 15:57:05.246 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.2916ms
+2024-02-14 15:57:05.296 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 15:57:05.362 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 62.2929 ms
+2024-02-14 15:57:05.366 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 70.8122ms
+2024-02-14 15:57:11.848 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:57:11.862 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:57:11.872 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:57:11.879 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 15:57:11.882 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 15:57:11.894 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 16.7957ms
+2024-02-14 15:57:11.896 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:57:11.898 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 43.5084 ms
+2024-02-14 15:57:11.901 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 2 application/json 52.6728ms
+2024-02-14 15:57:27.296 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:57:27.302 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:57:27.305 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:57:27.308 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 15:57:27.311 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 15:57:27.314 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 5.9925ms
+2024-02-14 15:57:27.317 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:57:27.319 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 17.0764 ms
+2024-02-14 15:57:27.322 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 2 application/json 26.0148ms
+2024-02-14 15:57:35.251 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 15:57:35.255 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:57:35.257 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 15:57:47.250 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 15:57:47.252 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 15:57:47.254 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 11994.1201ms
+2024-02-14 15:57:47.257 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 15:57:56.173 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 20918.2840 ms
+2024-02-14 15:57:56.176 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 2 application/json 20924.9259ms
+2024-02-14 16:10:26.285 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 16:10:26.318 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 16:10:26.326 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 16:10:26.329 +03:00 [INF] Hosting environment: Development
+2024-02-14 16:10:26.331 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 16:10:30.233 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 16:10:30.343 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 68.1241 ms
+2024-02-14 16:10:30.351 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 121.9527ms
+2024-02-14 16:10:30.378 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 16:10:30.383 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 16:10:30.389 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 11.1625ms
+2024-02-14 16:10:30.433 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 49.9589ms
+2024-02-14 16:10:30.469 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 16:10:30.528 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 55.9568 ms
+2024-02-14 16:10:30.531 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 62.4769ms
+2024-02-14 16:10:35.705 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 16:10:35.719 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:10:35.730 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 16:11:13.953 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 16:11:13.963 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 16:11:13.973 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 38237.8428ms
+2024-02-14 16:11:13.975 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:11:13.977 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 38266.4817 ms
+2024-02-14 16:11:13.980 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 2 application/json 38275.4587ms
+2024-02-14 16:11:55.248 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 16:11:55.282 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 16:11:55.290 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 16:11:55.293 +03:00 [INF] Hosting environment: Development
+2024-02-14 16:11:55.296 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 16:11:55.783 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 16:11:55.961 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 67.9864 ms
+2024-02-14 16:11:55.966 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 189.7931ms
+2024-02-14 16:11:55.982 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 16:11:55.989 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 16:11:55.990 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 8.041ms
+2024-02-14 16:11:56.020 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.475ms
+2024-02-14 16:11:56.062 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 16:11:56.121 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 55.6795 ms
+2024-02-14 16:11:56.124 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 62.2404ms
+2024-02-14 16:12:01.545 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 16:12:01.563 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:12:01.580 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 16:15:19.332 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 16:15:19.357 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 16:15:19.363 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 16:15:19.365 +03:00 [INF] Hosting environment: Development
+2024-02-14 16:15:19.367 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 16:15:19.764 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 16:15:19.880 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 70.9367 ms
+2024-02-14 16:15:19.885 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 124.7888ms
+2024-02-14 16:15:19.905 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 16:15:19.911 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 16:15:19.914 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 9.188ms
+2024-02-14 16:15:19.944 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.9864ms
+2024-02-14 16:15:19.991 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 16:15:20.051 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 56.1922 ms
+2024-02-14 16:15:20.054 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 63.1923ms
+2024-02-14 16:15:24.062 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 16:15:24.078 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:15:24.090 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 16:15:24.161 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 16:15:24.165 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 16:15:24.174 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 79.9321ms
+2024-02-14 16:15:24.177 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:15:24.179 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 111.0302 ms
+2024-02-14 16:15:24.181 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 145 application/json 119.4854ms
+2024-02-14 16:15:31.836 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 16:15:31.841 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:15:31.843 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 16:15:31.931 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 16:15:31.933 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 16:15:31.935 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 89.6612ms
+2024-02-14 16:15:31.937 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 16:15:31.939 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 98.5026 ms
+2024-02-14 16:15:31.942 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 261 application/json 105.8287ms
+2024-02-14 17:11:04.914 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 17:11:04.938 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 17:11:04.945 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 17:11:04.975 +03:00 [INF] Hosting environment: Development
+2024-02-14 17:11:04.977 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 17:11:05.093 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 17:11:05.201 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 70.2855 ms
+2024-02-14 17:11:05.206 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 115.9327ms
+2024-02-14 17:11:05.226 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 17:11:05.233 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 17:11:05.234 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 7.3173ms
+2024-02-14 17:11:05.267 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.9663ms
+2024-02-14 17:11:05.312 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 17:11:05.371 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 55.9274 ms
+2024-02-14 17:11:05.375 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 63.0472ms
+2024-02-14 17:11:23.990 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 17:11:24.078 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:11:24.093 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:11:24.529 +03:00 [INF] Test logu atıyorum
+2024-02-14 17:11:25.228 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 17:11:25.844 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 17:11:25.854 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1755.4786ms
+2024-02-14 17:11:25.857 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:11:25.859 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1861.3608 ms
+2024-02-14 17:11:25.866 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1876.3493ms
+2024-02-14 17:11:40.959 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 17:11:40.964 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:11:40.967 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:11:40.972 +03:00 [INF] Test logu atıyorum
+2024-02-14 17:11:41.014 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 17:11:41.027 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 17:11:41.030 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 60.7188ms
+2024-02-14 17:11:41.032 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:11:41.035 +03:00 [INF] HTTP POST /api/User/Login responded 400 in 71.1438 ms
+2024-02-14 17:11:41.037 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 400 null application/json; charset=utf-8 79.0818ms
+2024-02-14 17:11:49.282 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 17:11:49.286 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:11:49.288 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:11:49.293 +03:00 [INF] Test logu atıyorum
+2024-02-14 17:11:49.309 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 17:11:49.321 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 17:11:49.323 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 32.6732ms
+2024-02-14 17:11:49.326 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:11:49.329 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 42.7902 ms
+2024-02-14 17:11:49.331 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 49.0284ms
+2024-02-14 17:11:57.044 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:11:57.048 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:11:57.053 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:11:57.178 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 17:11:57.182 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 17:11:57.185 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 130.1333ms
+2024-02-14 17:11:57.187 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:11:57.190 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 142.1286 ms
+2024-02-14 17:11:57.193 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 261 application/json 149.2771ms
+2024-02-14 17:12:02.401 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:12:02.405 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:12:02.408 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:12:02.412 +03:00 [INF] Authorization failed for the request at filter 'MyTeacher.Helper.Attributes.GlobalAuthorize'.
+2024-02-14 17:12:02.415 +03:00 [INF] Executing ContentResult with HTTP Response ContentType of application/json
+2024-02-14 17:12:02.418 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 6.7667ms
+2024-02-14 17:12:02.420 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:12:02.423 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 401 in 17.7294 ms
+2024-02-14 17:12:02.426 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 401 145 application/json 24.4916ms
+2024-02-14 17:43:35.229 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 17:43:35.264 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 17:43:35.271 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 17:43:35.273 +03:00 [INF] Hosting environment: Development
+2024-02-14 17:43:35.275 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 17:43:35.669 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 17:43:35.767 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 58.9635 ms
+2024-02-14 17:43:35.772 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 106.8035ms
+2024-02-14 17:43:35.800 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 17:43:35.804 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 17:43:35.810 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 9.4532ms
+2024-02-14 17:43:35.839 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.4285ms
+2024-02-14 17:43:35.880 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 17:43:35.938 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 55.1565 ms
+2024-02-14 17:43:35.942 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 62.2803ms
+2024-02-14 17:46:59.641 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 17:46:59.670 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 17:46:59.677 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 17:46:59.679 +03:00 [INF] Hosting environment: Development
+2024-02-14 17:46:59.681 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 17:47:03.342 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 17:47:03.458 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 72.2607 ms
+2024-02-14 17:47:03.465 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 126.8456ms
+2024-02-14 17:47:03.481 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 17:47:03.488 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 17:47:03.488 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 7.3109ms
+2024-02-14 17:47:03.521 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.2489ms
+2024-02-14 17:47:03.566 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 17:47:03.636 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 66.2360 ms
+2024-02-14 17:47:03.639 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 72.8166ms
+2024-02-14 17:47:39.203 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 17:47:39.230 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 17:47:39.237 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 17:47:39.239 +03:00 [INF] Hosting environment: Development
+2024-02-14 17:47:39.241 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 17:47:42.645 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 17:47:42.739 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 59.8571 ms
+2024-02-14 17:47:42.746 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 104.6268ms
+2024-02-14 17:47:42.762 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 17:47:42.767 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 17:47:42.771 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 8.2096ms
+2024-02-14 17:47:42.799 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.7987ms
+2024-02-14 17:47:42.844 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 17:47:42.909 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 61.6586 ms
+2024-02-14 17:47:42.912 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 68.5382ms
+2024-02-14 17:49:00.007 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 17:49:00.025 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:49:00.043 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:49:00.262 +03:00 [INF] Test logu atıyorum
+2024-02-14 17:49:00.942 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 17:49:01.076 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 17:49:01.086 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1037.4856ms
+2024-02-14 17:49:01.088 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:49:01.091 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1075.3337 ms
+2024-02-14 17:49:01.098 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1090.4209ms
+2024-02-14 17:49:31.331 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:49:31.336 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:49:31.339 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:49:44.460 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:49:52.391 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 21048.9267ms
+2024-02-14 17:49:53.315 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:49:54.111 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 22775.1238 ms
+2024-02-14 17:49:54.845 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 23510.407ms
+2024-02-14 17:50:45.834 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:50:58.349 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:51:01.446 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:51:02.251 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:51:02.254 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 4.825ms
+2024-02-14 17:51:02.257 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:51:03.522 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 17684.9345 ms
+2024-02-14 17:51:03.525 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 17691.0359ms
+2024-02-14 17:51:13.891 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:51:13.895 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:51:13.897 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:51:13.900 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:51:13.903 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.1475ms
+2024-02-14 17:51:13.905 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:51:13.907 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 12.3330 ms
+2024-02-14 17:51:13.910 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 19.3068ms
+2024-02-14 17:51:54.480 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:51:54.484 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:51:54.487 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:52:21.458 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:52:21.461 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 26971.5121ms
+2024-02-14 17:52:21.463 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:52:21.466 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 26981.4854 ms
+2024-02-14 17:52:21.468 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 26988.1148ms
+2024-02-14 17:54:19.562 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 17:54:19.589 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 17:54:19.596 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 17:54:19.598 +03:00 [INF] Hosting environment: Development
+2024-02-14 17:54:19.600 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 17:54:19.965 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 17:54:20.112 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 98.7386 ms
+2024-02-14 17:54:20.123 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 161.3874ms
+2024-02-14 17:54:20.148 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 17:54:20.154 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 17:54:20.159 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 9.7085ms
+2024-02-14 17:54:20.201 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 46.85ms
+2024-02-14 17:54:20.251 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 17:54:20.313 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 59.5044 ms
+2024-02-14 17:54:20.316 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 65.5816ms
+2024-02-14 17:54:38.262 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 17:54:38.279 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:54:38.296 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:54:38.511 +03:00 [INF] Test logu atıyorum
+2024-02-14 17:54:39.149 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 17:54:39.292 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 17:54:39.301 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1000.0789ms
+2024-02-14 17:54:39.304 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:54:39.306 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1036.3863 ms
+2024-02-14 17:54:39.314 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1051.3415ms
+2024-02-14 17:54:49.407 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:54:49.412 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:54:49.416 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:54:49.445 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:54:49.450 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 31.1674ms
+2024-02-14 17:54:49.452 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:54:49.454 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 41.4331 ms
+2024-02-14 17:54:49.457 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 49.5925ms
+2024-02-14 17:55:12.310 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:55:12.314 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:55:12.316 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:55:12.319 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:55:12.323 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 4.3867ms
+2024-02-14 17:55:12.326 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:55:12.328 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 14.1389 ms
+2024-02-14 17:55:12.331 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 20.5966ms
+2024-02-14 17:57:21.679 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 17:57:21.704 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 17:57:21.711 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 17:57:21.713 +03:00 [INF] Hosting environment: Development
+2024-02-14 17:57:21.715 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 17:57:21.947 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 17:57:22.089 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 92.6680 ms
+2024-02-14 17:57:22.098 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 155.0098ms
+2024-02-14 17:57:22.124 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 17:57:22.131 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 17:57:22.140 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 16.1304ms
+2024-02-14 17:57:22.175 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 44.1232ms
+2024-02-14 17:57:22.215 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 17:57:22.293 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 74.7383 ms
+2024-02-14 17:57:22.297 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 82.3631ms
+2024-02-14 17:57:30.329 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 17:57:30.344 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:57:30.360 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:57:30.578 +03:00 [INF] Test logu atıyorum
+2024-02-14 17:57:31.291 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 17:57:31.440 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 17:57:31.450 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1084.2193ms
+2024-02-14 17:57:31.453 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 17:57:31.458 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1121.9634 ms
+2024-02-14 17:57:31.466 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1137.348ms
+2024-02-14 17:57:40.003 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:57:40.009 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:57:40.013 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:57:40.041 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:57:40.045 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 28.6857ms
+2024-02-14 17:57:40.047 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:57:40.049 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 39.6297 ms
+2024-02-14 17:57:40.051 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 48.2846ms
+2024-02-14 17:57:52.649 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:57:52.653 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:57:52.655 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:57:52.658 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:57:52.660 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.149ms
+2024-02-14 17:57:52.662 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:57:52.664 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 11.6241 ms
+2024-02-14 17:57:52.667 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 18.4196ms
+2024-02-14 17:57:53.302 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 17:57:53.306 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:57:53.308 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 17:57:53.311 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 17:57:53.314 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.0231ms
+2024-02-14 17:57:53.317 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 17:57:53.320 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 13.9333 ms
+2024-02-14 17:57:53.323 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 20.6747ms
+2024-02-14 22:02:37.634 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 22:02:37.657 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 22:02:37.664 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 22:02:37.667 +03:00 [INF] Hosting environment: Development
+2024-02-14 22:02:37.668 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 22:02:41.113 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 22:02:41.263 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 74.3765 ms
+2024-02-14 22:02:41.269 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 159.8335ms
+2024-02-14 22:02:41.278 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 22:02:41.285 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 7.5844ms
+2024-02-14 22:02:41.288 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 22:02:41.322 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.0264ms
+2024-02-14 22:02:41.369 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 22:02:41.437 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 64.0632 ms
+2024-02-14 22:02:41.441 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 72.0214ms
+2024-02-14 22:02:49.596 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 22:02:49.687 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 22:02:49.703 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:02:50.877 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 22:02:51.544 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 22:02:51.554 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 1845.2032ms
+2024-02-14 22:02:51.557 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 22:02:51.560 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 1956.8895 ms
+2024-02-14 22:02:51.568 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 1972.1947ms
+2024-02-14 22:02:58.554 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 22:02:58.560 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:02:58.564 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:03:07.142 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 22:03:07.147 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 8578.941ms
+2024-02-14 22:03:07.153 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:03:07.157 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 8597.8744 ms
+2024-02-14 22:03:07.160 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 8606.6704ms
+2024-02-14 22:03:26.699 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 22:03:26.717 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 8.6524 ms
+2024-02-14 22:03:26.721 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 22.0546ms
+2024-02-14 22:03:26.771 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 22:03:26.771 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 22:03:26.812 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 41.2647ms
+2024-02-14 22:03:26.821 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.183ms
+2024-02-14 22:03:26.849 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 22:03:26.857 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 5.0477 ms
+2024-02-14 22:03:26.861 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.9217ms
+2024-02-14 22:03:31.302 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 22:03:31.308 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:03:31.313 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:03:31.318 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 22:03:31.320 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 3.779ms
+2024-02-14 22:03:31.323 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:03:31.326 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 17.5383 ms
+2024-02-14 22:03:31.329 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 26.551ms
+2024-02-14 22:03:36.172 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 22:03:36.177 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:03:36.179 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:03:44.121 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 22:03:44.125 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 7942.7409ms
+2024-02-14 22:03:44.128 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:03:44.130 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 7953.8265 ms
+2024-02-14 22:03:44.133 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 7961.6373ms
+2024-02-14 22:03:56.810 +03:00 [INF] Now listening on: https://localhost:7186
+2024-02-14 22:03:56.858 +03:00 [INF] Now listening on: http://localhost:5028
+2024-02-14 22:03:56.867 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-02-14 22:03:56.870 +03:00 [INF] Hosting environment: Development
+2024-02-14 22:03:56.872 +03:00 [INF] Content root path: D:\_personal_demos_\_.NET_Demos_\MyTeacher\MyTeacher\_src\CoreService\Presentation\CoreService.API
+2024-02-14 22:04:00.580 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/index.html - null null
+2024-02-14 22:04:00.698 +03:00 [INF] HTTP GET /swagger/index.html responded 200 in 77.8053 ms
+2024-02-14 22:04:00.707 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/index.html - 200 null text/html;charset=utf-8 129.3456ms
+2024-02-14 22:04:00.736 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - null null
+2024-02-14 22:04:00.745 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/_vs/browserLink - null null
+2024-02-14 22:04:00.750 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_framework/aspnetcore-browser-refresh.js - 200 13766 application/javascript; charset=utf-8 14.818ms
+2024-02-14 22:04:00.782 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.9092ms
+2024-02-14 22:04:00.829 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - null null
+2024-02-14 22:04:00.932 +03:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 79.8042 ms
+2024-02-14 22:04:00.937 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7186/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 108.3211ms
+2024-02-14 22:04:05.203 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 22:04:05.220 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:04:05.231 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:04:11.993 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 22:04:12.004 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 6766.6358ms
+2024-02-14 22:04:12.006 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:04:12.008 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 6797.9660 ms
+2024-02-14 22:04:12.010 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 6807.964ms
+2024-02-14 22:04:18.001 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7186/api/User/Login - application/json 42
+2024-02-14 22:04:18.007 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 22:04:18.019 +03:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[CoreService.Application.Features.Commands.User.Login.LoginCommandResponse] Login(CoreService.Application.Features.Commands.User.Login.LoginCommandRequest, System.Threading.CancellationToken) on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:04:18.778 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__request_Username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."DeletedAt", u."Email", u."IsActive", u."IsDeleted", u."PasswordHash", u."PasswordSalt", u."UpdatedAt", u."Username"
+FROM "Users" AS u
+WHERE u."Username" = @__request_Username_0
+LIMIT 1
+2024-02-14 22:04:18.877 +03:00 [INF] Executing ObjectResult, writing value of type 'CoreService.Application.Features.Commands.User.Login.LoginCommandResponse'.
+2024-02-14 22:04:18.884 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Login (CoreService.API) in 863.1315ms
+2024-02-14 22:04:18.888 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Login (CoreService.API)'
+2024-02-14 22:04:18.891 +03:00 [INF] HTTP POST /api/User/Login responded 200 in 884.1415 ms
+2024-02-14 22:04:18.898 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7186/api/User/Login - 200 null application/json; charset=utf-8 896.3574ms
+2024-02-14 22:04:27.749 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - application/json 57
+2024-02-14 22:04:27.753 +03:00 [INF] Executing endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:04:27.756 +03:00 [INF] Route matched with {action = "Authorized1", controller = "User"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Authorized1() on controller CoreService.API.Controllers.UserController (CoreService.API).
+2024-02-14 22:04:35.385 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-02-14 22:04:35.393 +03:00 [INF] Executed action CoreService.API.Controllers.UserController.Authorized1 (CoreService.API) in 7633.6253ms
+2024-02-14 22:04:35.395 +03:00 [INF] Executed endpoint 'CoreService.API.Controllers.UserController.Authorized1 (CoreService.API)'
+2024-02-14 22:04:35.397 +03:00 [INF] HTTP GET /api/user/Authorized1 responded 200 in 7644.2210 ms
+2024-02-14 22:04:35.400 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7186/api/user/Authorized1 - 200 null text/plain; charset=utf-8 7650.9975ms

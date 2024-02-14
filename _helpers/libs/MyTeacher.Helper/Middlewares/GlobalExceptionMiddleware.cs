@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using MyTeacher.Helper.Responses;
 using Newtonsoft.Json;
 using System;
@@ -13,8 +14,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MyTeacher.Helper.Middlewares
 {
-    public class GlobalExceptionMiddleware(RequestDelegate next)
+    public class GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger)
     {
+        private readonly ILogger<GlobalExceptionMiddleware> _logger = logger;
         private readonly RequestDelegate _next = next;
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -29,6 +31,7 @@ namespace MyTeacher.Helper.Middlewares
                 httpContext.Response.ContentType = MediaTypeNames.Application.Json;
                 var response = BaseErrorResponse.BuildBaseErrorResponse($"An unexpected error occured during the process. Error is: {ex.Message}", httpContext.TraceIdentifier);
                 await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response), Encoding.UTF8);
+                _logger.LogError("{@ClassName} - {@ErrorMessage}", this.GetType().Name, ex.Message);
             }
         }
     }
