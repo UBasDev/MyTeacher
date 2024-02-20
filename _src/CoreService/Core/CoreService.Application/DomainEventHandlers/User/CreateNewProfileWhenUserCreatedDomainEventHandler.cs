@@ -1,6 +1,7 @@
 ﻿using CoreService.Application.Repositories;
 using CoreService.Domain.DomainEvents.User;
 using CoreService.Domain.Entities.Profile;
+using CoreService.Domain.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.DomainEventHandlers.User
 {
-    public class CreateNewProfileWhenUserCreatedDomainEventHandler(IUnitOfWork unitOfWork, ILogger<CreateNewProfileWhenUserCreatedDomainEventHandler> logger) : INotificationHandler<CreateNewProfileWhenUserCreatedDomainEvent>
+    public class CreateNewProfileWhenUserCreatedDomainEventHandler(IUnitOfWork unitOfWork, ILogger<CreateNewProfileWhenUserCreatedDomainEventHandler> logger) : IDomainEventHandler<CreateNewProfileWhenUserCreatedDomainEvent>
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ILogger<CreateNewProfileWhenUserCreatedDomainEventHandler> _logger = logger;
