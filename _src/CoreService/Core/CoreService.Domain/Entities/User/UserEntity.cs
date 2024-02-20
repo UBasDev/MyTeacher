@@ -2,12 +2,13 @@
 using CoreService.Domain.Entities.Common;
 using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Entities.Role;
+using CoreService.Domain.Events;
 using MediatR;
 using System.Security.Cryptography;
 
 namespace CoreService.Domain.Entities.User
 {
-    public class UserEntity : BaseEntity<Guid>
+    public class UserEntity : BaseEntity<Guid>, ISoftDelete
     {
         private UserEntity(string username, string email, string passwordSalt, string passwordHash) //This constructor has been created for EFCore.
         {
@@ -35,11 +36,19 @@ namespace CoreService.Domain.Entities.User
         public string PasswordHash { get; private set; } = string.Empty;
         //public RoleEntity Role { get; private set; } = new();
         public ProfileEntity Profile { get; set; }
+        public DateTimeOffset? UpdatedAt { get ; set ; }
+        public DateTimeOffset? DeletedAt { get ; set ; }
+        public bool IsActive { get; set; } = true;
+        public bool IsDeleted { get; set; } = false;
+
         public static UserEntity CreateNewUser(string username, string email, string passwordFromRequest)
         {
             return new UserEntity(username, email, passwordFromRequest);
         }
-
+        public void AddProfileWhenUserCreated(IDomainEvent newEvent)
+        {
+            AddDomainEvents(newEvent);
+        }
         public void ChangeUsername(string newUsername)
         {
             Username = newUsername;

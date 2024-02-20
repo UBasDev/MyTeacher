@@ -38,8 +38,9 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
 
             await _unitOfWork.UserWriteRepository.InsertSingleAsync(userToCreate);
             await _unitOfWork.SaveChangesAsync();
-            await _publisher.Publish(new CreateNewProfileWhenUserCreatedDomainEvent(userToCreate.Id, request.Age), cancellationToken);
+            userToCreate.AddProfileWhenUserCreated(new CreateNewProfileWhenUserCreatedDomainEvent(userToCreate.Id, request.Age));
             response.SuccessMessage = "You've been successfully registered";
+            await _publisher.Publish(userToCreate.DomainEvents, cancellationToken);
             return response;
         }
 

@@ -38,6 +38,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Features\Queries\" />
     <Folder Include="Middlewares\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

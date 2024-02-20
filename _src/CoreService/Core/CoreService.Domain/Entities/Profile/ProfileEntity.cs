@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.Entities.Profile
 {
-    public class ProfileEntity : BaseEntity<Guid>
+    public class ProfileEntity : BaseEntity<Guid>, ISoftDelete
     {
         private ProfileEntity(UInt16 age, Guid userId)
         {
@@ -22,5 +22,9 @@ namespace CoreService.Domain.Entities.Profile
         }
         public Guid UserId { get; set; }
         public UserEntity User { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
+        public bool IsActive { get; set; } = true;
+        public bool IsDeleted { get; set; } = false;
     }
 }
