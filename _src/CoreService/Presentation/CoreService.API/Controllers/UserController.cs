@@ -5,13 +5,15 @@ using CoreService.Application.Features.Commands.User.CreateSingleUser;
 using CoreService.Application.Features.Commands.User.Login;
 using MyTeacher.Helper.Attributes;
 using MyTeacher.Helper.Models;
+using CoreService.Application;
 
 namespace CoreService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(IMediator mediator, IRabbitMqPublisherService rabbitMqService) : ControllerBase
+    public class UserController(IMediator mediator, IRabbitMqPublisherService rabbitMqService, IMongoProvider mongoProvider) : ControllerBase
     {
+        private readonly IMongoProvider _mongoProvider1 = mongoProvider;
         private UserModel? RequestUser
         {
             get
@@ -22,6 +24,13 @@ namespace CoreService.API.Controllers
         }
         private readonly IMediator _mediator = mediator;
         private readonly IRabbitMqPublisherService _rabbitMqService = rabbitMqService;
+
+        [HttpGet("mongo1")]
+        public async Task Mongo1()
+        {
+            await _mongoProvider1.Test1();
+        }
+
         [HttpPost("[action]")]
         public async Task<CreateSingleUserCommandResponse> CreateSingleUser([FromBody] CreateSingleUserCommandRequest requestBody, CancellationToken cancellationToken)
         {

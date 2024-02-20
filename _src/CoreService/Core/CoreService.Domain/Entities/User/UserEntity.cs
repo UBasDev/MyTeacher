@@ -25,21 +25,17 @@ namespace CoreService.Domain.Entities.User
             var salt = GenerateSalt();
             PasswordSalt = Convert.ToBase64String(salt);
             PasswordHash = ComputeHash(passwordFromRequest, PasswordSalt);
-
-            //Role = role ?? throw new Exception($"{nameof(role)} field cannot be empty");
-
-            //AddDomainEvents(new CreateNewProfileWhenUserCreatedDomainEvent());
         }
         public string Username { get; private set; } = string.Empty;
         public string Email { get; private set; } = string.Empty;
         public string PasswordSalt { get; private set; } = string.Empty;
         public string PasswordHash { get; private set; } = string.Empty;
         //public RoleEntity Role { get; private set; } = new();
-        public ProfileEntity Profile { get; set; }
-        public DateTimeOffset? UpdatedAt { get ; set ; }
-        public DateTimeOffset? DeletedAt { get ; set ; }
-        public bool IsActive { get; set; } = true;
-        public bool IsDeleted { get; set; } = false;
+        public ProfileEntity Profile { get; private set; }
+        public DateTimeOffset? UpdatedAt { get ; private set; }
+        public DateTimeOffset? DeletedAt { get ; private set ; }
+        public bool IsActive { get; private set; } = true;
+        public bool IsDeleted { get; private set; } = false;
 
         public static UserEntity CreateNewUser(string username, string email, string passwordFromRequest)
         {

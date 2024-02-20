@@ -93,6 +93,9 @@ namespace CoreService.Application.Registrations
     .MinimumLevel.Information()
     .CreateLogger();
             #endregion
+            #region MONGO_SETTINGS
+            services.AddSingleton<IMongoProvider, MongoProvider>();
+            #endregion
         }
         public static void AddApplicationMiddlewares(this IApplicationBuilder app)
         {
