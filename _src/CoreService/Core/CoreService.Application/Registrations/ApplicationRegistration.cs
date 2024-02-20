@@ -64,7 +64,7 @@ namespace CoreService.Application.Registrations
         NumberOfShards = 2
     })
     .WriteTo.File(
-       path: Path.Combine(Directory.GetCurrentDirectory(), "LogFiles", "app_log.txt"),
+       path: Path.Combine(Directory.GetCurrentDirectory(), "LogFiles", "app_log_file.txt"),
        rollingInterval: RollingInterval.Day,
        fileSizeLimitBytes: 10 * 1024 * 1024,
        retainedFileCountLimit: 2,

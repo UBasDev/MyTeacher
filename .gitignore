@@ -100,6 +100,10 @@ StyleCopReport.xml
 *_wpftmp.csproj
 *.log
 *.tlog
+
+# This is custom log files that we create from application with serilog
+app_log_file*
+
 *.vspscc
 *.vssscc
 .builds
