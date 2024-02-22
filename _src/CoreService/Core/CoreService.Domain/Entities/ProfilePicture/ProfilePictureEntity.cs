@@ -9,9 +9,9 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CoreService.Domain.Entities.ProfilePicture
 {
-    public class ProfilePicture : BaseEntity<ObjectId>, ISoftDelete
+    public class ProfilePictureEntity : BaseEntity<ObjectId>, ISoftDelete
     {
-        private ProfilePicture(string userId, string photoPath, string photoExtension, UInt32 photoLength)
+        private ProfilePictureEntity(string userId, string photoPath, string photoExtension, UInt32 photoLength)
         {
             UserId = userId;
             PhotoPath = photoPath;
@@ -26,9 +26,9 @@ namespace CoreService.Domain.Entities.ProfilePicture
         public DateTimeOffset? DeletedAt { get; private set; }
         public bool IsActive { get; private set; } = true;
         public bool IsDeleted { get; private set; } = false;
-        public static ProfilePicture CreateNewProfilePicture(string userId, string photoPath, string photoExtension, UInt32 photoLength)
+        public static ProfilePictureEntity CreateNewProfilePicture(string userId, string photoPath, string photoExtension, UInt32 photoLength)
         {
-            return new ProfilePicture(userId, photoPath, photoExtension, photoLength);
+            return new ProfilePictureEntity(userId, photoPath, photoExtension, photoLength);
         }
     }
 }

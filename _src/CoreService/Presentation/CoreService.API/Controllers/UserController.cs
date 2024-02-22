@@ -6,14 +6,15 @@ using CoreService.Application.Features.Commands.User.Login;
 using MyTeacher.Helper.Attributes;
 using MyTeacher.Helper.Models;
 using CoreService.Application;
+using CoreService.Application.Repositories;
 
 namespace CoreService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(IMediator mediator, IRabbitMqPublisherService rabbitMqService, IMongoProvider mongoProvider) : ControllerBase
+    public class UserController(IMediator mediator, IRabbitMqPublisherService rabbitMqService, IUnitOfWork unitOfWork) : ControllerBase
     {
-        private readonly IMongoProvider _mongoProvider1 = mongoProvider;
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private UserModel? RequestUser
         {
             get
@@ -28,7 +29,7 @@ namespace CoreService.API.Controllers
         [HttpGet("mongo1")]
         public async Task Mongo1()
         {
-            await _mongoProvider1.Test1();
+            var x1 = await _unitOfWork.ProfilePictureReadRepository.GetAllDocumentsAsync("ProfilePictures");
         }
 
         [HttpPost("[action]")]
