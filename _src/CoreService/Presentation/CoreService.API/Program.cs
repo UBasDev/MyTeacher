@@ -39,7 +39,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddApplicationRegistrations(appSettings.DatabaseConnectionUrl, appSettings.JwtTokenSettings, environment);
+builder.Services.AddApplicationRegistrations(appSettings.DatabaseConnectionUrl, appSettings.JwtTokenSettings, appSettings.MongoDbSettings, environment);
 builder.Services.AddPersistenceRegistrations(appSettings);
 
 var app = builder.Build();

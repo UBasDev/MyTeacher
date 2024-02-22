@@ -1,12 +1,15 @@
 ﻿using CoreService.Application.Contexts;
 using CoreService.Application.Repositories;
+using CoreService.Application.Repositories.ProfilePicture;
 using CoreService.Application.Repositories.ProfileRepository;
 using CoreService.Application.Repositories.UserRepository;
 using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Entities.User;
+using CoreService.Persistence.Repositories.ProfilePictureRepository;
 using CoreService.Persistence.Repositories.ProfileRepository;
 using CoreService.Persistence.Repositories.UserRepository;
 using Microsoft.EntityFrameworkCore;
+using MongoDb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +21,16 @@ namespace CoreService.Persistence.Repositories
     public sealed class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly MongoDbSettings _mongoDbSettings;
         private IProfileReadRepository _profileReadRepository;
         private IProfileWriteRepository _profileWriteRepository;
         private IUserReadRepository _userReadRepository;
         private IUserWriteRepository _userWriteRepository;
-        public UnitOfWork(ApplicationDbContext dbContext)
+        private IProfilePictureReadRepository _profilePictureReadRepository;
+        public UnitOfWork(ApplicationDbContext dbContext, MongoDbSettings mongoDbSettings)
         {
             _dbContext = dbContext;
+            _mongoDbSettings = mongoDbSettings;
         }
         public IProfileReadRepository ProfileReadRepository
         {
@@ -59,6 +65,15 @@ namespace CoreService.Persistence.Repositories
             {
                 _userWriteRepository = new UserWriteRepository(_dbContext);
                 return _userWriteRepository;
+            }
+        }
+
+        public IProfilePictureReadRepository ProfilePictureReadRepository
+        {
+            get
+            {
+                _profilePictureReadRepository = new ProfilePictureReadRepository(_mongoDbSettings);
+                return _profilePictureReadRepository;
             }
         }
 

@@ -22,12 +22,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
+using MongoDb.Models;
 
 namespace CoreService.Application.Registrations
 {
     public static class ApplicationRegistration
     {
-        public static void AddApplicationRegistrations(this IServiceCollection services, string databaseConnectionUrl, JwtTokenSettings jwtTokenSettings, string environment)
+        public static void AddApplicationRegistrations(this IServiceCollection services, string databaseConnectionUrl, JwtTokenSettings jwtTokenSettings, MongoDbSettings mongoDbSettings, string environment)
         {
             #region DB_CONTEXT_SETTINGS
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(databaseConnectionUrl, opt => { opt.EnableRetryOnFailure(); }));
@@ -93,8 +94,8 @@ namespace CoreService.Application.Registrations
     .MinimumLevel.Information()
     .CreateLogger();
             #endregion
-            #region MONGO_SETTINGS
-            services.AddSingleton<IMongoProvider, MongoProvider>();
+            #region MONGODB_SETTINGS
+            services.AddSingleton(mongoDbSettings);
             #endregion
         }
         public static void AddApplicationMiddlewares(this IApplicationBuilder app)

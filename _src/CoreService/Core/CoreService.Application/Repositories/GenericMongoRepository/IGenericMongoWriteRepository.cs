@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreService.Application
+namespace CoreService.Application.Repositories.GenericMongoRepository
 {
-    public interface IMongoProvider
+    public interface IGenericMongoWriteRepository
     {
-        Task Test1();
     }
 }
