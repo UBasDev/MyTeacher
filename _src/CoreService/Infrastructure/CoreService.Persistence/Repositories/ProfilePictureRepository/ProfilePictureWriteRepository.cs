@@ -1,19 +1,18 @@
 ﻿using CoreService.Application.Repositories.ProfilePicture;
 using CoreService.Domain.Entities.ProfilePicture;
 using CoreService.Persistence.Repositories.MongoGenericRepository;
-using MongoDb.Models;
 using MongoDB.Bson;
-using MongoDB.Driver;
+using MongoDb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using CoreService.Application.Repositories.ProfilePictureRepository;
 
 namespace CoreService.Persistence.Repositories.ProfilePictureRepository
 {
-    public class ProfilePictureReadRepository(MongoDbSettings mongoDbSettings) : MongoGenericReadRepository<ProfilePictureEntity, ObjectId>(mongoDbSettings, _collectionName), IProfilePictureReadRepository
+    public class ProfilePictureWriteRepository(MongoDbSettings mongoDbSettings) : MongoGenericWriteRepository<ProfilePictureEntity, ObjectId>(mongoDbSettings, _collectionName), IProfilePictureWriteRepository
     {
         private const string _collectionName = "ProfilePictures";
     }

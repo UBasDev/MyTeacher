@@ -1,4 +1,5 @@
 ﻿using CoreService.Application.Repositories.ProfilePicture;
+using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Application.Repositories.ProfileRepository;
 using CoreService.Application.Repositories.UserRepository;
 using CoreService.Domain.Entities.Profile;
@@ -20,5 +21,6 @@ namespace CoreService.Application.Repositories
         IUserReadRepository UserReadRepository { get; }
         IUserWriteRepository UserWriteRepository { get; }
         IProfilePictureReadRepository ProfilePictureReadRepository { get; }
+        IProfilePictureWriteRepository ProfilePictureWriteRepository { get; }
     }
 }

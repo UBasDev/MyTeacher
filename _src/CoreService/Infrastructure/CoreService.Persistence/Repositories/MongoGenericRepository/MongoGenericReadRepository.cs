@@ -13,17 +13,18 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.MongoGenericRepository
 {
-    public class MongoGenericReadRepository<TEntity, TId>(MongoDbSettings mongoDbSettings) : MongoConnectionProvider(mongoDbSettings), IGenericMongoReadRepository<TEntity> where TEntity : BaseEntity<TId>
+    public class MongoGenericReadRepository<TEntity, TId>(MongoDbSettings mongoDbSettings, string collectionName) : MongoConnectionProvider(mongoDbSettings), IGenericMongoReadRepository<TEntity> where TEntity : BaseEntity<TId>
     {
-        public async Task<IEnumerable<TEntity>> GetAllDocumentsAsync(string collectionName, MongoCollectionSettings? collectionSettings = null)
+        private readonly string _collectionName = collectionName;
+        public async Task<IEnumerable<TEntity>> GetAllDocumentsAsync( MongoCollectionSettings? collectionSettings = null)
         {
-            var collectionData = _mongoDb.GetCollection<TEntity>(collectionName, collectionSettings ?? new MongoCollectionSettings() { });
+            var collectionData = _mongoDb.GetCollection<TEntity>(_collectionName, collectionSettings ?? new MongoCollectionSettings() { });
             return await (await collectionData.FindAsync(_ => true)).ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetDocumentsByConditionAsync(string collectionName, Expression<Func<TEntity, bool>> condition, MongoCollectionSettings? collectionSettings = null)
+        public async Task<IEnumerable<TEntity>> GetDocumentsByConditionAsync(Expression<Func<TEntity, bool>> condition, MongoCollectionSettings? collectionSettings = null)
         {
-            var collectionData = _mongoDb.GetCollection<TEntity>(collectionName, collectionSettings ?? new MongoCollectionSettings() { });
+            var collectionData = _mongoDb.GetCollection<TEntity>(_collectionName, collectionSettings ?? new MongoCollectionSettings() { });
             return await (await collectionData.FindAsync(condition)).ToListAsync();
         }
     }
