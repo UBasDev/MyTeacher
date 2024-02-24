@@ -1,6 +1,7 @@
 ﻿using CoreService.Application.Contexts;
 using CoreService.Application.Repositories;
 using CoreService.Application.Repositories.ProfilePicture;
+using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Application.Repositories.ProfileRepository;
 using CoreService.Application.Repositories.UserRepository;
 using CoreService.Domain.Entities.Profile;
@@ -27,6 +28,7 @@ namespace CoreService.Persistence.Repositories
         private IUserReadRepository _userReadRepository;
         private IUserWriteRepository _userWriteRepository;
         private IProfilePictureReadRepository _profilePictureReadRepository;
+        private IProfilePictureWriteRepository _profilePictureWriteRepository;
         public UnitOfWork(ApplicationDbContext dbContext, MongoDbSettings mongoDbSettings)
         {
             _dbContext = dbContext;
@@ -74,6 +76,15 @@ namespace CoreService.Persistence.Repositories
             {
                 _profilePictureReadRepository = new ProfilePictureReadRepository(_mongoDbSettings);
                 return _profilePictureReadRepository;
+            }
+        }
+
+        public IProfilePictureWriteRepository ProfilePictureWriteRepository
+        {
+            get
+            {
+                _profilePictureWriteRepository = new ProfilePictureWriteRepository(_mongoDbSettings);
+                return _profilePictureWriteRepository;
             }
         }
 

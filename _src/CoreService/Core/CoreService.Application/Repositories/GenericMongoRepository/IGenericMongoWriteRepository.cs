@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Repositories.GenericMongoRepository
 {
-    public interface IGenericMongoWriteRepository
+    public interface IGenericMongoWriteRepository<TEntity>
     {
+        Task<(bool isSuccessful, string? errorMessage)> CreateSingleDocumentAsync(TEntity document);
+        Task<(bool isSuccessful, string? errorMessage)> CreateMultipleDocumentsAsync(IEnumerable<TEntity> documents);
     }
 }

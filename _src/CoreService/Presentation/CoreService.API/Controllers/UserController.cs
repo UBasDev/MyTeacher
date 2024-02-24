@@ -5,7 +5,6 @@ using CoreService.Application.Features.Commands.User.CreateSingleUser;
 using CoreService.Application.Features.Commands.User.Login;
 using MyTeacher.Helper.Attributes;
 using MyTeacher.Helper.Models;
-using CoreService.Application;
 using CoreService.Application.Repositories;
 
 namespace CoreService.API.Controllers
@@ -25,12 +24,6 @@ namespace CoreService.API.Controllers
         }
         private readonly IMediator _mediator = mediator;
         private readonly IRabbitMqPublisherService _rabbitMqService = rabbitMqService;
-
-        [HttpGet("mongo1")]
-        public async Task Mongo1()
-        {
-            var x1 = await _unitOfWork.ProfilePictureReadRepository.GetAllDocumentsAsync("ProfilePictures");
-        }
 
         [HttpPost("[action]")]
         public async Task<CreateSingleUserCommandResponse> CreateSingleUser([FromBody] CreateSingleUserCommandRequest requestBody, CancellationToken cancellationToken)
