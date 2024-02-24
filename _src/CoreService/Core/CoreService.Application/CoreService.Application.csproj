@@ -16,21 +16,31 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MongoDB.Driver" Version="2.23.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+    <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
+    <PackageReference Include="Serilog.Sinks.PostgreSQL" Version="2.3.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\_helpers\libs\MyTeacher.Helper\MyTeacher.Helper.csproj" />
+    <ProjectReference Include="..\..\..\..\_helpers\libs\MyTeacher.JWT\MyTeacher.JWT.csproj" />
+    <ProjectReference Include="..\..\..\..\_helpers\MongoDb\MongoDb\MongoDb.csproj" />
     <ProjectReference Include="..\..\..\..\_helpers\RabbitMQ\RabbitMQ\RabbitMQ.csproj" />
     <ProjectReference Include="..\CoreService.Domain\CoreService.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Attributes\" />
     <Folder Include="Extensions\" />
     <Folder Include="Features\Queries\" />
     <Folder Include="Middlewares\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

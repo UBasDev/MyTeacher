@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.Entities.Role
 {
-    public class RoleEntity : BaseEntity<Guid>
+    public class RoleEntity : BaseEntity<Guid>, ISoftDelete
     {
+        private RoleEntity(string name)
+        {
+            Name = name;
+        }
+        public string Name { get; private set; } = string.Empty;
 
+        public DateTimeOffset? UpdatedAt { get; private set; }
+        public DateTimeOffset? DeletedAt { get; private set; }
+        public bool IsActive { get; private set; } = true;
+        public bool IsDeleted { get; private set; } = false;
     }
 }
