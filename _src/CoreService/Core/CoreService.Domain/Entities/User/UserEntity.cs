@@ -4,6 +4,8 @@ using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Entities.Role;
 using CoreService.Domain.Events;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Nest;
 using System.Security.Cryptography;
 
 namespace CoreService.Domain.Entities.User
@@ -41,9 +43,9 @@ namespace CoreService.Domain.Entities.User
         {
             return new UserEntity(username, email, passwordFromRequest);
         }
-        public void AddProfileWhenUserCreated(IDomainEvent newEvent)
+        public void CreateProfileWhenUserCreated(Guid userId, UInt16 age, byte[]? profilePicture)
         {
-            AddDomainEvents(newEvent);
+            AddDomainEvents(new CreateNewProfileWhenUserCreatedDomainEvent(userId, age, profilePicture));
         }
         public void ChangeUsername(string newUsername)
         {

@@ -1,4 +1,5 @@
 ﻿using CoreService.Domain.Entities.Common;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;

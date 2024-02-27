@@ -1,5 +1,7 @@
-﻿using CoreService.Domain.Entities.Common;
+﻿using CoreService.Domain.DomainEvents.Profile;
+using CoreService.Domain.Entities.Common;
 using CoreService.Domain.Entities.User;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,10 @@ namespace CoreService.Domain.Entities.Profile
         public DateTimeOffset? DeletedAt { get; private set; }
         public bool IsActive { get; private set; } = true;
         public bool IsDeleted { get; private set; } = false;
+        public void CreateProfilePictureWhenProfileCreated(Guid userId, Guid userProfileId, byte[] profilePicture)
+        {
+            AddDomainEvents(new CreateProfilePictureWhenProfileCreatedDomainEvent(userId, userProfileId, profilePicture));
+        }
         public static ProfileEntity CreateNewProfile(UInt16 age, Guid userId)
         {
             return new ProfileEntity(age, userId);

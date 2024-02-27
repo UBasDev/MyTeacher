@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RabbitMQ.Abstracts;
 using MediatR;
 using CoreService.Application.Features.Commands.User.CreateSingleUser;
 using CoreService.Application.Features.Commands.User.Login;
@@ -11,7 +10,7 @@ namespace CoreService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(IMediator mediator, IRabbitMqPublisherService rabbitMqService, IUnitOfWork unitOfWork) : ControllerBase
+    public class UserController(IMediator mediator, IUnitOfWork unitOfWork) : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private UserModel? RequestUser
@@ -23,10 +22,9 @@ namespace CoreService.API.Controllers
             }
         }
         private readonly IMediator _mediator = mediator;
-        private readonly IRabbitMqPublisherService _rabbitMqService = rabbitMqService;
 
         [HttpPost("[action]")]
-        public async Task<CreateSingleUserCommandResponse> CreateSingleUser([FromBody] CreateSingleUserCommandRequest requestBody, CancellationToken cancellationToken)
+        public async Task<CreateSingleUserCommandResponse> CreateSingleUser([FromForm] CreateSingleUserCommandRequest requestBody, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(requestBody, cancellationToken);
             if (!response.IsSuccessful) Response.StatusCode = 400;
@@ -63,7 +61,7 @@ namespace CoreService.API.Controllers
         {
             return Ok("Tokenın kabul edildi");
         }
-
+        /*
         [HttpGet("[action]")]
         public IActionResult PublishSingleMessageSync()
         {
@@ -76,5 +74,6 @@ namespace CoreService.API.Controllers
             await _rabbitMqService.PublishMessageAsync("Merhabalar, bu mesajı async olarak queueye gönderiyorum.");
             return Ok();
         }
+        */
     }
 }

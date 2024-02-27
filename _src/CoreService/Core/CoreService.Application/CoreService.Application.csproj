@@ -41,6 +41,8 @@
     <Folder Include="Features\Queries\" />
     <Folder Include="Middlewares\" />
     <Folder Include="Migrations\" />
+    <Folder Include="MQContracts\Consumers\" />
+    <Folder Include="MQContracts\Events\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
