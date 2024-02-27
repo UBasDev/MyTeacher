@@ -38,9 +38,28 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
 
             await _unitOfWork.UserWriteRepository.InsertSingleAsync(userToCreate);
             await _unitOfWork.SaveChangesAsync();
-            userToCreate.AddProfileWhenUserCreated(new CreateNewProfileWhenUserCreatedDomainEvent(userToCreate.Id, request.Age));
+
+            if (request.ProfilePicture != null)
+            {
+                if(request.ProfilePicture?.Length < 0)
+                {
+                    response.IsSuccessful = false;
+                    response.ErrorMessage = "This file is empty";
+                    return response;
+                }
+                using var fileStream = request.ProfilePicture.OpenReadStream();
+                byte[] profilePictureBytes = new byte[request.ProfilePicture.Length];
+                await fileStream.ReadAsync(profilePictureBytes.AsMemory(0, (int)request.ProfilePicture.Length), cancellationToken);
+
+                userToCreate.CreateProfileWhenUserCreated(userToCreate.Id, request.Age, profilePictureBytes); 
+            }
             response.SuccessMessage = "You've been successfully registered";
-            await _publisher.Publish(userToCreate.DomainEvents, cancellationToken);
+            
+            foreach(var currentEvent in userToCreate.DomainEvents)
+            {
+                await _publisher.Publish(currentEvent, cancellationToken);
+            }
+
             return response;
         }
 

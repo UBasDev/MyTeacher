@@ -23,12 +23,15 @@ using System.Threading.Tasks;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 using MongoDb.Models;
+using RabbitMQ.Abstracts;
+using RabbitMQ.Concretes;
+using RabbitMQ.Models;
 
 namespace CoreService.Application.Registrations
 {
     public static class ApplicationRegistration
     {
-        public static void AddApplicationRegistrations(this IServiceCollection services, string databaseConnectionUrl, JwtTokenSettings jwtTokenSettings, MongoDbSettings mongoDbSettings, string environment)
+        public static void AddApplicationRegistrations(this IServiceCollection services, string databaseConnectionUrl, JwtTokenSettings jwtTokenSettings, MongoDbSettings mongoDbSettings, EventBusSettings eventBusSettings, string environment)
         {
             #region DB_CONTEXT_SETTINGS
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(databaseConnectionUrl, opt => { opt.EnableRetryOnFailure(); }));
@@ -96,6 +99,10 @@ namespace CoreService.Application.Registrations
             #endregion
             #region MONGODB_SETTINGS
             services.AddSingleton(mongoDbSettings);
+            #endregion
+            #region EVENTBUS_SETTINGS
+            services.AddSingleton(eventBusSettings);
+            services.AddSingleton<IPublisherEventBusProvider, PublisherEventBusProvider>();
             #endregion
         }
         public static void AddApplicationMiddlewares(this IApplicationBuilder app)

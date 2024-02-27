@@ -11,9 +11,9 @@ namespace CoreService.Application.Models
 {
     public class AppSettings
     {
-        public RabbitMqSettings RabbitMqSettings { get; set; } = new();
         public string DatabaseConnectionUrl { get; set; } = string.Empty;
         public JwtTokenSettings JwtTokenSettings { get; set; }
         public MongoDbSettings MongoDbSettings { get; set; }
+        public EventBusSettings EventBusSettings { get; set; }
     }
 }

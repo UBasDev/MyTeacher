@@ -1,9 +1,12 @@
-using FileLog.WORKER;
-using FileLog.WORKER.Models;
+using CoreService.Application.Repositories.ProfilePictureRepository;
+using CoreService.Persistence.Repositories.ProfilePictureRepository;
+using ProfilePicture.WORKER;
+using ProfilePicture.WORKER.Models;
 using RabbitMQ.Abstracts;
 using RabbitMQ.Concretes;
 
 var builder = Host.CreateApplicationBuilder(args);
+
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Configurations"))
@@ -16,11 +19,17 @@ configuration.Bind(nameof(AppSettings), appSettings);
 builder.Services.AddSingleton(appSettings);
 builder.Services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
 
-//builder.Services.AddHostedService<Worker>();
+#region MONGODB_SETTINGS
+builder.Services.AddSingleton(appSettings.MongoDbSettings);
+builder.Services.AddSingleton<IProfilePictureWriteRepository, ProfilePictureWriteRepository>();
+#endregion
 
-builder.Services.AddHostedService<FileLogRabbitMqConsumer>();
-builder.Services.AddSingleton(appSettings.RabbitMqSettings);
-builder.Services.AddSingleton<IRabbitMqConsumerService, RabbitMqConsumerService>();
+#region EVENTBUS_SETTINGS
+builder.Services.AddSingleton(appSettings.EventBusSettings);
+builder.Services.AddSingleton<IConsumerEventBusProvider, ConsumerEventBusProvider>();
+#endregion
+
+builder.Services.AddHostedService<Worker>();
 
 var host = builder.Build();
 host.Run();
