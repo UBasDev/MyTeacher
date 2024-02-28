@@ -10,8 +10,8 @@ namespace CoreService.Application.MQContracts.Commands.Concretes
 {
     public class CreateProfilePictureMQCommand : ICreateProfilePictureMQCommand
     {
-        public Guid UserId { get; set; }
-        public Guid UserProfileId { get; set; }
+        public string UserId { get; set; }
+        public string UserProfileId { get; set; }
         public byte[] ProfilePicture { get; set; }
     }
 }

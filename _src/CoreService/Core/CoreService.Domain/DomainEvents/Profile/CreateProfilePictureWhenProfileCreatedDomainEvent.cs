@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.DomainEvents.Profile
 {
-    public class CreateProfilePictureWhenProfileCreatedDomainEvent(Guid userId, Guid userProfileId, byte[] profilePicture) : IDomainEvent
+    public class CreateProfilePictureWhenProfileCreatedDomainEvent(string userId, string userProfileId, byte[] profilePicture) : IDomainEvent
     {
-        public Guid UserId { get; } = userId;
-        public Guid UserProfileId { get; } = userProfileId;
+        public string UserId { get; } = userId;
+        public string UserProfileId { get; } = userProfileId;
         public byte[] ProfilePicture { get; } = profilePicture;
     }
 }

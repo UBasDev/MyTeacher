@@ -12,14 +12,16 @@ namespace CoreService.Domain.Entities.ProfilePicture
 {
     public class ProfilePictureEntity : BaseEntity<ObjectId>, ISoftDelete
     {
-        private ProfilePictureEntity(string userId, string photoPath, string photoExtension, UInt32 photoLength)
+        private ProfilePictureEntity(string userId, string userProfileId, string photoPath, string photoExtension, UInt32 photoLength)
         {
             UserId = userId;
+            UserProfileId = userProfileId;
             PhotoPath = photoPath;
             PhotoExtension = photoExtension;
             PhotoLength = photoLength;
         }
         public string UserId { get; private set; } = string.Empty;
+        public string UserProfileId { get; private set; } = string.Empty;
         public string PhotoPath { get; private set; } = string.Empty;
         public string PhotoExtension { get; private set; } = string.Empty;
         public UInt32 PhotoLength { get; private set; } = 0;
@@ -27,9 +29,9 @@ namespace CoreService.Domain.Entities.ProfilePicture
         public DateTimeOffset? DeletedAt { get; private set; }
         public bool IsActive { get; private set; } = true;
         public bool IsDeleted { get; private set; } = false;
-        public static ProfilePictureEntity CreateNewProfilePicture(string userId, string photoPath, string photoExtension, UInt32 photoLength)
+        public static ProfilePictureEntity CreateNewProfilePicture(string userId, string userProfileId, string photoPath, string photoExtension, UInt32 photoLength)
         {
-            return new ProfilePictureEntity(userId, photoPath, photoExtension, photoLength);
+            return new ProfilePictureEntity(userId, userProfileId, photoPath, photoExtension, photoLength);
         }
     }
 }
