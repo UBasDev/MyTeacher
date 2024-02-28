@@ -5,13 +5,13 @@ using RabbitMQ.Abstracts;
 
 namespace ProfilePicture.WORKER
 {
-    public class Worker(ILogger<Worker> logger, IProfilePictureWriteRepository profilePictureWriteRepository, IConsumerEventBusProvider consumerEventBusProvider) : BackgroundService
+    public class Worker(ILogger<Worker> logger, IProfilePictureWriteRepository profilePictureWriteRepository) : BackgroundService
     {
         private readonly ILogger<Worker> _logger = logger;
-        private readonly IProfilePictureWriteRepository _profilePictureWriteRepository = profilePictureWriteRepository;
-        private readonly IConsumerEventBusProvider _consumerEventBusProvider = consumerEventBusProvider;
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            Console.WriteLine("WORKER STARTED RUNNING");
+            /*
             var configuredEventBus = _consumerEventBusProvider.ConfigureBus(configuration =>
             {
                 configuration.ReceiveEndpoint(
@@ -26,6 +26,7 @@ namespace ProfilePicture.WORKER
             {
                 await configuredEventBus.StopAsync(stoppingToken);
             }
+            */
         }
         private async Task AsyncExample1(string messageFromQueue)
         {

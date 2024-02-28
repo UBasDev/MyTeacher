@@ -17,7 +17,7 @@ namespace CoreService.Application.DomainEventHandlers.User
             var profileToCreate = ProfileEntity.CreateNewProfile(notification.Age, notification.CreatedUserId);
             await _unitOfWork.ProfileWriteRepository.InsertSingleAsync(profileToCreate);
             await _unitOfWork.SaveChangesAsync();
-            if(notification.ProfilePicture != null) profileToCreate.CreateProfilePictureWhenProfileCreated(notification.CreatedUserId, profileToCreate.Id, notification.ProfilePicture);
+            if(notification.ProfilePicture != null) profileToCreate.CreateProfilePictureWhenProfileCreated(notification.CreatedUserId.ToString(), profileToCreate.Id.ToString(), notification.ProfilePicture);
 
             foreach(var currentEvent in profileToCreate.DomainEvents)
             {

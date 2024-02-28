@@ -1,9 +1,13 @@
 using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Persistence.Repositories.ProfilePictureRepository;
+using MassTransit;
+using Microsoft.Extensions.Configuration;
 using ProfilePicture.WORKER;
+using ProfilePicture.WORKER.Consumers;
 using ProfilePicture.WORKER.Models;
 using RabbitMQ.Abstracts;
 using RabbitMQ.Concretes;
+using RabbitMQ.Models;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -25,8 +29,9 @@ builder.Services.AddSingleton<IProfilePictureWriteRepository, ProfilePictureWrit
 #endregion
 
 #region EVENTBUS_SETTINGS
-builder.Services.AddSingleton(appSettings.EventBusSettings);
-builder.Services.AddSingleton<IConsumerEventBusProvider, ConsumerEventBusProvider>();
+
+builder.Services.AddEventBusForConsumers<CreateProfilePictureMQConsumer>(appSettings.EventBusSettings);
+
 #endregion
 
 builder.Services.AddHostedService<Worker>();

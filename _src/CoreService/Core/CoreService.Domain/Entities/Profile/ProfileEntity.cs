@@ -25,7 +25,7 @@ namespace CoreService.Domain.Entities.Profile
         public DateTimeOffset? DeletedAt { get; private set; }
         public bool IsActive { get; private set; } = true;
         public bool IsDeleted { get; private set; } = false;
-        public void CreateProfilePictureWhenProfileCreated(Guid userId, Guid userProfileId, byte[] profilePicture)
+        public void CreateProfilePictureWhenProfileCreated(string userId, string userProfileId, byte[] profilePicture)
         {
             AddDomainEvents(new CreateProfilePictureWhenProfileCreatedDomainEvent(userId, userProfileId, profilePicture));
         }
