@@ -47,11 +47,9 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
                     response.ErrorMessage = "This file is empty";
                     return response;
                 }
-                using var fileStream = request.ProfilePicture.OpenReadStream();
-                byte[] profilePictureBytes = new byte[request.ProfilePicture.Length];
-                await fileStream.ReadAsync(profilePictureBytes.AsMemory(0, (int)request.ProfilePicture.Length), cancellationToken);
+                var profilePictureBytes = await CreateSingleUserCommandRequest.StreamProfilePictureAndReturnAsByteArrayAsync(request.ProfilePicture, cancellationToken);
 
-                userToCreate.CreateProfileWhenUserCreated(userToCreate.Id, request.Age, profilePictureBytes); 
+                userToCreate.CreateProfileWhenUserCreated(userToCreate.Id, request.Age, profilePictureBytes, Path.GetExtension(request.ProfilePicture.FileName), Path.GetFileNameWithoutExtension(request.ProfilePicture.FileName) );
             }
             response.SuccessMessage = "You've been successfully registered";
             

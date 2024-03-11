@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,7 @@ namespace CoreService.Application.Repositories.GenericMongoRepository
     {
         Task<(bool isSuccessful, string? errorMessage)> CreateSingleDocumentAsync(TEntity document);
         Task<(bool isSuccessful, string? errorMessage)> CreateMultipleDocumentsAsync(IEnumerable<TEntity> documents);
+        Task<(bool isSuccessful, string? errorMessage)> UpdateSingleDocumentAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update);
+        Task<(bool isSuccessful, string? errorMessage)> UpdateMultipleDocumentsAsync(IEnumerable<TEntity> documents);
     }
 }
