@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.Entities.Profile
 {
-    public class ProfileEntity : BaseEntity<Guid>, ISoftDelete
+    sealed public class ProfileEntity : BaseEntity<Guid>, ISoftDelete
     {
         private ProfileEntity(UInt16 age, Guid userId)
         {
@@ -25,9 +25,9 @@ namespace CoreService.Domain.Entities.Profile
         public DateTimeOffset? DeletedAt { get; private set; }
         public bool IsActive { get; private set; } = true;
         public bool IsDeleted { get; private set; } = false;
-        public void CreateProfilePictureWhenProfileCreated(string userId, string userProfileId, byte[] profilePicture)
+        public void CreateProfilePictureWhenProfileCreated(string userId, string userProfileId, byte[] profilePictureData, string profilePictureExtension, string profilePictureName)
         {
-            AddDomainEvents(new CreateProfilePictureWhenProfileCreatedDomainEvent(userId, userProfileId, profilePicture));
+            AddDomainEvents(new CreateProfilePictureWhenProfileCreatedDomainEvent(userId, userProfileId, profilePictureData, profilePictureExtension, profilePictureName));
         }
         public static ProfileEntity CreateNewProfile(UInt16 age, Guid userId)
         {

@@ -48,7 +48,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumers", "Consumers", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProfilePictureWorker", "ProfilePictureWorker", "{2B9E7FAE-7B4A-40CF-897F-FB97C29CD2FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilePicture.WORKER", "_src\Consumers\ProfilePictureWorker\ProfilePicture.WORKER\ProfilePicture.WORKER.csproj", "{904038FC-346E-433B-8CD1-4EDB70493E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfilePicture.WORKER", "_src\Consumers\ProfilePictureWorker\ProfilePicture.WORKER\ProfilePicture.WORKER.csproj", "{904038FC-346E-433B-8CD1-4EDB70493E26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_client", "_client", "{24F651DF-BFF7-4240-919C-B09ECD104D48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyTeacherClient", "MyTeacherClient", "{C8D355B8-F057-42C4-AA41-AA879D533094}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,6 +124,7 @@ Global
 		{57CF1253-E162-480E-A11F-D71D42A0FDE3} = {AE1F2A36-40A1-4FD4-AE4C-32B7D6AC4F8C}
 		{2B9E7FAE-7B4A-40CF-897F-FB97C29CD2FF} = {57CF1253-E162-480E-A11F-D71D42A0FDE3}
 		{904038FC-346E-433B-8CD1-4EDB70493E26} = {2B9E7FAE-7B4A-40CF-897F-FB97C29CD2FF}
+		{C8D355B8-F057-42C4-AA41-AA879D533094} = {24F651DF-BFF7-4240-919C-B09ECD104D48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61C330C9-9478-4BD9-92CE-F5DFCB79F733}

@@ -39,5 +39,27 @@ namespace CoreService.Persistence.Repositories.MongoGenericRepository
                 return (false, ex.Message);
             }
         }
+
+        public async Task<(bool isSuccessful, string? errorMessage)> UpdateMultipleDocumentsAsync(IEnumerable<TEntity> documents)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<(bool isSuccessful, string? errorMessage)> UpdateSingleDocumentAsync(FilterDefinition<TEntity> filter, UpdateDefinition<TEntity> update)
+        {
+            /*
+            var filter1 = Builders<TEntity>.Filter.Eq(p => p.Id, "sada");
+            var update1 = Builders<TEntity>.Update.Set(p => p.Id, "sa");
+            */
+            try
+            {
+                var updateResult = await _collection.UpdateOneAsync(filter, update);
+                if(updateResult.ModifiedCount > 0 && updateResult.MatchedCount > 0) return (true, null);
+                return (false, null);
+            }catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
     }
 }

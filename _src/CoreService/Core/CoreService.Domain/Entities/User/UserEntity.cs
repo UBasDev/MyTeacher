@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 
 namespace CoreService.Domain.Entities.User
 {
-    public class UserEntity : BaseEntity<Guid>, ISoftDelete
+    sealed public class UserEntity : BaseEntity<Guid>, ISoftDelete
     {
         private UserEntity(string username, string email, string passwordSalt, string passwordHash) //This constructor has been created for EFCore.
         {
@@ -43,9 +43,9 @@ namespace CoreService.Domain.Entities.User
         {
             return new UserEntity(username, email, passwordFromRequest);
         }
-        public void CreateProfileWhenUserCreated(Guid userId, UInt16 age, byte[]? profilePicture)
+        public void CreateProfileWhenUserCreated(Guid userId, UInt16 age, byte[] profilePictureData, string profilePictureExtension, string profilePictureName)
         {
-            AddDomainEvents(new CreateNewProfileWhenUserCreatedDomainEvent(userId, age, profilePicture));
+            AddDomainEvents(new CreateNewProfileWhenUserCreatedDomainEvent(userId, age, profilePictureData, profilePictureExtension, profilePictureName));
         }
         public void ChangeUsername(string newUsername)
         {

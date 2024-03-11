@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.Entities.Role
 {
-    public class RoleEntity : BaseEntity<Guid>, ISoftDelete
+    sealed public class RoleEntity : BaseEntity<Guid>, ISoftDelete
     {
         private RoleEntity(string name)
         {

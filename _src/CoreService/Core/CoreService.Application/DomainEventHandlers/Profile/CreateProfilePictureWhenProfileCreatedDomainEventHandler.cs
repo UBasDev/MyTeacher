@@ -19,8 +19,10 @@ namespace CoreService.Application.DomainEventHandlers.Profile
                 new CreateProfilePictureMQCommand()
                 {
                     UserId = notification.UserId,
-                    ProfilePicture = notification.ProfilePicture,
-                    UserProfileId = notification.UserProfileId
+                    ProfilePictureData = notification.ProfilePictureData,
+                    UserProfileId = notification.UserProfileId,
+                    ProfilePictureExtension = notification.ProfilePictureExtension,
+                    ProfilePictureName = notification.ProfilePictureName
                 }, cancellationToken
                 );
         }

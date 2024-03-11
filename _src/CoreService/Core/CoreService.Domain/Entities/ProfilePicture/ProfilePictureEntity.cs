@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CoreService.Domain.Entities.ProfilePicture
 {
-    public class ProfilePictureEntity : BaseEntity<ObjectId>, ISoftDelete
+    sealed public class ProfilePictureEntity : BaseEntity<ObjectId>, ISoftDelete
     {
         private ProfilePictureEntity(string userId, string userProfileId, string photoPath, string photoExtension, UInt32 photoLength)
         {
