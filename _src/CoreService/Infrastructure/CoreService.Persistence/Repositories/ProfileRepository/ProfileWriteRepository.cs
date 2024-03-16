@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.ProfileRepository
 {
-    public class ProfileWriteRepository(ApplicationDbContext dbContext) : GenericWriteRepository<ProfileEntity, Guid>(dbContext), IProfileWriteRepository
+    public class ProfileWriteRepository(ApplicationDbContext dbContext) : GenericWriteRepository<ProfileEntity>(dbContext), IProfileWriteRepository
     {
     }
 }

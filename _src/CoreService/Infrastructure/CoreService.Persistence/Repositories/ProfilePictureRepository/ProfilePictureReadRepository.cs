@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.ProfilePictureRepository
 {
-    public class ProfilePictureReadRepository(MongoDbSettings mongoDbSettings) : MongoGenericReadRepository<ProfilePictureEntity, ObjectId>(mongoDbSettings, _collectionName), IProfilePictureReadRepository
+    public class ProfilePictureReadRepository(MongoDbSettings mongoDbSettings) : MongoGenericReadRepository<ProfilePictureEntity>(mongoDbSettings, _collectionName), IProfilePictureReadRepository
     {
         private const string _collectionName = "ProfilePictures";
     }

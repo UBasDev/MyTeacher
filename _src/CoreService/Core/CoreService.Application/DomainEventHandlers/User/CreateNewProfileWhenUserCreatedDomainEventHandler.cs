@@ -4,22 +4,25 @@ using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoreService.Application.DomainEventHandlers.User
 {
-    public class CreateNewProfileWhenUserCreatedDomainEventHandler(IUnitOfWork unitOfWork, ILogger<CreateNewProfileWhenUserCreatedDomainEventHandler> logger) : IDomainEventHandler<CreateNewProfileWhenUserCreatedDomainEvent>
+    public class CreateNewProfileWhenUserCreatedDomainEventHandler(IUnitOfWork unitOfWork, ILogger<CreateNewProfileWhenUserCreatedDomainEventHandler> logger, IPublisher publisher) : IDomainEventHandler<CreateNewProfileWhenUserCreatedDomainEvent>
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ILogger<CreateNewProfileWhenUserCreatedDomainEventHandler> _logger = logger;
+        private readonly IPublisher _publisher = publisher;
         public async Task Handle(CreateNewProfileWhenUserCreatedDomainEvent notification, CancellationToken cancellationToken)
         {
-            await _unitOfWork.ProfileWriteRepository.InsertSingleAsync(ProfileEntity.CreateNewProfile(notification.Age, notification.CreatedUserId));
+            var profileToCreate = ProfileEntity.CreateNewProfile(notification.Age, notification.CreatedUserId);
+            await _unitOfWork.ProfileWriteRepository.InsertSingleAsync(profileToCreate);
             await _unitOfWork.SaveChangesAsync();
+            if(notification.ProfilePictureData != null) profileToCreate.CreateProfilePictureWhenProfileCreated(notification.CreatedUserId.ToString(), profileToCreate.Id.ToString(), notification.ProfilePictureData, notification.ProfilePictureExtension, notification.ProfilePictureName);
+
+            foreach(var currentEvent in profileToCreate.DomainEvents)
+            {
+                await _publisher.Publish(currentEvent, cancellationToken);
+            }
         }
     }
 }

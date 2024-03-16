@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    height: 100%;
+}
+body { margin: 0; }
+
+body * :not(mat-icon) {
+    font-family: "Ubuntu", sans-serif !important;
+}
+
+*,*::after,*::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+input {
+    outline: none;
+    border: none;
+}
+option {
+    outline: none;
+    border: none;
+}
+p, h1, h2, h3, h4, h5, h6, span, strong, b{
+    padding: 0 !important;
+    margin: 0 !important;
+}

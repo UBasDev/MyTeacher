@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.UserRepository
 {
-    public class UserReadRepository(ApplicationDbContext _dbContext) : GenericReadRepository<UserEntity, Guid>(_dbContext), IUserReadRepository
+    public class UserReadRepository(ApplicationDbContext _dbContext) : GenericReadRepository<UserEntity>(_dbContext), IUserReadRepository
     {
     }
 }
