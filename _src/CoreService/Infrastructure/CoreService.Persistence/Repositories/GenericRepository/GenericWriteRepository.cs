@@ -10,13 +10,11 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.GenericRepository
 {
-    public abstract class GenericWriteRepository<TEntity, TId> : IGenericWriteRepository<TEntity> where TEntity : BaseEntity<TId>
+    public abstract class GenericWriteRepository<TEntity> : IGenericWriteRepository<TEntity> where TEntity : class
     {
-        private readonly ApplicationDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
         protected GenericWriteRepository(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
             _dbSet = dbContext.Set<TEntity>();
         }
         public virtual void DeleteRange(IEnumerable<TEntity> entitiesToDelete) => _dbSet.RemoveRange(entitiesToDelete);

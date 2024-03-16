@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace CoreService.Persistence.Repositories.MongoGenericRepository
 {
-    public class MongoGenericWriteRepository<TEntity, TId> : MongoConnectionProvider, IGenericMongoWriteRepository<TEntity> where TEntity : BaseEntity<TId>
+    public class MongoGenericWriteRepository<TEntity> : MongoConnectionProvider, IGenericMongoWriteRepository<TEntity> where TEntity :class
     {
         private readonly IMongoCollection<TEntity> _collection;
         public MongoGenericWriteRepository(MongoDbSettings mongoDbSettings, string collectionName) : base(mongoDbSettings)

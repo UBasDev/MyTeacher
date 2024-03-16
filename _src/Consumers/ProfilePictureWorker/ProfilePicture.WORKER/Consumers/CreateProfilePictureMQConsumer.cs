@@ -9,15 +9,13 @@ namespace ProfilePicture.WORKER.Consumers
 {
     public class CreateProfilePictureMQConsumer : IConsumer<ICreateProfilePictureMQCommand>
     {
-        public CreateProfilePictureMQConsumer(ILogger<CreateProfilePictureMQConsumer> logger, IProfilePictureWriteRepository profilePictureWriteRepository, IProfilePictureReadRepository profilePictureReadRepository)
+        public CreateProfilePictureMQConsumer(ILogger<CreateProfilePictureMQConsumer> logger, IProfilePictureWriteRepository profilePictureWriteRepository)
         {
             _logger = logger;
             _profilePictureWriteRepository = profilePictureWriteRepository;
-            _profilePictureReadRepository = profilePictureReadRepository;
         }
         private readonly ILogger<CreateProfilePictureMQConsumer> _logger;
         private readonly IProfilePictureWriteRepository _profilePictureWriteRepository;
-        private readonly IProfilePictureReadRepository _profilePictureReadRepository;
         public async Task Consume(ConsumeContext<ICreateProfilePictureMQCommand> context)
         {
             _logger.LogInformation("Consumer is running");

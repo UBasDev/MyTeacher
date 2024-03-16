@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.UserRepository
 {
-    public class UserWriteRepository(ApplicationDbContext _dbContext) : GenericWriteRepository<UserEntity, Guid>(_dbContext), IUserWriteRepository
+    public class UserWriteRepository(ApplicationDbContext _dbContext) : GenericWriteRepository<UserEntity>(_dbContext), IUserWriteRepository
     {
     }
 }

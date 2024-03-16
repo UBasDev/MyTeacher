@@ -10,14 +10,18 @@ using System.Security.Cryptography;
 
 namespace CoreService.Domain.Entities.User
 {
-    sealed public class UserEntity : BaseEntity<Guid>, ISoftDelete
+    sealed public class UserEntity : BaseEntityWithSoftDelete<Guid>
     {
-        private UserEntity(string username, string email, string passwordSalt, string passwordHash) //This constructor has been created for EFCore.
+        public UserEntity()
         {
-            Username = username ?? throw new Exception($"{nameof(username)} field cannot be empty"); ;
-            Email = email ?? throw new Exception($"{nameof(email)} field cannot be empty");
-            PasswordSalt = passwordSalt;
-            PasswordHash = passwordHash;
+            Username = string.Empty;
+            Email = string.Empty;
+            PasswordHash = string.Empty;
+            PasswordSalt = string.Empty;
+            LastLoginDate = null;
+            Role = null;
+            RoleId = null;
+            Profile = null;
         }
         private UserEntity(string username, string email, string passwordFromRequest)
         {
@@ -28,16 +32,14 @@ namespace CoreService.Domain.Entities.User
             PasswordSalt = Convert.ToBase64String(salt);
             PasswordHash = ComputeHash(passwordFromRequest, PasswordSalt);
         }
-        public string Username { get; private set; } = string.Empty;
-        public string Email { get; private set; } = string.Empty;
-        public string PasswordSalt { get; private set; } = string.Empty;
-        public string PasswordHash { get; private set; } = string.Empty;
-        //public RoleEntity Role { get; private set; } = new();
-        public ProfileEntity Profile { get; private set; }
-        public DateTimeOffset? UpdatedAt { get ; private set; }
-        public DateTimeOffset? DeletedAt { get ; private set ; }
-        public bool IsActive { get; private set; } = true;
-        public bool IsDeleted { get; private set; } = false;
+        public string Username { get; private set; }
+        public string Email { get; private set; }
+        public string PasswordSalt { get; private set; }
+        public string PasswordHash { get; private set; }
+        public DateTimeOffset? LastLoginDate { get; private set; }
+        public RoleEntity? Role { get; private set; }
+        public Guid? RoleId { get; private set; }
+        public ProfileEntity? Profile { get; private set; }
 
         public static UserEntity CreateNewUser(string username, string email, string passwordFromRequest)
         {

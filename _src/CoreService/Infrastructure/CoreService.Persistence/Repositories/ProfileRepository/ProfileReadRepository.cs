@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.ProfileRepository
 {
-    public class ProfileReadRepository(ApplicationDbContext _dbContext) : GenericReadRepository<ProfileEntity, Guid>(_dbContext), IProfileReadRepository
+    public class ProfileReadRepository(ApplicationDbContext _dbContext) : GenericReadRepository<ProfileEntity>(_dbContext), IProfileReadRepository
     {
     }
 }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Persistence.Repositories.MongoGenericRepository
 {
-    public class MongoGenericReadRepository<TEntity, TId>(MongoDbSettings mongoDbSettings, string collectionName) : MongoConnectionProvider(mongoDbSettings), IGenericMongoReadRepository<TEntity> where TEntity : BaseEntity<TId>
+    public class MongoGenericReadRepository<TEntity>(MongoDbSettings mongoDbSettings, string collectionName) : MongoConnectionProvider(mongoDbSettings), IGenericMongoReadRepository<TEntity> where TEntity : class
     {
         private readonly string _collectionName = collectionName;
         public async Task<IEnumerable<TEntity>> GetAllDocumentsAsync( MongoCollectionSettings? collectionSettings = null)
