@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+:host .navMenuUnderlineEffect:hover{
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-color: #f8af47;
+  text-decoration-thickness: 0.25rem;
+}
+
+:host .childNavItem{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+:host .childNavItem:hover{
+  background-color: rgb(230, 237, 244);
+  
+}

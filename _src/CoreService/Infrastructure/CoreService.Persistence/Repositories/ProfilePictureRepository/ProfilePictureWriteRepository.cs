@@ -12,7 +12,7 @@ using CoreService.Application.Repositories.ProfilePictureRepository;
 
 namespace CoreService.Persistence.Repositories.ProfilePictureRepository
 {
-    public class ProfilePictureWriteRepository(MongoDbSettings mongoDbSettings) : MongoGenericWriteRepository<ProfilePictureEntity, ObjectId>(mongoDbSettings, _collectionName), IProfilePictureWriteRepository
+    public class ProfilePictureWriteRepository(MongoDbSettings mongoDbSettings) : MongoGenericWriteRepository<ProfilePictureEntity>(mongoDbSettings, _collectionName), IProfilePictureWriteRepository
     {
         private const string _collectionName = "ProfilePictures";
     }

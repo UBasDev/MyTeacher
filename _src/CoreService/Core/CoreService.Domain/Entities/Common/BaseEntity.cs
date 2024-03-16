@@ -6,10 +6,10 @@ namespace CoreService.Domain.Entities.Common
     {
         protected BaseEntity()
         {
-
+            CreatedAt = DateTimeOffset.UtcNow;
         }
         [Key]
         public T Id { get; protected set; }
-        public DateTimeOffset CreatedAt { get; protected set; } = DateTimeOffset.UtcNow;
+        public DateTimeOffset CreatedAt { get; protected set; }
     }
 }

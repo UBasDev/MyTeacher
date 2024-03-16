@@ -5,9 +5,8 @@ using RabbitMQ.Abstracts;
 
 namespace ProfilePicture.WORKER
 {
-    public class Worker(ILogger<Worker> logger, IProfilePictureWriteRepository profilePictureWriteRepository) : BackgroundService
+    public class Worker() : BackgroundService
     {
-        private readonly ILogger<Worker> _logger = logger;
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             Console.WriteLine("WORKER STARTED RUNNING");
@@ -30,7 +29,7 @@ namespace ProfilePicture.WORKER
         }
         private async Task AsyncExample1(string messageFromQueue)
         {
-            _logger.LogInformation("ASYNC: {message}", messageFromQueue);
+            //_logger.LogInformation("ASYNC: {message}", messageFromQueue);
         }
         /* RABBITMQ EXAMPLES
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
