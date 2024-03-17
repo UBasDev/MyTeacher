@@ -8,21 +8,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { IBreadcrumbItems, INavDropdownItems, INavItems } from './CommonLayoutHeaderComponent.types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-common-layout-header',
   standalone: true,
   imports: [
     CommonModule,
-    MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatMenuModule,
   ],
   template: `
     <div class="grid grid-cols-24">
-      <div class="col-span-8 py-2 mx-32">
-        <div class="flex items-center justify-start gap-x-2">
+      <div class="col-span-8 pt-2 mx-32">
+        <div (click)="goToHomepage()" class="flex items-center justify-start gap-x-2">
           <img
             class="cursor-pointer"
             height="75px"
@@ -32,11 +31,11 @@ import { IBreadcrumbItems, INavDropdownItems, INavItems } from './CommonLayoutHe
           <h2 class="text-blue-900 cursor-pointer">UCBDev</h2>
         </div>
         <hr class="my-1 text-blue-900 bg-blue-900 py-0.5 w-2/6" />
-        <p [ngStyle]="{}" class="text-blue-900 tracking-normal cursor-pointer">
+        <p (click)="goToHomepage()" class="p-0 !m-0 pb-1 text-blue-900 tracking-normal cursor-pointer">
           {{ textUnderIcon }}
         </p>
       </div>
-      <div class="col-span-16 py-4 mx-32">
+      <div class="col-span-16 py-2 mx-32">
         <div class="flex items-center justify-end gap-x-2">
           <ng-template
             ngFor
@@ -124,16 +123,12 @@ import { IBreadcrumbItems, INavDropdownItems, INavItems } from './CommonLayoutHe
           </ng-template>
         </div>
       </div>
-      <div style="backgroundColor: rgb(27, 42, 92)" class="col-span-24 py-4 text-center ">
-              <p class="text-white underline cursor-pointer hover:no-underline">{{bannerText}}</p>
-      </div>
     </div>
   `,
   styleUrl: './CommonLayoutHeader.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonLayoutHeaderComponent {
-  bannerText : string = "Self-serve options available online for College members, applicants, and third parties";
   navDropdownItems: INavDropdownItems[] = [];
   public navItems: INavItems[] = [
     {
@@ -243,6 +238,9 @@ export class CommonLayoutHeaderComponent {
       ]
     },
   ];
+  public goToHomepage(){
+    this.router.navigate(['/'])
+  }
   public isItemActive(index: number): boolean {
     return this.navDropdownItems.some(
       (d) => d.index == index && d.isACtive == true
@@ -264,7 +262,7 @@ export class CommonLayoutHeaderComponent {
     if (foundActiveItem == null) return;
     else foundActiveItem.isACtive = false;
   }
-  constructor() {}
+  constructor(private readonly router:Router) {}
   public readonly textUnderIcon: string = 'To Inspire You To Learn';
   public searchText: string = '';
   public readonly breadcrumbItems: IBreadcrumbItems[] = [

@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonLayoutHeaderComponent } from './CommonLayoutHeader/CommonLayoutHeader.component';
-import { CommonLayoutFooterComponent } from './CommonLayoutFooter/CommonLayoutFooter.component';
+import { CommonLayoutHeaderComponent } from './commonLayoutHeader/CommonLayoutHeader.component';
+import { CommonLayoutFooterComponent } from './commonLayoutFooter/CommonLayoutFooter.component';
+import { CommonLayoutHeaderBannerComponent } from './commonLayoutHeaderBanner/CommonLayoutHeaderBanner.component';
+import { CommonLayoutHeaderCarouselComponent } from './commonLayoutHeaderCarousel/CommonLayoutHeaderCarousel/CommonLayoutHeaderCarousel.component';
 
 @Component({
   selector: 'app-common-layout',
@@ -11,10 +13,14 @@ import { CommonLayoutFooterComponent } from './CommonLayoutFooter/CommonLayoutFo
     CommonModule,
     RouterOutlet,
     CommonLayoutHeaderComponent,
-    CommonLayoutFooterComponent
+    CommonLayoutFooterComponent,
+    CommonLayoutHeaderBannerComponent,
+    CommonLayoutHeaderCarouselComponent
   ],
   template: `
     <app-common-layout-header/>
+    <app-common-layout-header-banner/>
+    <app-common-layout-header-carousel/>
     <router-outlet />
     <app-common-layout-footer/>
   `,
