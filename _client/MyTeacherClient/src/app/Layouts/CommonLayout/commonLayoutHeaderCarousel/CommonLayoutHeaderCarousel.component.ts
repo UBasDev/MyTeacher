@@ -8,7 +8,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
+import { Subscription, filter } from 'rxjs';
 
 interface SlideInterface {
   id: number;
@@ -21,7 +22,7 @@ interface SlideInterface {
   standalone: true,
   imports: [CommonModule, MatButtonModule],
   template: `
-    <div class="w-3/5 my-0 mx-auto" style="height:450px">
+    <div class="my-0 mx-36" style="height:450px">
       <ng-template [ngIf]="this.slides.length > 0">
         <div
           (mouseenter)="userHoveredSlider()"
@@ -30,10 +31,10 @@ interface SlideInterface {
         >
           <div>
             <ng-template [ngIf]="this.slides.length > 1">
-              <div (click)="goToPrevious()" class="leftArrow">
+              <div (click)="goToPrevious()" class="leftArrow rounded-l-sm">
                 <span>❰</span>
               </div>
-              <div (click)="goToNext()" class="rightArrow">
+              <div (click)="goToNext()" class="rightArrow rounded-r-sm">
                 <span>❱</span>
               </div>
             </ng-template>
@@ -65,9 +66,9 @@ interface SlideInterface {
               </div>
             </div>
           </div>
-          <div class="slide">
+          <div class="slide rounded-sm">
             <img
-              class="h-full w-full"
+              class="h-full w-full rounded-sm"
               [src]="this.currentActivatedCarouselImageUrl"
             />
           </div>
@@ -88,7 +89,19 @@ interface SlideInterface {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonLayoutHeaderCarouselComponent implements OnInit, OnDestroy {
-  constructor(private cd: ChangeDetectorRef, private location: Location, private router: Router) {}
+  constructor(private cd: ChangeDetectorRef, private location: Location, private router: Router) {
+    this.subscriptionToListenRouteChange = this.router.events.pipe(
+      filter((e: any): e is RouterEvent => e instanceof NavigationStart)
+    ).subscribe((e: any)=>{
+      if(e instanceof NavigationStart){
+        if (e.url == '/') {
+          this.isLeftSliderTextActive = true
+          this.cd.markForCheck()
+        }
+        else this.isLeftSliderTextActive = false
+      }
+    })
+  }
   @Input() slides: SlideInterface[] = [
     {
       id: 1,
@@ -101,31 +114,16 @@ export class CommonLayoutHeaderCarouselComponent implements OnInit, OnDestroy {
       url: '/assets/homepage/homepage-carousel-images/homepage-carousel2.jpg',
     },
   ];
-
+  public subscriptionToListenRouteChange : Subscription;
   ngOnInit(): void {
-    this.router.events.subscribe((e: any)=>{
-      if(e instanceof NavigationStart){
-        if (e.url == '/') {
-          this.isLeftSliderTextActive = true
-          this.cd.markForCheck()
-        }
-        else {
-          this.isLeftSliderTextActive = false 
-        }
-      }
-    })
-    if (this.location.path() == '') {
-      this.isLeftSliderTextActive = true
-      console.log('LEFT SLIDER AKTIF')
-    }
-    else {
-      this.isLeftSliderTextActive = false
-      console.log('LEFT SLIDER DEAKTIF')
-    }
+    if (this.location.path() == '') this.isLeftSliderTextActive = true
+    else this.isLeftSliderTextActive = false
+
     this.currentActivatedCarouselImageUrl = this.slides[0].url;
     if (this.slides.length > 1) this.setIntervalForCarouselImageChange();
   }
   ngOnDestroy() {
+    this.subscriptionToListenRouteChange.unsubscribe()
     window.clearInterval(this.activeInterval);
   }
   public isLeftSliderTextActive = false;
@@ -134,7 +132,7 @@ export class CommonLayoutHeaderCarouselComponent implements OnInit, OnDestroy {
   private activeInterval?: ReturnType<typeof setInterval>;
 
   public goToApplyPage(){
-    this.router.navigate(['/applyToBecomeTeacher'])
+    this.router.navigate(['/applyUs'])
   }
 
   public userHoveredSlider() {

@@ -13,7 +13,7 @@ export const routes: Routes = [
                 component: HomeComponent
             },
             {
-                path: 'applyToBecomeTeacher',
+                path: 'applyUs',
                 component: ApplyComponent
             }
         ]

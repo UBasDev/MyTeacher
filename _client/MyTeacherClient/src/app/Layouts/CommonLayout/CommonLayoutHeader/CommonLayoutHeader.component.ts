@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  Component
+  Component,
+  Input
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -21,14 +22,14 @@ import { Router } from '@angular/router';
   template: `
     <div class="grid grid-cols-24">
       <div class="col-span-8 pt-2 mx-32">
-        <div (click)="goToHomepage()" class="flex items-center justify-start gap-x-2">
-          <img
+        <div class="flex items-center justify-start gap-x-2">
+          <img (click)="goToHomepage()"
             class="cursor-pointer"
             height="75px"
             width="75px"
             src="/assets/homepage/homepage_icon.png"
           />
-          <h2 class="text-blue-900 cursor-pointer">UCBDev</h2>
+          <h2 (click)="goToHomepage()" class="text-blue-900 cursor-pointer">UCBDev</h2>
         </div>
         <hr class="my-1 text-blue-900 bg-blue-900 py-0.5 w-2/6" />
         <p (click)="goToHomepage()" class="p-0 !m-0 pb-1 text-blue-900 tracking-normal cursor-pointer">
@@ -129,115 +130,10 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonLayoutHeaderComponent {
+  @Input() navItems: INavItems[] = [];
+  
   navDropdownItems: INavDropdownItems[] = [];
-  public navItems: INavItems[] = [
-    {
-      id: 1,
-      key: 'publicProtection',
-      value: 'Public Protection',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/',
-          key: 'subscribeForCouncilMeetingNews',
-          value: 'Subscribe for Council Meeting News',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'greatTeaching',
-          value: 'Great Teaching',
-        },
-        {
-          id: 3,
-          href: '/',
-          key: 'ourFreePublicNewspaper',
-          value: 'Our Free Public Newspaper',
-        },
-      ],
-    },
-    {
-      id: 2,
-      key: 'parents',
-      value: 'Parents',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/',
-          key: 'ourFreePublicNewspaper',
-          value: 'Our Free Public Newspaper',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'greatTeaching',
-          value: 'Great Teaching',
-        },
-      ],
-    },
-    {
-      id: 3,
-      key: 'members',
-      value: 'Members',
-      href: '/',
-      childItems:[
-        {
-          id: 1,
-          href: '/',
-          key: 'members',
-          value: 'Members',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'membershipAndOtherFees',
-          value: 'Membership and Other Fees',
-        },
-      ]
-    },
-    {
-      id: 4,
-      key: 'becomingATeacher',
-      value: 'Becoming a Teacher',
-      href: '/',
-      childItems:[
-        {
-          id: 1,
-          href: '/',
-          key: 'applying',
-          value: 'Applying',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'requirements',
-          value: 'Requirements',
-        },
-      ]
-    },
-    {
-      id: 5,
-      key: 'aboutTheCollege',
-      value: 'About the College',
-      href: '/',
-      childItems:[
-        {
-          id: 1,
-          href: '/',
-          key: 'strategicPlan',
-          value: 'Strategic Plan',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'whatWeDo',
-          value: 'What We Do',
-        },
-      ]
-    },
-  ];
+  
   public goToHomepage(){
     this.router.navigate(['/'])
   }
