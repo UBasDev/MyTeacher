@@ -90,7 +90,7 @@ namespace CoreService.Persistence.Repositories
 
         public void SaveChanges() => _dbContext.SaveChanges();
 
-        public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
+        public async Task SaveChangesAsync(CancellationToken cancellationToken) => await _dbContext.SaveChangesAsync(cancellationToken);
 
         private bool _disposed = false;
         private void Dispose(bool disposing)

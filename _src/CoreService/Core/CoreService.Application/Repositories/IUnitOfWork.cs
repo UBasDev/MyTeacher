@@ -15,7 +15,7 @@ namespace CoreService.Application.Repositories
     public interface IUnitOfWork : IDisposable
     {
         void SaveChanges();
-        Task SaveChangesAsync();
+        Task SaveChangesAsync(CancellationToken cancellationToken);
         IProfileReadRepository ProfileReadRepository { get; }
         IProfileWriteRepository ProfileWriteRepository { get; }
         IUserReadRepository UserReadRepository { get; }
