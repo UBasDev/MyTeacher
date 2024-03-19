@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,54 +11,37 @@ namespace MyTeacher.Helper.Responses
     {
         public BaseResponse()
         {
-            if (typeof(T).IsClass && typeof(T) != typeof(string)) SuccessMessage = Activator.CreateInstance<T>();
-            else SuccessMessage = default;
+            if (typeof(T).IsClass && typeof(T) != typeof(string)) Payload = Activator.CreateInstance<T>();
+            else Payload = default;
+            IsSuccessful = true;
+            ErrorMessage = null;
+            TraceId = string.Empty;
+            ServerTime = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
+            StatusCode = HttpStatusCode.OK;
         }
-        private bool isSuccessful = true;
-        public bool IsSuccessful
+        public T? Payload { get; set; }
+        public bool IsSuccessful { get; set; }
+        public string? ErrorMessage { get; set; }
+        public string TraceId { get; set; }
+        public int ServerTime { get; }
+        public HttpStatusCode StatusCode { get; set; }
+    }
+    public class BaseResponse //If we won't send anything to client
+    {
+        public BaseResponse()
         {
-            get => isSuccessful;
-            set
-            {
-                isSuccessful = value;
-                SuccessMessage = default; //Burası sadece `false` aldığında set edileceği için `if(value == false) kontrolü koymaya gerek yoktur.`
-            }
+            Payload = null;
+            IsSuccessful = true;
+            ErrorMessage = null;
+            TraceId = string.Empty;
+            ServerTime = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
+            StatusCode = HttpStatusCode.OK;
         }
-        private T? successMessage;
-        public T? SuccessMessage
-        {
-            get => successMessage;
-            set
-            {
-                successMessage = value;
-            }
-        }
-        private string? errorMessage = string.Empty;
-        public string? ErrorMessage
-        {
-            get => errorMessage;
-            set
-            {
-                errorMessage = value;
-            }
-        }
-        private string traceId = string.Empty;
-        public string TraceId
-        {
-            get => traceId;
-            set
-            {
-                traceId = value;
-            }
-        }
-        private int serverTime = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
-        public int ServerTime
-        {
-            get => serverTime;
-            set
-            {
-                serverTime = value;
-            }
-        }
+        public object? Payload { get; }
+        public bool IsSuccessful { get; set; }
+        public string? ErrorMessage { get; set; }
+        public string TraceId { get; set; }
+        public int ServerTime { get; }
+        public HttpStatusCode StatusCode { get; set; }
     }
 }

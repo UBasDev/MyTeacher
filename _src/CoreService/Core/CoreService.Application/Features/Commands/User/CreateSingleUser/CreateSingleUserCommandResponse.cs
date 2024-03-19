@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Features.Commands.User.CreateSingleUser
 {
-    public class CreateSingleUserCommandResponse : BaseResponse<string>
+    public class CreateSingleUserCommandResponse : BaseResponse
     {
 
     }

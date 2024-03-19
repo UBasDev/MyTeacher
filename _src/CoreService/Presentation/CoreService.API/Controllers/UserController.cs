@@ -23,7 +23,7 @@ namespace CoreService.API.Controllers
         }
         private readonly IMediator _mediator = mediator;
 
-        [HttpPost("[action]")]
+        [HttpPost("create-single-user")]
         public async Task<CreateSingleUserCommandResponse> CreateSingleUser([FromForm] CreateSingleUserCommandRequest requestBody, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(requestBody, cancellationToken);
@@ -31,7 +31,7 @@ namespace CoreService.API.Controllers
             response.TraceId = HttpContext.TraceIdentifier;
             return response;
         }
-        [HttpPost("[action]")]
+        [HttpPost("login")]
         public async Task<LoginCommandResponse> Login([FromBody] LoginCommandRequest requestBody, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(requestBody, cancellationToken);

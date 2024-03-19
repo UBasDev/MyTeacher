@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,25 +10,38 @@ namespace MyTeacher.Helper.Responses
 {
     public class BaseErrorResponse
     {
-        public BaseErrorResponse() { }
-        private BaseErrorResponse(string errorMessage, string traceId)
+        public BaseErrorResponse() {
+            Payload = null;
+            IsSuccessful = false;
+            ErrorMessage = string.Empty;
+            TraceId = string.Empty;
+            ServerTime = 0;
+            StatusCode = 0;
+        }
+        private BaseErrorResponse(string errorMessage, string traceId, HttpStatusCode statusCode)
         {
+            Payload = null;
+            IsSuccessful = false;
             ErrorMessage = errorMessage;
             TraceId = traceId;
+            ServerTime = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
+            StatusCode = statusCode;
         }
         [JsonProperty]
-        private bool IsSuccessful { get; set; } = false;
+        private object? Payload { get; }
         [JsonProperty]
-        private string? SuccessMessage { get; set; } = null;
+        private bool IsSuccessful { get; }
         [JsonProperty]
-        private string ErrorMessage { get; set; } = string.Empty;
+        private string ErrorMessage { get; }
         [JsonProperty]
-        private string TraceId { get; set; } = string.Empty;
+        private string TraceId { get; }
         [JsonProperty]
-        private int ServerTime { get; set; } = (int)(DateTime.UtcNow.Subtract(DateTime.UnixEpoch)).TotalSeconds;
-        public static BaseErrorResponse BuildBaseErrorResponse(string errorMessage, string traceId)
+        private int ServerTime { get; }
+        [JsonProperty]
+        private HttpStatusCode StatusCode { get; }
+        public static BaseErrorResponse BuildBaseErrorResponse(string errorMessage, string traceId, HttpStatusCode statusCode)
         {
-            return new BaseErrorResponse(errorMessage, traceId);
+            return new BaseErrorResponse(errorMessage, traceId, statusCode);
         }
     }
 }

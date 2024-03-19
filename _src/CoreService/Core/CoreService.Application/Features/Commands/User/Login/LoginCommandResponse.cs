@@ -10,4 +10,14 @@ namespace CoreService.Application.Features.Commands.User.Login
     public class LoginCommandResponse : BaseResponse<LoginCommandResponseModel>
     {
     }
+    public class LoginCommandResponseModel
+    {
+        public LoginCommandResponseModel()
+        {
+            AccessToken = null;
+            RefreshToken = null;
+        }
+        public string? AccessToken { get; set; }
+        public string? RefreshToken { get; set; }
+    }
 }

@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,22 +27,34 @@ namespace CoreService.Application.Features.Commands.User.Login
         public async Task<LoginCommandResponse> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
         {
             var response = new LoginCommandResponse();
-            var foundUser = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Username == request.Username).FirstOrDefaultAsync(cancellationToken);
+            try
+            {
+                var foundUser = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Username == request.Username).FirstOrDefaultAsync(cancellationToken);
 
-            if (foundUser == null)
-            {
-                response.IsSuccessful = false;
-                response.ErrorMessage = "There is no user with given username";
-                return response;
+                if (foundUser == null)
+                {
+                    response.IsSuccessful = false;
+                    response.ErrorMessage = "There is no user with given username";
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    return response;
+                }
+                if (foundUser.PasswordHash != UserEntity.ComputeHash(request.Password, foundUser.PasswordSalt))
+                {
+                    response.IsSuccessful = false;
+                    response.ErrorMessage = "Your password is wrong";
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    return response;
+                }
+                response.Payload.AccessToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(300));
+                response.Payload.RefreshToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(600));
             }
-            if (foundUser.PasswordHash != UserEntity.ComputeHash(request.Password, foundUser.PasswordSalt))
+            catch (Exception ex)
             {
+                _logger.LogError("An unexpected error occurred while you're attempting to login. Error: {@ErrorMessage}", ex);
                 response.IsSuccessful = false;
-                response.ErrorMessage = "Your password is wrong";
-                return response;
+                response.ErrorMessage = $"An unexpected error occurred while you're attempting to login. Error: {ex.Message}";
+                response.StatusCode = HttpStatusCode.InternalServerError;
             }
-            response.SuccessMessage.AccessToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(300));
-            response.SuccessMessage.RefreshToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(600));
             return response;
         }
     }
