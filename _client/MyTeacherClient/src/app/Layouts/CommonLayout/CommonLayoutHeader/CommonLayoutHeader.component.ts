@@ -1,38 +1,40 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
-import { IBreadcrumbItems, INavDropdownItems, INavItems } from './CommonLayoutHeaderComponent.types';
+import {
+  IBreadcrumbItems,
+  INavDropdownItems,
+  INavItems,
+} from './CommonLayoutHeaderComponent.types';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-common-layout-header',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, MatInputModule, MatIconModule],
   template: `
     <div class="grid grid-cols-24">
       <div class="col-span-8 pt-2 mx-32">
         <div class="flex items-center justify-start gap-x-2">
-          <img (click)="goToHomepage()"
+          <img
+            (click)="goToHomepage()"
             class="cursor-pointer"
             height="75px"
             width="75px"
             src="/assets/homepage/homepage_icon.png"
           />
-          <h2 (click)="goToHomepage()" class="text-blue-900 cursor-pointer">UCBDev</h2>
+          <h2 (click)="goToHomepage()" class="text-blue-900 cursor-pointer">
+            UCBDev
+          </h2>
         </div>
         <hr class="my-1 text-blue-900 bg-blue-900 py-0.5 w-2/6" />
-        <p (click)="goToHomepage()" class="p-0 !m-0 pb-1 text-blue-900 tracking-normal cursor-pointer">
+        <p
+          (click)="goToHomepage()"
+          class="p-0 !m-0 pb-1 text-blue-900 tracking-normal cursor-pointer"
+        >
           {{ textUnderIcon }}
         </p>
       </div>
@@ -104,21 +106,23 @@ import { Router } from '@angular/router';
                   (isItemActive(index) ? 'flex' : 'hidden')
                 "
               >
-              <ng-template [ngIf]="currentItem?.childItems != null && currentItem.childItems.length > 0">
-              <ng-template
-                    ngFor
-                    let-currentChildItem
-                    [ngForOf]="currentItem.childItems"
-                    let-isChildFirst="first"
-                    let-isChildLast="last"
-                    let-childIndex="index"
-                    let-childCount="count"
-                    let-childIsEven="even"
-                    let-childIsOdd="odd"
-                  >
-                    <p class="childNavItem p-1">{{ currentChildItem.value }}</p>
-                  </ng-template>
-              </ng-template>
+                <ng-template
+                  [ngIf]="
+                    currentItem?.childItems != null &&
+                    currentItem.childItems.length > 0
+                  "
+                  ngFor
+                  let-currentChildItem
+                  [ngForOf]="currentItem.childItems"
+                  let-isChildFirst="first"
+                  let-isChildLast="last"
+                  let-childIndex="index"
+                  let-childCount="count"
+                  let-childIsEven="even"
+                  let-childIsOdd="odd"
+                >
+                  <p class="childNavItem p-1">{{ currentChildItem.value }}</p>
+                </ng-template>
               </div>
             </h2>
           </ng-template>
@@ -131,11 +135,11 @@ import { Router } from '@angular/router';
 })
 export class CommonLayoutHeaderComponent {
   @Input() navItems: INavItems[] = [];
-  
+
   navDropdownItems: INavDropdownItems[] = [];
-  
-  public goToHomepage(){
-    this.router.navigate(['/'])
+
+  public goToHomepage() {
+    this.router.navigate(['/']);
   }
   public isItemActive(index: number): boolean {
     return this.navDropdownItems.some(
@@ -158,7 +162,7 @@ export class CommonLayoutHeaderComponent {
     if (foundActiveItem == null) return;
     else foundActiveItem.isACtive = false;
   }
-  constructor(private readonly router:Router) {}
+  constructor(private readonly router: Router) {}
   public readonly textUnderIcon: string = 'To Inspire You To Learn';
   public searchText: string = '';
   public readonly breadcrumbItems: IBreadcrumbItems[] = [

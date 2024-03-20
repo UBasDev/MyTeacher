@@ -7,8 +7,7 @@ import { CommonLayoutHeaderBannerComponent } from './commonLayoutHeaderBanner/Co
 import { CommonLayoutHeaderCarouselComponent } from './commonLayoutHeaderCarousel/CommonLayoutHeaderCarousel.component';
 import { INavItems } from './commonLayoutHeader/CommonLayoutHeaderComponent.types';
 import { Subscription, filter } from 'rxjs';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faGithubSquare, faLinkedin, faInstagramSquare, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { CommonLayoutLetsConnectComponent } from './commonLayoutLetsConnect/CommonLayoutLetsConnect.component';
 
 @Component({
   selector: 'app-common-layout',
@@ -20,7 +19,7 @@ import { faGithubSquare, faLinkedin, faInstagramSquare, IconDefinition } from '@
     CommonLayoutFooterComponent,
     CommonLayoutHeaderBannerComponent,
     CommonLayoutHeaderCarouselComponent,
-    FontAwesomeModule
+    CommonLayoutLetsConnectComponent
   ],
   template: `
     <app-common-layout-header [navItems]="navItems" />
@@ -32,13 +31,7 @@ import { faGithubSquare, faLinkedin, faInstagramSquare, IconDefinition } from '@
           <router-outlet />
         </div>
         <div class="col-span-6 text-blue-950">
-          <h2>Let's Connect</h2>
-          <div class="flex items-center justify-center gap-x-4">
-          <fa-icon [classes]="this.iconClasses" [icon]="githubIcon"></fa-icon>
-          <fa-icon [classes]="this.iconClasses" [icon]="linkedinIcon"></fa-icon>
-          <fa-icon [classes]="this.iconClasses" [icon]="instagramIcon"></fa-icon>
-          </div>
-          <h2>About Us</h2>
+          <app-common-layout-lets-connect/>
         </div>
       </ng-template>
       <ng-template #homeMainContainer>
@@ -53,10 +46,7 @@ import { faGithubSquare, faLinkedin, faInstagramSquare, IconDefinition } from '@
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonLayoutComponent implements OnInit, OnDestroy {
-  public iconClasses : string[] = ["text-3xl"]
-  public githubIcon : IconDefinition = faGithubSquare
-  public linkedinIcon : IconDefinition = faLinkedin
-  public instagramIcon : IconDefinition = faInstagramSquare
+  
   constructor(private location: Location, private router: Router) {
     this.subscriptionToListenRouteChange = this.router.events.pipe(
       filter((e: any): e is RouterEvent => e instanceof NavigationStart)
