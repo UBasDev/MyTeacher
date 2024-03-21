@@ -50,7 +50,7 @@ namespace CoreService.Application.Features.Commands.User.Login
             }
             catch (Exception ex)
             {
-                _logger.LogError("An unexpected error occurred while you're attempting to login. Error: {@ErrorMessage}", ex);
+                _logger.LogError("An unexpected error occurred while you're attempting to login. Error: {@Error}", ex);
                 response.IsSuccessful = false;
                 response.ErrorMessage = $"An unexpected error occurred while you're attempting to login. Error: {ex.Message}";
                 response.StatusCode = HttpStatusCode.InternalServerError;

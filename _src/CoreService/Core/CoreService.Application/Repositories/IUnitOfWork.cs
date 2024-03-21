@@ -1,4 +1,5 @@
-﻿using CoreService.Application.Repositories.ProfilePicture;
+﻿using CoreService.Application.Repositories.CompanyRepository;
+using CoreService.Application.Repositories.ProfilePicture;
 using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Application.Repositories.ProfileRepository;
 using CoreService.Application.Repositories.UserRepository;
@@ -22,5 +23,7 @@ namespace CoreService.Application.Repositories
         IUserWriteRepository UserWriteRepository { get; }
         IProfilePictureReadRepository ProfilePictureReadRepository { get; }
         IProfilePictureWriteRepository ProfilePictureWriteRepository { get; }
+        ICompanyReadRepository CompanyReadRepository { get; }
+        ICompanyWriteRepository CompanyWriteRepository { get; }
     }
 }

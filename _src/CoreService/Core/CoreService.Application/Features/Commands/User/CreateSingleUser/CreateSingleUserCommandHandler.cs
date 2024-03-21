@@ -66,7 +66,7 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
             }
             catch (Exception ex)
             {
-                _logger.LogError("An unexpected error occurred while creating this user. Error: {@ErrorMessage}", ex);
+                _logger.LogError("An unexpected error occurred while creating this user. Error: {@Error}", ex);
                 response.IsSuccessful = false;
                 response.ErrorMessage = $"An unexpected error occurred while creating this user. Error: {ex.Message}";
                 response.StatusCode = HttpStatusCode.InternalServerError;

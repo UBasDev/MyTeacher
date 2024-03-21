@@ -37,7 +37,7 @@ export class ApplyComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true
     dialogConfig.hasBackdrop = true
-    dialogConfig.width = "30%"
+    dialogConfig.width = "40%"
     return dialogConfig
   }
   constructor(public dialog: MatDialog){}

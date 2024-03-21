@@ -1,6 +1,9 @@
+using CoreService.API.Registrations;
+using CoreService.Application.Constants;
 using CoreService.Application.Models;
 using CoreService.Application.Registrations;
 using CoreService.Persistence.Registrations;
+using MyTeacher.Helper.Culture;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,10 +32,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationRegistrations(appSettings.DatabaseConnectionUrl, appSettings.JwtTokenSettings, appSettings.MongoDbSettings, appSettings.EventBusSettings, environment);
 builder.Services.AddPersistenceRegistrations(appSettings);
+builder.Services.AddPresentationRegistrations();
 
 var app = builder.Build();
-
 app.UseSerilogRequestLogging();
+app.UseRateLimiter();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -44,6 +48,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 app.AddApplicationMiddlewares();
-app.MapControllers();
+//app.AddCultureRegistrations();
+app.MapControllers().RequireRateLimiting(ApplicationConstants.FixedRateLimitingPolicyName);
 
 app.Run();
