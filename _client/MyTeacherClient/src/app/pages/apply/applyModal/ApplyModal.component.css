@@ -4,3 +4,34 @@
 :host input::placeholder{
   font-size: 0.8rem;
 }
+:host mat-icon {
+  transition: .3s ease-out all;
+}
+:host mat-label{
+  font-size: .8rem;
+}
+:host input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+:host input[type=number] {
+  appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+}
+:host mat-error{
+  font-size: .6rem !important;
+}
+:host .ageInput{
+  flex: 5 1 0
+}
+:host .firstnameInput{
+  flex: 8 1 0
+}
+:host .lastnameInput{
+  flex: 8 1 0
+}

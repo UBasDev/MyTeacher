@@ -12,6 +12,7 @@ namespace MyTeacher.Helper.Middlewares
     {
         private readonly ILogger<GlobalExceptionMiddleware> _logger = logger;
         private readonly RequestDelegate _next = next;
+
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -24,7 +25,7 @@ namespace MyTeacher.Helper.Middlewares
                 httpContext.Response.ContentType = MediaTypeNames.Application.Json;
                 var response = BaseErrorResponse.BuildBaseErrorResponse($"An unexpected error occured during the process. Error is: {ex.Message}", httpContext.TraceIdentifier, HttpStatusCode.InternalServerError);
                 await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response), Encoding.UTF8);
-                _logger.LogError("{@ClassName} - {@ErrorMessage}", this.GetType().Name, ex.Message);
+                _logger.LogError("{@ClassName} - {@Error}", this.GetType().Name, ex.Message);
             }
         }
     }

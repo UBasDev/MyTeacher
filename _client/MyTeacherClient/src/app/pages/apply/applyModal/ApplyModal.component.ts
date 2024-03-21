@@ -20,6 +20,10 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component';
+import { map, Observable, startWith } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-apply-modal',
@@ -31,13 +35,18 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
     MatIconModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatAutocompleteModule,
+    AsyncPipe,
+    MatFormFieldModule,
   ],
   template: `
-    <div class="text-end">
-      <mat-icon mat-dialog-close class="cursor-pointer">close</mat-icon>
+    <div class="text-end pr-2 pt-2">
+      <mat-icon mat-dialog-close class="cursor-pointer hover:scale-125"
+        >close</mat-icon
+      >
     </div>
     <div class="text-center p-0 m-0">
-      <h3 mat-dialog-title>Application form</h3>
+      <h3 mat-dialog-title>Application Form</h3>
     </div>
     <mat-dialog-content class="mat-typography !pt-0 !mt-0">
       <form
@@ -90,7 +99,7 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
           <small>Your Picture</small>
         </div>
         <div class="col-span-24 flex items-center gap-x-4 justify-center">
-          <mat-form-field class="grow">
+          <mat-form-field style="flex-grow: 1">
             <mat-label>Username</mat-label>
             <input
               [name]="this.usernameInputKey"
@@ -99,13 +108,22 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
               [formControlName]="this.usernameInputKey"
               placeholder="Ex. John Doe"
             />
-            @if (!this.isUsernameInputValid) {
+            @if (this.usernameInputCurrentValue) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="this.resetUsernameInputCurrentValue()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            } @if (!this.isUsernameInputValid) {
             <mat-error
               ><strong>{{ usernameInputErrorMessage }}</strong></mat-error
             >
             }
           </mat-form-field>
-          <mat-form-field class="grow">
+          <mat-form-field style="flex-grow: 1">
             <mat-label>Email</mat-label>
             <input
               [name]="this.emailInputKey"
@@ -114,7 +132,16 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
               [formControlName]="this.emailInputKey"
               placeholder="Ex. john.doe@example.com"
             />
-            @if (!this.isEmailInputValid) {
+            @if (this.emailInputCurrentValue) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="this.resetEmailInputCurrentValue()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            } @if (!this.isEmailInputValid) {
             <mat-error
               ><strong>{{ emailInputErrorMessage }}</strong></mat-error
             >
@@ -123,7 +150,7 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
         </div>
 
         <div class="col-span-24 flex items-center gap-x-4 justify-center">
-          <mat-form-field class="grow">
+          <mat-form-field style="flex-grow: 1">
             <mat-label>Password</mat-label>
             <input
               [name]="this.passwordInputKey"
@@ -138,7 +165,7 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
             >
             }
           </mat-form-field>
-          <mat-form-field class="grow">
+          <mat-form-field style="flex-grow: 1">
             <mat-label>Password Again</mat-label>
             <input
               [name]="this.passwordVerifyInputKey"
@@ -154,6 +181,92 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
             }
           </mat-form-field>
         </div>
+        <div class="col-span-24 flex items-center justify-center gap-x-4">
+          <mat-form-field class="ageInput">
+            <mat-label>Age</mat-label>
+            <input
+              [name]="this.ageInputKey"
+              type="number"
+              matInput
+              [formControlName]="this.ageInputKey"
+              placeholder="Your age"
+            />
+            @if (!this.isAgeInputValid) {
+            <mat-error class="!text-xs"
+              ><strong>{{ ageInputErrorMessage }}</strong></mat-error
+            >
+            }
+          </mat-form-field>
+          <mat-form-field class="firstnameInput">
+            <mat-label>Firstname</mat-label>
+            <input
+              [name]="this.firstnameInputKey"
+              type="text"
+              matInput
+              [formControlName]="this.firstnameInputKey"
+              placeholder="Your firstname"
+            />
+            @if (this.firstnameInputCurrentValue) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="this.resetFirstnameInputCurrentValue()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            } @if (!this.isFirstnameInputValid) {
+            <mat-error
+              ><strong>{{ firstnameInputErrorMessage }}</strong></mat-error
+            >
+            }
+          </mat-form-field>
+          <mat-form-field class="lastnameInput">
+            <mat-label>Lastname</mat-label>
+            <input
+              [name]="this.lastnameInputKey"
+              type="text"
+              matInput
+              [formControlName]="this.lastnameInputKey"
+              placeholder="Your lastname"
+            />
+            @if (this.lastnameInputCurrentValue) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="this.resetLastnameInputCurrentValue()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            } @if (!this.isLastnameInputValid) {
+            <mat-error
+              ><strong>{{ lastnameInputErrorMessage }}</strong></mat-error
+            >
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="col-span-24">
+          <mat-form-field class="w-full">
+            <mat-label>Company Name</mat-label>
+            <input
+              [name]="this.companyNameInputKey"
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              [formControlName]="this.companyNameInputKey"
+              [matAutocomplete]="auto"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              @for (option of filteredOptions | async; track option) {
+              <mat-option [value]="option">{{ option }}</mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
         <button type="submit">SUBMIT</button>
         <input
           #fileInputElement
@@ -170,8 +283,7 @@ import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component
       </form>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close>Cancel</button>
-      <button mat-button mat-dialog-close cdkFocusInitial>Install</button>
+      <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
     </mat-dialog-actions>
   `,
   styleUrl: './ApplyModal.component.css',
@@ -190,6 +302,16 @@ export class ApplyModalComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.imagePreviewSource = this.initialImagePreviewSource;
+    this.options = [
+      ...this.options,
+      'One', 'Two', 'Three'
+    ]
+    this.filteredOptions = this.applyForm.controls[
+      this.companyNameInputKey
+    ].valueChanges.pipe(
+      startWith(''),
+      map((value: any) => this.filter1(value || ''))
+    );
   }
 
   private readonly initialImagePreviewSource: string =
@@ -198,11 +320,13 @@ export class ApplyModalComponent implements OnInit {
   public imagePreviewSource: string | ArrayBuffer | null | undefined;
   private selectedProfilePicture: File | null = null;
 
+  private isFormValidationSnackBarOpen: boolean = false;
+
   public usernameInputKey: string = 'username';
   public emailInputKey: string = 'email';
   public passwordInputKey: string = 'password';
   public passwordVerifyInputKey: string = 'passwordVerify';
-  public ageInputKey: number = 0;
+  public ageInputKey: string = 'age';
   public firstnameInputKey: string = 'firstname';
   public lastnameInputKey: string = 'lastname';
   public companyNameInputKey: string = 'companyName';
@@ -214,7 +338,51 @@ export class ApplyModalComponent implements OnInit {
     [this.emailInputKey]: ['', this.emailInputValidator()],
     [this.passwordInputKey]: ['', this.passwordInputValidator()],
     [this.passwordVerifyInputKey]: ['', this.passwordVerifyInputValidator()],
+    [this.ageInputKey]: [1, this.ageInputValidator()],
+    [this.firstnameInputKey]: ['', this.firstnameInputValidator()],
+    [this.lastnameInputKey]: ['', this.lastnameInputValidator()],
+    [this.companyNameInputKey]: ['', this.companyNameInputValidator()],
   });
+
+  options: string[] = [];
+  public filteredOptions: Observable<string[]> | null = null;
+
+  private filter1(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+  }
+
+  get usernameInputCurrentValue() {
+    return this.applyForm.controls[this.usernameInputKey].value;
+  }
+  get emailInputCurrentValue() {
+    return this.applyForm.controls[this.emailInputKey].value;
+  }
+  get firstnameInputCurrentValue() {
+    return this.applyForm.controls[this.firstnameInputKey].value;
+  }
+  get lastnameInputCurrentValue() {
+    return this.applyForm.controls[this.lastnameInputKey].value;
+  }
+  public resetUsernameInputCurrentValue() {
+    this.applyForm.controls[this.usernameInputKey].markAsUntouched();
+    this.applyForm.controls[this.usernameInputKey].setValue('');
+  }
+  public resetEmailInputCurrentValue() {
+    this.applyForm.controls[this.emailInputKey].markAsUntouched();
+    this.applyForm.controls[this.emailInputKey].setValue('');
+  }
+  public resetFirstnameInputCurrentValue() {
+    this.applyForm.controls[this.firstnameInputKey].markAsUntouched();
+    this.applyForm.controls[this.firstnameInputKey].setValue('');
+  }
+  public resetLastnameInputCurrentValue() {
+    this.applyForm.controls[this.lastnameInputKey].markAsUntouched();
+    this.applyForm.controls[this.lastnameInputKey].setValue('');
+  }
   get isUsernameInputValid() {
     return this.applyForm.controls[this.usernameInputKey].errors?.['isValid'];
   }
@@ -247,12 +415,46 @@ export class ApplyModalComponent implements OnInit {
       'errorMessage'
     ];
   }
+  get isAgeInputValid() {
+    return this.applyForm.controls[this.ageInputKey].errors?.['isValid'];
+  }
+  get ageInputErrorMessage() {
+    return this.applyForm.controls[this.ageInputKey].errors?.['errorMessage'];
+  }
+  get isFirstnameInputValid() {
+    return this.applyForm.controls[this.firstnameInputKey].errors?.['isValid'];
+  }
+  get firstnameInputErrorMessage() {
+    return this.applyForm.controls[this.firstnameInputKey].errors?.[
+      'errorMessage'
+    ];
+  }
+  get isLastnameInputValid() {
+    return this.applyForm.controls[this.lastnameInputKey].errors?.['isValid'];
+  }
+  get lastnameInputErrorMessage() {
+    return this.applyForm.controls[this.lastnameInputKey].errors?.[
+      'errorMessage'
+    ];
+  }
+  get iscompanyNameInputValid() {
+    return this.applyForm.controls[this.companyNameInputKey].errors?.['isValid'];
+  }
+  get companyNameInputErrorMessage() {
+    return this.applyForm.controls[this.companyNameInputKey].errors?.[
+      'errorMessage'
+    ];
+  }
   get isFormValid(): boolean {
     return (
       this.isUsernameInputValid &&
       this.isEmailInputValid &&
       this.isPasswordInputValid &&
-      this.isPasswordVerifyInputValid
+      this.isPasswordVerifyInputValid &&
+      this.isAgeInputValid &&
+      this.isFirstnameInputValid &&
+      this.isLastnameInputValid && 
+      this.iscompanyNameInputValid
     );
   }
   private usernameInputValidator(): ValidatorFn {
@@ -265,10 +467,9 @@ export class ApplyModalComponent implements OnInit {
         value == undefined ||
         typeof value != 'string'
       ) {
-        console.log('USERNAME NOT VALID', value);
         return {
           isValid: false,
-          errorMessage: 'Please check username',
+          errorMessage: 'This field is required',
         };
       }
       return null;
@@ -286,7 +487,7 @@ export class ApplyModalComponent implements OnInit {
       )
         return {
           isValid: false,
-          errorMessage: 'Please check email',
+          errorMessage: 'This field is required',
         };
       return null;
     };
@@ -303,7 +504,7 @@ export class ApplyModalComponent implements OnInit {
       )
         return {
           isValid: false,
-          errorMessage: 'Please check password',
+          errorMessage: 'This field is required',
         };
       return null;
     };
@@ -320,7 +521,83 @@ export class ApplyModalComponent implements OnInit {
       )
         return {
           isValid: false,
-          errorMessage: 'Please check password verify',
+          errorMessage: 'This field is required',
+        };
+      return null;
+    };
+  }
+
+  private ageInputValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (value == null || value == undefined)
+        return {
+          isValid: false,
+          errorMessage: 'This field is required',
+        };
+      else if (value < 1)
+        return {
+          isValid: false,
+          errorMessage: "Age can't be smaller than 0",
+        };
+      else if (value > 100)
+        return {
+          isValid: false,
+          errorMessage: "Age can't be greater than 100",
+        };
+      return null;
+    };
+  }
+
+  private firstnameInputValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+
+      if (
+        value == '' ||
+        value == null ||
+        value == undefined ||
+        typeof value != 'string'
+      )
+        return {
+          isValid: false,
+          errorMessage: 'This field is required',
+        };
+      return null;
+    };
+  }
+
+  private lastnameInputValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+
+      if (
+        value == '' ||
+        value == null ||
+        value == undefined ||
+        typeof value != 'string'
+      )
+        return {
+          isValid: false,
+          errorMessage: 'This field is required',
+        };
+      return null;
+    };
+  }
+
+  private companyNameInputValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+
+      if (
+        value == '' ||
+        value == null ||
+        value == undefined ||
+        typeof value != 'string'
+      )
+        return {
+          isValid: false,
+          errorMessage: 'This field is required',
         };
       return null;
     };
@@ -364,11 +641,20 @@ export class ApplyModalComponent implements OnInit {
     }
   }
   openSnackBar() {
-    this._snackBar.openFromComponent(ApplySnackbarComponent, {
-      duration: 5 * 1000,
-      horizontalPosition: "center",
-      verticalPosition: "top",
-      panelClass: ['snackbarBackgroundColor']
-    });
+    if (!this.isFormValidationSnackBarOpen) {
+      const snackbarRef = this._snackBar.openFromComponent(
+        ApplySnackbarComponent,
+        {
+          duration: 3 * 1000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['snackbarBackgroundColor'],
+        }
+      );
+      this.isFormValidationSnackBarOpen = true;
+      snackbarRef.afterDismissed().subscribe((e: any) => {
+        this.isFormValidationSnackBarOpen = false;
+      });
+    }
   }
 }

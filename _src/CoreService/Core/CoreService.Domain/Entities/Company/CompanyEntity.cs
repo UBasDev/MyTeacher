@@ -18,9 +18,19 @@ namespace CoreService.Domain.Entities.Company
             Adress = null;
             Profiles = new List<ProfileEntity>();
         }
+        private CompanyEntity(string name, string? description, string? adress)
+        {
+            Name = name;
+            Description = description;
+            Adress = adress;
+        }
         public string Name { get; private set; }
         public string? Description { get; private set; }
         public string? Adress { get; private set; }
         public ICollection<ProfileEntity> Profiles { get; private set; }
+        public static CompanyEntity CreateNewCompany(string name, string? description, string? adress)
+        {
+            return new CompanyEntity(name, description, adress);
+        }
     }
 }

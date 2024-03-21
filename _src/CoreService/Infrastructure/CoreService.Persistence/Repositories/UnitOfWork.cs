@@ -1,11 +1,13 @@
 ﻿using CoreService.Application.Contexts;
 using CoreService.Application.Repositories;
+using CoreService.Application.Repositories.CompanyRepository;
 using CoreService.Application.Repositories.ProfilePicture;
 using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Application.Repositories.ProfileRepository;
 using CoreService.Application.Repositories.UserRepository;
 using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Entities.User;
+using CoreService.Persistence.Repositories.CompanyRepository;
 using CoreService.Persistence.Repositories.ProfilePictureRepository;
 using CoreService.Persistence.Repositories.ProfileRepository;
 using CoreService.Persistence.Repositories.UserRepository;
@@ -29,6 +31,8 @@ namespace CoreService.Persistence.Repositories
         private IUserWriteRepository _userWriteRepository;
         private IProfilePictureReadRepository _profilePictureReadRepository;
         private IProfilePictureWriteRepository _profilePictureWriteRepository;
+        private ICompanyReadRepository _companyReadRepository;
+        private ICompanyWriteRepository _companyWriteRepository;
         public UnitOfWork(ApplicationDbContext dbContext, MongoDbSettings mongoDbSettings)
         {
             _dbContext = dbContext;
@@ -85,6 +89,24 @@ namespace CoreService.Persistence.Repositories
             {
                 _profilePictureWriteRepository = new ProfilePictureWriteRepository(_mongoDbSettings);
                 return _profilePictureWriteRepository;
+            }
+        }
+
+        public ICompanyReadRepository CompanyReadRepository
+        {
+            get
+            {
+                _companyReadRepository = new CompanyReadRepository(_dbContext);
+                return _companyReadRepository;
+            }
+        }
+
+        public ICompanyWriteRepository CompanyWriteRepository
+        {
+            get
+            {
+                _companyWriteRepository = new CompanyWriteRepository(_dbContext);
+                return _companyWriteRepository;
             }
         }
 

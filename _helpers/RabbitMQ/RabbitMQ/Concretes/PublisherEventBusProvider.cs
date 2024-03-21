@@ -51,7 +51,7 @@ namespace RabbitMQ.Concretes
                 return configuredBus.GetSendEndpoint(new Uri($"amqp://{_eventBusSettings.Username}:{_eventBusSettings.Password}@{_eventBusSettings.Host}:{_eventBusSettings.Port}/{_eventBusSettings.QueueName}")).Result;
             }catch(Exception ex)
             {
-                _logger.LogError("An error occurred while configuring event bus. The error: {@ErrorMessage}", ex.Message);
+                _logger.LogError("An error occurred while configuring event bus. The error: {@Error}", ex.Message);
                 throw new Exception($"An error occurred while configuring event bus. The error: {ex.Message}");
             }
         }

@@ -42,14 +42,14 @@ namespace ProfilePicture.WORKER.Consumers
 
                 var (isSucessful, errorMessage) = await _profilePictureWriteRepository.CreateSingleDocumentAsync(ProfilePictureEntity.CreateNewProfilePicture(messageFromQueue.UserId, messageFromQueue.UserProfileId, fullFilePathToSave, messageFromQueue.ProfilePictureExtension, (uint)messageFromQueue.ProfilePictureData.Length));
 
-                if (!isSucessful) _logger.LogError("This profile picture file couldn't uploaded. TraceId: {@CorrelationId} UserId: {@UserId} UserProfileId: {@UserProfileId} ErrorMessage: {@ErrorMessage}", context.CorrelationId, messageFromQueue.UserId, messageFromQueue.UserProfileId, errorMessage);
+                if (!isSucessful) _logger.LogError("This profile picture file couldn't uploaded. TraceId: {@CorrelationId} UserId: {@UserId} UserProfileId: {@UserProfileId} Error: {@Error}", context.CorrelationId, messageFromQueue.UserId, messageFromQueue.UserProfileId, errorMessage);
                 await streamWriter.DisposeAsync();
                 //streamWriter.Close();
 
             }
             catch (Exception ex)
             {
-                _logger.LogError("An unexpected error has been occurred while uploading profile picture. TraceId: {@CorrelationId} UserId: {@UserId} UserProfileId: {@UserProfileId} ErrorMessage: {@ErrorMessage}", context.CorrelationId, messageFromQueue.UserId, messageFromQueue.UserProfileId, ex.Message);
+                _logger.LogError("An unexpected error has been occurred while uploading profile picture. TraceId: {@CorrelationId} UserId: {@UserId} UserProfileId: {@UserProfileId} Error: {@Error}", context.CorrelationId, messageFromQueue.UserId, messageFromQueue.UserProfileId, ex.Message);
             }
         }
         private static string CreateFullPathForFile(string profilePictureName, string profilePictureExtension)
