@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreService.Application.Features.Commands.Company
+namespace CoreService.Application.Features.Commands.Role.CreateSingleRole
 {
-    public class CreateSingleCompanyCommandResponse: BaseResponse
+    public class CreateSingleRoleCommandResponse : BaseResponse
     {
     }
 }

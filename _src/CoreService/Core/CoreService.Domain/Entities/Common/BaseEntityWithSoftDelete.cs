@@ -17,12 +17,14 @@ namespace CoreService.Domain.Entities.Common
             IsActive = true;
             IsDeleted = false;
         }
+
         [Key]
         public T Id { get; protected set; }
+
         public DateTimeOffset CreatedAt { get; protected set; }
-        public DateTimeOffset? UpdatedAt { get; protected set; }
-        public DateTimeOffset? DeletedAt { get; protected set; }
-        public bool IsActive { get; protected set; }
-        public bool IsDeleted { get; protected set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

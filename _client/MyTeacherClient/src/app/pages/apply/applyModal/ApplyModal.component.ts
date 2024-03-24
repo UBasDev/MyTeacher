@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
+  inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -18,27 +20,30 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApplySnackbarComponent } from '../ApplySnackbar/ApplySnackbar.component';
-import { map, Observable, startWith } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+} from '@angular/common/http';
+import {
+  GetRolesWithoutAdminResponse,
+  GetRolesWithoutAdminResponseModel,
+} from '../../../ResponseModels/Role/GetRolesWithoutAdmin/GetRolesWithoutAdminResponse';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { CreateSingleUserResponse } from '../../../ResponseModels/User/CreateSingleUserResponse';
+import { IApplySnackbarMessage } from './ApplyModal.component.types';
 
 @Component({
   selector: 'app-apply-modal',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    AsyncPipe,
-    MatFormFieldModule,
-  ],
   template: `
     <div class="text-end pr-2 pt-2">
       <mat-icon mat-dialog-close class="cursor-pointer hover:scale-125"
@@ -50,7 +55,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     </div>
     <mat-dialog-content class="mat-typography !pt-0 !mt-0">
       <form
-        (ngSubmit)="onApplyFormSubmit()"
+        (ngSubmit)="onFormSubmitHandle($event)"
         [formGroup]="this.applyForm"
         class="grid grid-cols-24 gap-y-4"
       >
@@ -245,10 +250,32 @@ import { MatFormFieldModule } from '@angular/material/form-field';
             >
             }
           </mat-form-field>
+
+          <mat-form-field class="birthDateInput">
+            <mat-label>Your Birthdate</mat-label>
+            <input
+              (change)="checkIfBirthDateInputContainsCharacters($event)"
+              [name]="this.birthDateInputKey"
+              [formControlName]="this.birthDateInputKey"
+              matInput
+              [matDatepicker]="dp"
+              placeholder="dd/mm/yyyy"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dp"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+            @if (!this.isBirthDateInputValid) {
+            <mat-error
+              ><strong>{{ birthDateInputErrorMessage }}</strong></mat-error
+            >
+            }
+          </mat-form-field>
         </div>
 
-        <div class="col-span-24">
-          <mat-form-field class="w-full">
+        <div class="col-span-24 grid grid-cols-24 items-center gap-x-4">
+          <!-- <mat-form-field class="w-full">
             <mat-label>Company Name</mat-label>
             <input
               [name]="this.companyNameInputKey"
@@ -264,10 +291,35 @@ import { MatFormFieldModule } from '@angular/material/form-field';
               <mat-option [value]="option">{{ option }}</mat-option>
               }
             </mat-autocomplete>
+          </mat-form-field> -->
+          @if(this.selectInputRoles.length>0){
+          <mat-form-field class="col-span-6">
+            <mat-label>What is your role?</mat-label>
+            <mat-select name="roleCode" [formControlName]="this.roleInputKey">
+              @for (currentRole of selectInputRoles; track currentRole.id) {
+              <mat-option [value]="currentRole.shortCode">
+                {{ currentRole.name }}
+              </mat-option>
+              }
+            </mat-select>
+            @if (!this.isRoleInputValid) {
+            <mat-error
+              ><strong>{{ roleInputErrorMessage }}</strong></mat-error
+            >
+            }
           </mat-form-field>
+          } @if(this.isroleInputSelectedAsTeacher){
+          <p class="text-xs col-span-18">
+            <strong>*</strong> I am here as a teacher, want to earn some money
+            and expand my network from this platform.
+          </p>
+          } @else if(this.isroleInputSelectedAsStudent){
+          <p class="text-xs col-span-18">
+            <strong>*</strong> I am here as a student, want to learn new
+            information and improve myself.
+          </p>
+          }
         </div>
-
-        <button type="submit">SUBMIT</button>
         <input
           #fileInputElement
           [value]="this.initialImagePreviewValue"
@@ -280,12 +332,32 @@ import { MatFormFieldModule } from '@angular/material/form-field';
           name="file-upload"
           id="file-upload"
         />
+        <button #submitFormButton type="submit" class="hidden"></button>
       </form>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+      <button (click)="handleFormApply()" mat-button>Apply</button>
     </mat-dialog-actions>
   `,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    AsyncPipe,
+    MatFormFieldModule,
+    MatSelectModule,
+    HttpClientModule,
+    MatDatepickerModule,
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-gb' },
+    provideNativeDateAdapter(),
+  ],
   styleUrl: './ApplyModal.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -293,32 +365,89 @@ export class ApplyModalComponent implements OnInit {
   @ViewChild('fileInputElement') fileInputElement: ElementRef | null = null;
   @ViewChild('fileInputLabelElement') fileInputLabelElement: ElementRef | null =
     null;
+  @ViewChild('submitFormButton') submitFormButton: ElementRef | null = null;
+  public currentMatDialogRef = inject(MatDialogRef);
+  public readonly turkishAlphabetRegex =
+    /[abcçdefgğhıijklmnoöprsştuüvwxyzABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVWXYZ]/;
 
+  public onFormSubmitHandle(event: any) {
+    event.preventDefault();
+    var formData1: any = new FormData();
+    formData1.append('Username', this.usernameInputCurrentValue);
+    formData1.append('Email', this.emailInputCurrentValue);
+    formData1.append('Password', this.passwordInputCurrentValue);
+    formData1.append('Age', this.ageInputCurrentValue);
+    formData1.append('Firstname', this.firstnameInputCurrentValue);
+    formData1.append('Lastname', this.lastnameInputCurrentValue);
+    formData1.append(
+      'BirthDate',
+      new Date(this.birthDateInputCurrentValue ?? new Date()).getTime()
+    );
+    formData1.append('RoleCode', this.roleInputCurrentValue);
+    if (this.selectedProfilePictureData != null) {
+      //If there is no profile picture
+      formData1.append('ProfilePicture', this.selectedProfilePictureData);
+    }
+    this._httpClient
+      .post<CreateSingleUserResponse>('http://localhost:5028/api/users/create-single-user', formData1)
+      .subscribe((res : CreateSingleUserResponse) => {
+        if(res.isSuccessful) this.currentMatDialogRef.close();
+        else this.openSnackBar(res.errorMessage ?? "Something went wrong while registering")
+      });
+  }
+  public handleFormApply() {
+    Object.keys(this.applyForm.controls).forEach((field) => {
+      const control = this.applyForm.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+    if (this.applyForm.valid) this.submitFormButton?.nativeElement.click();
+    else this.openSnackBar("Your form is invalid");
+  }
+
+  selectInputRoles: GetRolesWithoutAdminResponseModel[] = [];
   constructor(
     private readonly _elementRef: ElementRef,
     private readonly _changeDetector: ChangeDetectorRef,
     private readonly _formBuilder: FormBuilder,
-    private readonly _snackBar: MatSnackBar
+    private readonly _snackBar: MatSnackBar,
+    private _httpClient: HttpClient
   ) {}
   ngOnInit(): void {
     this.imagePreviewSource = this.initialImagePreviewSource;
-    this.options = [
-      ...this.options,
-      'One', 'Two', 'Three'
-    ]
-    this.filteredOptions = this.applyForm.controls[
-      this.companyNameInputKey
-    ].valueChanges.pipe(
-      startWith(''),
-      map((value: any) => this.filter1(value || ''))
-    );
+    this._httpClient
+      .get<GetRolesWithoutAdminResponse>(
+        'http://localhost:5028/api/Roles/get-roles-without-admin'
+      )
+      .subscribe((response: GetRolesWithoutAdminResponse) => {
+        if (response.isSuccessful) {
+          let idIndexer = 1;
+          response.payload?.forEach(
+            (currentValue: GetRolesWithoutAdminResponseModel) => {
+              currentValue.id = idIndexer;
+              this.selectInputRoles.push(currentValue);
+              idIndexer++;
+            }
+          );
+          this._changeDetector.markForCheck();
+        }
+      });
+    // this.options = [
+    //   ...this.options,
+    //   'One', 'Two', 'Three'
+    // ]
+    // this.filteredOptions = this.applyForm.controls[
+    //   this.companyNameInputKey
+    // ].valueChanges.pipe(
+    //   startWith(''),
+    //   map((value: any) => this.filter1(value || ''))
+    // );
   }
 
   private readonly initialImagePreviewSource: string =
     '/assets/apply/blank_profile_picture_apply_form.png';
   public initialImagePreviewValue: any = null;
   public imagePreviewSource: string | ArrayBuffer | null | undefined;
-  private selectedProfilePicture: File | null = null;
+  private selectedProfilePictureData: File | null = null;
 
   private isFormValidationSnackBarOpen: boolean = false;
 
@@ -329,9 +458,8 @@ export class ApplyModalComponent implements OnInit {
   public ageInputKey: string = 'age';
   public firstnameInputKey: string = 'firstname';
   public lastnameInputKey: string = 'lastname';
-  public companyNameInputKey: string = 'companyName';
-  public companyDescriptionInputKey: string = 'companyDescription';
-  public companyAdressInputKey: string = 'companyAdress';
+  public roleInputKey: string = 'roleCode';
+  public birthDateInputKey: string = 'birthDate';
 
   public applyForm = this._formBuilder.group({
     [this.usernameInputKey]: ['', this.usernameInputValidator()],
@@ -341,9 +469,11 @@ export class ApplyModalComponent implements OnInit {
     [this.ageInputKey]: [1, this.ageInputValidator()],
     [this.firstnameInputKey]: ['', this.firstnameInputValidator()],
     [this.lastnameInputKey]: ['', this.lastnameInputValidator()],
-    [this.companyNameInputKey]: ['', this.companyNameInputValidator()],
+    [this.roleInputKey]: ['', this.roleInputValidator()],
+    [this.birthDateInputKey]: [null, this.birthDateInputValidator()],
   });
 
+  /*
   options: string[] = [];
   public filteredOptions: Observable<string[]> | null = null;
 
@@ -354,18 +484,43 @@ export class ApplyModalComponent implements OnInit {
       option.toLowerCase().includes(filterValue)
     );
   }
+  */
 
   get usernameInputCurrentValue() {
     return this.applyForm.controls[this.usernameInputKey].value;
   }
+  get passwordInputCurrentValue() {
+    return this.applyForm.controls[this.passwordInputKey].value;
+  }
   get emailInputCurrentValue() {
     return this.applyForm.controls[this.emailInputKey].value;
+  }
+  get ageInputCurrentValue() {
+    return this.applyForm.controls[this.ageInputKey].value;
   }
   get firstnameInputCurrentValue() {
     return this.applyForm.controls[this.firstnameInputKey].value;
   }
   get lastnameInputCurrentValue() {
     return this.applyForm.controls[this.lastnameInputKey].value;
+  }
+  get roleInputCurrentValue() {
+    return this.applyForm.controls[this.roleInputKey].value;
+  }
+  get birthDateInputCurrentValue() {
+    return this.applyForm.controls[this.birthDateInputKey].value;
+  }
+  get isroleInputSelectedAsTeacher() {
+    return (
+      this.applyForm.controls[this.roleInputKey].value ==
+      this.selectInputRoles.find((r) => r.name == 'Teacher')?.shortCode
+    );
+  }
+  get isroleInputSelectedAsStudent() {
+    return (
+      this.applyForm.controls[this.roleInputKey].value ==
+      this.selectInputRoles.find((r) => r.name == 'Student')?.shortCode
+    );
   }
   public resetUsernameInputCurrentValue() {
     this.applyForm.controls[this.usernameInputKey].markAsUntouched();
@@ -437,14 +592,21 @@ export class ApplyModalComponent implements OnInit {
       'errorMessage'
     ];
   }
-  get iscompanyNameInputValid() {
-    return this.applyForm.controls[this.companyNameInputKey].errors?.['isValid'];
+  get isRoleInputValid() {
+    return this.applyForm.controls[this.roleInputKey].errors?.['isValid'];
   }
-  get companyNameInputErrorMessage() {
-    return this.applyForm.controls[this.companyNameInputKey].errors?.[
+  get roleInputErrorMessage() {
+    return this.applyForm.controls[this.roleInputKey].errors?.['errorMessage'];
+  }
+  get isBirthDateInputValid() {
+    return this.applyForm.controls[this.birthDateInputKey].errors?.['isValid'];
+  }
+  get birthDateInputErrorMessage() {
+    return this.applyForm.controls[this.birthDateInputKey].errors?.[
       'errorMessage'
     ];
   }
+
   get isFormValid(): boolean {
     return (
       this.isUsernameInputValid &&
@@ -453,8 +615,9 @@ export class ApplyModalComponent implements OnInit {
       this.isPasswordVerifyInputValid &&
       this.isAgeInputValid &&
       this.isFirstnameInputValid &&
-      this.isLastnameInputValid && 
-      this.iscompanyNameInputValid
+      this.isLastnameInputValid &&
+      this.isRoleInputValid &&
+      this.isBirthDateInputValid
     );
   }
   private usernameInputValidator(): ValidatorFn {
@@ -585,7 +748,7 @@ export class ApplyModalComponent implements OnInit {
     };
   }
 
-  private companyNameInputValidator(): ValidatorFn {
+  private roleInputValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
 
@@ -603,14 +766,17 @@ export class ApplyModalComponent implements OnInit {
     };
   }
 
-  public onApplyFormSubmit() {
-    Object.keys(this.applyForm.controls).forEach((field) => {
-      const control = this.applyForm.get(field);
-      control?.markAsTouched({ onlySelf: true });
-    });
-    const formValues = this.applyForm.value;
-    if (this.applyForm.valid) {
-    } else this.openSnackBar();
+  private birthDateInputValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+
+      if (value == '' || value == null || value == undefined)
+        return {
+          isValid: false,
+          errorMessage: 'This field is required',
+        };
+      return null;
+    };
   }
 
   public triggerFileInputLabel(event: MouseEvent) {
@@ -634,14 +800,17 @@ export class ApplyModalComponent implements OnInit {
       fileReader.onload = (event) => {
         this.imagePreviewSource = event?.target?.result;
         this.isProfilePictureChanged = true;
-        this.selectedProfilePicture = fileList![0];
+        this.selectedProfilePictureData = fileList![0];
         this._changeDetector.markForCheck();
       };
       fileReader.readAsDataURL(fileList[0]);
     }
   }
-  openSnackBar() {
+  openSnackBar(message: string) {
     if (!this.isFormValidationSnackBarOpen) {
+      const snackbarMessage: IApplySnackbarMessage = {
+        message
+      }
       const snackbarRef = this._snackBar.openFromComponent(
         ApplySnackbarComponent,
         {
@@ -649,6 +818,7 @@ export class ApplyModalComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'top',
           panelClass: ['snackbarBackgroundColor'],
+          data: snackbarMessage
         }
       );
       this.isFormValidationSnackBarOpen = true;
@@ -656,5 +826,9 @@ export class ApplyModalComponent implements OnInit {
         this.isFormValidationSnackBarOpen = false;
       });
     }
+  }
+  public checkIfBirthDateInputContainsCharacters(event: any) {
+    if (this.turkishAlphabetRegex.test(event.target.value))
+      this.applyForm.controls[this.birthDateInputKey].setValue(null);
   }
 }

@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarAction, MatSnackBarActions, MatSnackBarLabel, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DATA, MatSnackBarAction, MatSnackBarActions, MatSnackBarLabel, MatSnackBarRef } from '@angular/material/snack-bar';
+import { IApplySnackbarMessage } from '../applyModal/ApplyModal.component.types';
 
 @Component({
   selector: 'app-apply-snackbar',
@@ -13,7 +14,7 @@ import { MatSnackBarAction, MatSnackBarActions, MatSnackBarLabel, MatSnackBarRef
     MatIconModule
   ],
   template: `<span class="text-white" matSnackBarLabel>
-  Your form is invalid
+  {{this.data.message}}
 </span>
 <span matSnackBarActions>
   <button class="px-6 text-red-900" mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">
@@ -25,4 +26,10 @@ import { MatSnackBarAction, MatSnackBarActions, MatSnackBarLabel, MatSnackBarRef
 })
 export class ApplySnackbarComponent {
   public snackBarRef = inject(MatSnackBarRef)
+  public data: IApplySnackbarMessage = inject(MAT_SNACK_BAR_DATA)
+  constructor(){
+  }
+  public t1(){
+    console.log(this.data)
+  }
 }

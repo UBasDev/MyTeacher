@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MatDialog, MatDialogModule, MatDialogConfig} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { ApplyModalComponent } from './applyModal/ApplyModal.component';
 
 @Component({
@@ -23,7 +23,7 @@ import { ApplyModalComponent } from './applyModal/ApplyModal.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApplyComponent implements OnInit {
-  private currentUsedDialog:any
+  private currentUsedDialog?: MatDialogRef<ApplyModalComponent, any>
   public openApplicationForm(){
     this.currentUsedDialog = this.dialog.open(ApplyModalComponent, this.CreateMatDialogConfig());
     this.currentUsedDialog.afterClosed().subscribe((result: any) => {

@@ -35,6 +35,7 @@ builder.Services.AddPersistenceRegistrations(appSettings);
 builder.Services.AddPresentationRegistrations();
 
 var app = builder.Build();
+app.UseCors(ApplicationConstants.AllowOnlyLocalCorsPolicyName);
 app.UseSerilogRequestLogging();
 app.UseRateLimiter();
 // Configure the HTTP request pipeline.
@@ -50,5 +51,4 @@ app.UseAuthorization();
 app.AddApplicationMiddlewares();
 //app.AddCultureRegistrations();
 app.MapControllers().RequireRateLimiting(ApplicationConstants.FixedRateLimitingPolicyName);
-
 app.Run();

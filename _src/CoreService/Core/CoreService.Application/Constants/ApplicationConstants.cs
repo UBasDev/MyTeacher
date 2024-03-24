@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Constants
 {
-    public class ApplicationConstants
+    public static class ApplicationConstants
     {
-        public static string FixedRateLimitingPolicyName = "fixedRateLimitPolicy";
+        public static readonly string FixedRateLimitingPolicyName = "fixedRateLimitPolicy";
+        public static readonly string AllowOnlyLocalCorsPolicyName = "allowOnlyLocalCorsPolicy";
     }
 }

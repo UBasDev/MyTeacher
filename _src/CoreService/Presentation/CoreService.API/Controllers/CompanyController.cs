@@ -1,4 +1,4 @@
-﻿using CoreService.Application.Features.Commands.Company;
+﻿using CoreService.Application.Features.Commands.Company.CreateSingleCompany;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -12,6 +12,8 @@ namespace CoreService.API.Registrations
     {
         public static void AddPresentationRegistrations(this IServiceCollection services)
         {
+            #region RATE_LIMITING_POLICY
+
             services.AddRateLimiter(rateOptions =>
             {
                 //rateOptions.RejectionStatusCode = 429;
@@ -22,9 +24,8 @@ namespace CoreService.API.Registrations
                         AutoReplenishment = true,
                         PermitLimit = 20,
                         Window = TimeSpan.FromMinutes(1),
-                        QueueLimit = 10,
-                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                        //Bu senaryoda saniyede 20 istekte bulunabilir fakat 20'den fazla istek gelir ise bunlardan 10 tanesi kuyruğa alınabilir olacak şekilde ayarlanmıştır. QueueProcessingOrder ise eskiden yeniye okunacak şekilde ayarlanmıştır.
+                        QueueLimit = 0,
+                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst
                     }));
                 rateOptions.OnRejected = async (context, token) =>
                 {
@@ -41,43 +42,22 @@ namespace CoreService.API.Registrations
                         await context.HttpContext.Response.WriteAsync(JsonConvert.SerializeObject(response), Encoding.UTF8, cancellationToken: token);
                     }
                 };
-                /*
-                rateOptions.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
-        RateLimitPartition.GetFixedWindowLimiter(
-            partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(),
-            factory: partition => new FixedWindowRateLimiterOptions
-            {
-                AutoReplenishment = true,
-                PermitLimit = 20,
-                Window = TimeSpan.FromMinutes(1),
-                QueueLimit = 10,
-                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                //Bu senaryoda saniyede 20 istekte bulunabilir fakat 20'den fazla istek gelir ise bunlardan 10 tanesi kuyruğa alınabilir olacak şekilde ayarlanmıştır. QueueProcessingOrder ise eskiden yeniye okunacak şekilde ayarlanmıştır.
-            })
-            );
-                */
-                /* Maybe you want to have a limit where one can make 600 requests per minute, but only 6000 per hour. You could chain 2 rate limits:
-
-                 options.GlobalLimiter = PartitionedRateLimiter.CreateChained(
-        PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
-            RateLimitPartition.GetFixedWindowLimiter(httpContext.ResolveClientIpAddress(), partition =>
-                new FixedWindowRateLimiterOptions
-                {
-                    AutoReplenishment = true,
-                    PermitLimit = 600,
-                    Window = TimeSpan.FromMinutes(1)
-                })),
-        PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
-            RateLimitPartition.GetFixedWindowLimiter(httpContext.ResolveClientIpAddress(), partition =>
-                new FixedWindowRateLimiterOptions
-                {
-                    AutoReplenishment = true,
-                    PermitLimit = 6000,
-                    Window = TimeSpan.FromHours(1)
-                })));
-                 */
             }
             );
+
+            #endregion RATE_LIMITING_POLICY
+
+            #region CORS_POLICY
+
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddPolicy(ApplicationConstants.AllowOnlyLocalCorsPolicyName, policyOptions =>
+                {
+                    policyOptions.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                });
+            });
+
+            #endregion CORS_POLICY
         }
     }
 }

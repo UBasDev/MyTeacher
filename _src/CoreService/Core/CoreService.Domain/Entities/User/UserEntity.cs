@@ -6,11 +6,13 @@ using CoreService.Domain.Events;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Nest;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 
 namespace CoreService.Domain.Entities.User
 {
-    sealed public class UserEntity : BaseEntityWithSoftDelete<Guid>
+    public sealed class UserEntity : BaseEntityWithSoftDelete<Guid>
     {
         public UserEntity()
         {
@@ -23,15 +25,16 @@ namespace CoreService.Domain.Entities.User
             RoleId = null;
             Profile = null;
         }
+
         private UserEntity(string username, string email, string passwordFromRequest)
         {
-            Username = username ?? throw new Exception($"{nameof(username)} field cannot be empty");
-            Email = email ?? throw new Exception($"{nameof(email)} field cannot be empty");
-
+            Username = username;
+            Email = email;
             var salt = GenerateSalt();
             PasswordSalt = Convert.ToBase64String(salt);
             PasswordHash = ComputeHash(passwordFromRequest, PasswordSalt);
         }
+
         public string Username { get; private set; }
         public string Email { get; private set; }
         public string PasswordSalt { get; private set; }
@@ -45,10 +48,17 @@ namespace CoreService.Domain.Entities.User
         {
             return new UserEntity(username, email, passwordFromRequest);
         }
-        public void CreateProfileWhenUserCreated(Guid userId, UInt16 age, byte[] profilePictureData, string profilePictureExtension, string profilePictureName)
+
+        public void CreateProfileWithPictureWhenUserCreated(Guid userId, UInt16 age, string firstname, string lastname, ulong birthDate, byte[] profilePictureData, string profilePictureExtension, string profilePictureName)
         {
-            AddDomainEvents(new CreateNewProfileWhenUserCreatedDomainEvent(userId, age, profilePictureData, profilePictureExtension, profilePictureName));
+            AddDomainEvents(new CreateNewProfileWithPictureWhenUserCreatedDomainEvent(userId, age, firstname, lastname, birthDate, profilePictureData, profilePictureExtension, profilePictureName));
         }
+
+        public void CreateProfileWithoutPictureWhenUserCreated(Guid userId, UInt16 age, string firstname, string lastname, ulong birthDate)
+        {
+            AddDomainEvents(new CreateNewProfileWithoutPictureWhenUserCreatedDomainEvent(userId, age, firstname, lastname, birthDate));
+        }
+
         public void ChangeUsername(string newUsername)
         {
             Username = newUsername;
@@ -59,12 +69,19 @@ namespace CoreService.Domain.Entities.User
             Email = newEmail;
         }
 
+        public void SetRole(RoleEntity role)
+        {
+            if (role is null) throw new ArgumentNullException("Role can't be null to set it for this user");
+            this.Role = role;
+        }
+
         /*
         public void ChangeRole(RoleEntity newRole)
         {
             Role = newRole;
         }
         */
+
         private static byte[] GenerateSalt()
         {
             var rng = RandomNumberGenerator.Create();
@@ -72,6 +89,7 @@ namespace CoreService.Domain.Entities.User
             rng.GetBytes(salt);
             return salt;
         }
+
         public static string ComputeHash(string password, string saltString)
         {
             var salt = Convert.FromBase64String(saltString);

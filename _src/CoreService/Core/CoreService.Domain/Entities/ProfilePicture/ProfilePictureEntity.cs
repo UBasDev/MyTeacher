@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CoreService.Domain.Entities.ProfilePicture
 {
-    sealed public class ProfilePictureEntity : BaseEntityWithSoftDelete<ObjectId>
+    public sealed class ProfilePictureEntity : BaseEntityWithSoftDelete<ObjectId>
     {
         public ProfilePictureEntity()
         {
@@ -20,6 +20,7 @@ namespace CoreService.Domain.Entities.ProfilePicture
             PhotoExtension = string.Empty;
             PhotoLength = 0;
         }
+
         private ProfilePictureEntity(string userId, string userProfileId, string photoPath, string photoExtension, UInt32 photoLength)
         {
             UserId = userId;
@@ -28,11 +29,13 @@ namespace CoreService.Domain.Entities.ProfilePicture
             PhotoExtension = photoExtension;
             PhotoLength = photoLength;
         }
+
         public string UserId { get; private set; }
         public string UserProfileId { get; private set; }
         public string PhotoPath { get; private set; }
         public string PhotoExtension { get; private set; }
         public UInt32 PhotoLength { get; private set; }
+
         public static ProfilePictureEntity CreateNewProfilePicture(string userId, string userProfileId, string photoPath, string photoExtension, UInt32 photoLength)
         {
             return new ProfilePictureEntity(userId, userProfileId, photoPath, photoExtension, photoLength);

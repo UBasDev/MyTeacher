@@ -4,12 +4,14 @@ using CoreService.Application.Repositories.CompanyRepository;
 using CoreService.Application.Repositories.ProfilePicture;
 using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Application.Repositories.ProfileRepository;
+using CoreService.Application.Repositories.RoleRepository;
 using CoreService.Application.Repositories.UserRepository;
 using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Entities.User;
 using CoreService.Persistence.Repositories.CompanyRepository;
 using CoreService.Persistence.Repositories.ProfilePictureRepository;
 using CoreService.Persistence.Repositories.ProfileRepository;
+using CoreService.Persistence.Repositories.RoleRepository;
 using CoreService.Persistence.Repositories.UserRepository;
 using Microsoft.EntityFrameworkCore;
 using MongoDb.Models;
@@ -33,11 +35,15 @@ namespace CoreService.Persistence.Repositories
         private IProfilePictureWriteRepository _profilePictureWriteRepository;
         private ICompanyReadRepository _companyReadRepository;
         private ICompanyWriteRepository _companyWriteRepository;
+        private IRoleReadRepository _roleReadRepository;
+        private IRoleWriteRepository _roleWriteRepository;
+
         public UnitOfWork(ApplicationDbContext dbContext, MongoDbSettings mongoDbSettings)
         {
             _dbContext = dbContext;
             _mongoDbSettings = mongoDbSettings;
         }
+
         public IProfileReadRepository ProfileReadRepository
         {
             get
@@ -110,17 +116,37 @@ namespace CoreService.Persistence.Repositories
             }
         }
 
+        public IRoleReadRepository RoleReadRepository
+        {
+            get
+            {
+                _roleReadRepository = new RoleReadRepository(_dbContext);
+                return _roleReadRepository;
+            }
+        }
+
+        public IRoleWriteRepository RoleWriteRepository
+        {
+            get
+            {
+                _roleWriteRepository = new RoleWriteRepository(_dbContext);
+                return _roleWriteRepository;
+            }
+        }
+
         public void SaveChanges() => _dbContext.SaveChanges();
 
         public async Task SaveChangesAsync(CancellationToken cancellationToken) => await _dbContext.SaveChangesAsync(cancellationToken);
 
         private bool _disposed = false;
+
         private void Dispose(bool disposing)
         {
             if (!_disposed && disposing)
                 _dbContext.Dispose();
             _disposed = true;
         }
+
         public void Dispose()
         {
             Dispose(true);
