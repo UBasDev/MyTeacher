@@ -2,6 +2,7 @@
 using CoreService.Application.Repositories.ProfilePicture;
 using CoreService.Application.Repositories.ProfilePictureRepository;
 using CoreService.Application.Repositories.ProfileRepository;
+using CoreService.Application.Repositories.RoleRepository;
 using CoreService.Application.Repositories.UserRepository;
 using CoreService.Domain.Entities.Profile;
 using CoreService.Domain.Entities.User;
@@ -16,7 +17,9 @@ namespace CoreService.Application.Repositories
     public interface IUnitOfWork : IDisposable
     {
         void SaveChanges();
+
         Task SaveChangesAsync(CancellationToken cancellationToken);
+
         IProfileReadRepository ProfileReadRepository { get; }
         IProfileWriteRepository ProfileWriteRepository { get; }
         IUserReadRepository UserReadRepository { get; }
@@ -25,5 +28,7 @@ namespace CoreService.Application.Repositories
         IProfilePictureWriteRepository ProfilePictureWriteRepository { get; }
         ICompanyReadRepository CompanyReadRepository { get; }
         ICompanyWriteRepository CompanyWriteRepository { get; }
+        IRoleReadRepository RoleReadRepository { get; }
+        IRoleWriteRepository RoleWriteRepository { get; }
     }
 }

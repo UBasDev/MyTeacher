@@ -24,12 +24,13 @@ namespace CoreService.Application.Features.Commands.User.Login
         private readonly ILogger<LoginCommandHandler> _logger = logger;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
+
         public async Task<LoginCommandResponse> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
         {
             var response = new LoginCommandResponse();
             try
             {
-                var foundUser = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Username == request.Username).FirstOrDefaultAsync(cancellationToken);
+                var foundUser = await _unitOfWork.UserReadRepository.FindByCondition(u => u.Username == request.Username).Include(u => u.Role).FirstOrDefaultAsync(cancellationToken);
 
                 if (foundUser == null)
                 {
@@ -45,8 +46,8 @@ namespace CoreService.Application.Features.Commands.User.Login
                     response.StatusCode = HttpStatusCode.BadRequest;
                     return response;
                 }
-                response.Payload.AccessToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(300));
-                response.Payload.RefreshToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, "admin", TimeSpan.FromSeconds(600));
+                response.Payload.AccessToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, foundUser.Role?.Name, TimeSpan.FromSeconds(300));
+                response.Payload.RefreshToken = _tokenGenerator.GenerateJwtToken(foundUser.Id.ToString(), foundUser.Username, foundUser.Email, foundUser.Role?.Name, TimeSpan.FromSeconds(600));
             }
             catch (Exception ex)
             {

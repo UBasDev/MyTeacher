@@ -10,9 +10,10 @@ namespace CoreService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(IMediator mediator, IUnitOfWork unitOfWork) : ControllerBase
+    public class UsersController(IMediator mediator, IUnitOfWork unitOfWork) : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
         private UserModel? RequestUser
         {
             get
@@ -21,6 +22,7 @@ namespace CoreService.API.Controllers
                 return null;
             }
         }
+
         private readonly IMediator _mediator = mediator;
 
         [HttpPost("create-single-user")]
@@ -31,6 +33,7 @@ namespace CoreService.API.Controllers
             response.TraceId = HttpContext.TraceIdentifier;
             return response;
         }
+
         [HttpPost("login")]
         public async Task<LoginCommandResponse> Login([FromBody] LoginCommandRequest requestBody, CancellationToken cancellationToken)
         {
@@ -61,6 +64,7 @@ namespace CoreService.API.Controllers
         {
             return Ok("Tokenın kabul edildi");
         }
+
         /*
         [HttpGet("[action]")]
         public IActionResult PublishSingleMessageSync()

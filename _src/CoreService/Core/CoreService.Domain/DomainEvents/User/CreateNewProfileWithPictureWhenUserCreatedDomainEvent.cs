@@ -10,12 +10,15 @@ using System.Threading.Tasks;
 
 namespace CoreService.Domain.DomainEvents.User
 {
-    public class CreateNewProfileWhenUserCreatedDomainEvent(Guid createdUserId, UInt16 age, byte[] profilePictureData, string profilePictureExtension, string profilePictureName) : IDomainEvent
+    public class CreateNewProfileWithPictureWhenUserCreatedDomainEvent(Guid createdUserId, UInt16 age, string firstname, string lastname, ulong birthDate, byte[] profilePictureData, string profilePictureExtension, string profilePictureName) : IDomainEvent
     {
         public Guid CreatedUserId { get; } = createdUserId;
         public UInt16 Age { get; } = age;
+        public string Firstname { get; } = firstname;
+        public string Lastname { get; } = lastname;
+        public ulong BirthDate { get; } = birthDate;
         public byte[] ProfilePictureData { get; } = profilePictureData;
         public string ProfilePictureExtension { get; } = profilePictureExtension;
-        public string ProfilePictureName { get; set; } = profilePictureName;
+        public string ProfilePictureName { get; } = profilePictureName;
     }
 }

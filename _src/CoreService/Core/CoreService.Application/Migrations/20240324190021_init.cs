@@ -12,13 +12,13 @@ namespace CoreService.Application.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CompanyEntity",
+                name: "Companies",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    Adress = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    Adress = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
                     DeletedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -27,7 +27,7 @@ namespace CoreService.Application.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyEntity", x => x.Id);
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,10 +35,10 @@ namespace CoreService.Application.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    ShortCode = table.Column<string>(type: "text", nullable: false),
-                    Level = table.Column<int>(type: "integer", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    ShortCode = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: false),
+                    Level = table.Column<short>(type: "smallint", nullable: false),
+                    Description = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
                     DeletedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -55,8 +55,8 @@ namespace CoreService.Application.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Username = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
+                    Username = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     PasswordSalt = table.Column<string>(type: "text", nullable: false),
                     PasswordHash = table.Column<string>(type: "text", nullable: false),
                     LastLoginDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -82,9 +82,10 @@ namespace CoreService.Application.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Age = table.Column<int>(type: "integer", nullable: false),
-                    Firstname = table.Column<string>(type: "text", nullable: true),
-                    Lastname = table.Column<string>(type: "text", nullable: true),
+                    Age = table.Column<short>(type: "smallint", nullable: false),
+                    Firstname = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Lastname = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    BirthDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     CompanyId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
@@ -97,9 +98,9 @@ namespace CoreService.Application.Migrations
                 {
                     table.PrimaryKey("PK_Profiles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Profiles_CompanyEntity_CompanyId",
+                        name: "FK_Profiles_Companies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "CompanyEntity",
+                        principalTable: "Companies",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Profiles_Users_UserId",
@@ -107,6 +108,12 @@ namespace CoreService.Application.Migrations
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Companies_Name",
+                table: "Companies",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Profiles_CompanyId",
@@ -140,8 +147,7 @@ namespace CoreService.Application.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
-                column: "Email",
-                unique: true);
+                column: "Email");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
@@ -151,8 +157,7 @@ namespace CoreService.Application.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Username",
                 table: "Users",
-                column: "Username",
-                unique: true);
+                column: "Username");
         }
 
         /// <inheritdoc />
@@ -162,7 +167,7 @@ namespace CoreService.Application.Migrations
                 name: "Profiles");
 
             migrationBuilder.DropTable(
-                name: "CompanyEntity");
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Users");

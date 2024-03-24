@@ -35,3 +35,6 @@ input::-webkit-inner-spin-button {
 :host .lastnameInput{
   flex: 8 1 0
 }
+:host .birthDateInput{
+  flex: 8 1 0
+}
