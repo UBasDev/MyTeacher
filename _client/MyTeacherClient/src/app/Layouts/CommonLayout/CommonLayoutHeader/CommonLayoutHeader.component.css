@@ -1,16 +1,28 @@
 :host {
   display: block;
 }
-:host .navMenuUnderlineEffect:hover{
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-  text-decoration-color: #f8af47;
-  text-decoration-thickness: 0.25rem;
+:host .navMenuUnderlineEffect:after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #f8af47;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+:host .navMenuUnderlineEffect:hover:after{
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 :host .childNavItem{
   padding: 0 !important;
   margin: 0 !important;
+  white-space: normal !important;
 }
 
 :host .childNavItem:hover{

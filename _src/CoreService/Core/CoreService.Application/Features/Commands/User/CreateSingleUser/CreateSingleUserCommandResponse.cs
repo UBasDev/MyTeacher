@@ -11,15 +11,25 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
     {
     }
 
-    public class CreateSingleUserCommandResponseModel
+    public struct CreateSingleUserCommandResponseModel
     {
         public CreateSingleUserCommandResponseModel()
         {
-            this.AccessToken = null;
-            this.RefreshToken = null;
+            Username = string.Empty;
+            Email = string.Empty;
+            RoleName = string.Empty;
+            Firstname = string.Empty;
+            Lastname = string.Empty;
+            Age = 0;
+            BirthDate = 0;
         }
 
-        public string? AccessToken { get; set; }
-        public string? RefreshToken { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string? RoleName { get; set; }
+        public string? Firstname { get; set; }
+        public string? Lastname { get; set; }
+        public ushort? Age { get; set; }
+        public ulong BirthDate { get; set; }
     }
 }

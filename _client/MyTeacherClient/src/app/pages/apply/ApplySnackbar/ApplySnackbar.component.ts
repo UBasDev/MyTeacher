@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MAT_SNACK_BAR_DATA, MatSnackBarAction, MatSnackBarActions, MatSnackBarLabel, MatSnackBarRef } from '@angular/material/snack-bar';
-import { IApplySnackbarMessage } from '../applyModal/ApplyModal.component.types';
+import { IApplySnackbarMessage } from '../ApplyModal/ApplyModal.component.types';
 
 @Component({
   selector: 'app-apply-snackbar',
@@ -28,8 +28,5 @@ export class ApplySnackbarComponent {
   public snackBarRef = inject(MatSnackBarRef)
   public data: IApplySnackbarMessage = inject(MAT_SNACK_BAR_DATA)
   constructor(){
-  }
-  public t1(){
-    console.log(this.data)
   }
 }

@@ -1,13 +1,10 @@
-import { CommonModule, Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationStart, Router, RouterEvent, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {  RouterOutlet } from '@angular/router';
 import { CommonLayoutHeaderComponent } from './commonLayoutHeader/CommonLayoutHeader.component';
 import { CommonLayoutFooterComponent } from './commonLayoutFooter/CommonLayoutFooter.component';
 import { CommonLayoutHeaderBannerComponent } from './commonLayoutHeaderBanner/CommonLayoutHeaderBanner.component';
 import { CommonLayoutHeaderCarouselComponent } from './commonLayoutHeaderCarousel/CommonLayoutHeaderCarousel.component';
-import { INavItems } from './commonLayoutHeader/CommonLayoutHeaderComponent.types';
-import { Subscription, filter } from 'rxjs';
-import { CommonLayoutLetsConnectComponent } from './commonLayoutLetsConnect/CommonLayoutLetsConnect.component';
 
 @Component({
   selector: 'app-common-layout',
@@ -18,160 +15,23 @@ import { CommonLayoutLetsConnectComponent } from './commonLayoutLetsConnect/Comm
     CommonLayoutHeaderComponent,
     CommonLayoutFooterComponent,
     CommonLayoutHeaderBannerComponent,
-    CommonLayoutHeaderCarouselComponent,
-    CommonLayoutLetsConnectComponent
+    CommonLayoutHeaderCarouselComponent
   ],
   template: `
-    <app-common-layout-header [navItems]="navItems" />
-    <app-common-layout-header-banner />
-    <app-common-layout-header-carousel />
-    <div class="grid grid-cols-24 mx-36">
-      <ng-template [ngIf]="!this.isHomePageRoute" [ngIfElse]="homeMainContainer">
-        <div class="col-span-18">
-          <router-outlet />
-        </div>
-        <div class="col-span-6 text-blue-950">
-          <app-common-layout-lets-connect/>
-        </div>
-      </ng-template>
-      <ng-template #homeMainContainer>
-        <div class="col-span-24">
-          <router-outlet />
-        </div>
-      </ng-template>
+    <div class="p-0 m-0 mx-32">
+      <app-common-layout-header />
     </div>
+    <app-common-layout-header-banner />
+    <div class="p-0 m-0 mx-32">
+      <app-common-layout-header-carousel />
+    </div>
+      <div class="p-0 m-0 mx-32">
+        <router-outlet />
+      </div>
     <app-common-layout-footer />
   `,
   styleUrl: './CommonLayout.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonLayoutComponent implements OnInit, OnDestroy {
-  
-  constructor(private location: Location, private router: Router) {
-    this.subscriptionToListenRouteChange = this.router.events.pipe(
-      filter((e: any): e is RouterEvent => e instanceof NavigationStart)
-    ).subscribe((e: any) => {
-      if (e instanceof NavigationStart) {
-        if (e.url == '/') this.isHomePageRoute = true
-        else this.isHomePageRoute = false;
-      }
-    });
-  }
-  ngOnDestroy(): void {
-    this.subscriptionToListenRouteChange.unsubscribe()
-  }
-  public subscriptionToListenRouteChange : Subscription;
-  public isHomePageRoute: boolean = false;
-  ngOnInit(): void {
-    if (this.location.path() == '') this.isHomePageRoute = true;
-  }
-
-  public navItems: INavItems[] = [
-    {
-      id: 1,
-      key: 'publicProtection',
-      value: 'Public Protection',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/',
-          key: 'subscribeForCouncilMeetingNews',
-          value: 'Subscribe for Council Meeting News',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'greatTeaching',
-          value: 'Great Teaching',
-        },
-        {
-          id: 3,
-          href: '/',
-          key: 'ourFreePublicNewspaper',
-          value: 'Our Free Public Newspaper',
-        },
-      ],
-    },
-    {
-      id: 2,
-      key: 'parents',
-      value: 'Parents',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/',
-          key: 'ourFreePublicNewspaper',
-          value: 'Our Free Public Newspaper',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'greatTeaching',
-          value: 'Great Teaching',
-        },
-      ],
-    },
-    {
-      id: 3,
-      key: 'members',
-      value: 'Members',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/',
-          key: 'members',
-          value: 'Members',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'membershipAndOtherFees',
-          value: 'Membership and Other Fees',
-        },
-      ],
-    },
-    {
-      id: 4,
-      key: 'becomingATeacher',
-      value: 'Becoming a Teacher',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/applyUs',
-          key: 'applying',
-          value: 'Applying',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'requirements',
-          value: 'Requirements',
-        },
-      ],
-    },
-    {
-      id: 5,
-      key: 'aboutTheCollege',
-      value: 'About the College',
-      href: '/',
-      childItems: [
-        {
-          id: 1,
-          href: '/',
-          key: 'strategicPlan',
-          value: 'Strategic Plan',
-        },
-        {
-          id: 2,
-          href: '/',
-          key: 'whatWeDo',
-          value: 'What We Do',
-        },
-      ],
-    },
-  ];
+export class CommonLayoutComponent {
 }

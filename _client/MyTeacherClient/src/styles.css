@@ -5,7 +5,10 @@
 
 html, body {
     height: 100%;
-}
+    scrollbar-color: black rgb(27, 42, 92);
+    
+} 
+  
 body { margin: 0; }
 
 body * :not(mat-icon) {
