@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
-import { Subscription, filter } from 'rxjs';
+import { Subject, Subscription, filter, takeUntil } from 'rxjs';
 
 interface SlideInterface {
   id: number;
@@ -22,7 +22,7 @@ interface SlideInterface {
   standalone: true,
   imports: [CommonModule, MatButtonModule],
   template: `
-    <div class="my-0 mx-36" style="height:450px">
+    <div style="height:450px">
       <ng-template [ngIf]="this.slides.length > 0">
         <div
           (mouseenter)="userHoveredSlider()"
@@ -89,9 +89,11 @@ interface SlideInterface {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonLayoutHeaderCarouselComponent implements OnInit, OnDestroy {
+  componentDestroyed$: Subject<boolean> = new Subject()
   constructor(private cd: ChangeDetectorRef, private location: Location, private router: Router) {
-    this.subscriptionToListenRouteChange = this.router.events.pipe(
-      filter((e: any): e is RouterEvent => e instanceof NavigationStart)
+    this.router.events.pipe(
+      filter((e: any): e is RouterEvent => e instanceof NavigationStart),
+      takeUntil(this.componentDestroyed$)
     ).subscribe((e: any)=>{
       if(e instanceof NavigationStart){
         if (e.url == '/') {
@@ -114,7 +116,6 @@ export class CommonLayoutHeaderCarouselComponent implements OnInit, OnDestroy {
       url: '/assets/homepage/homepage-carousel-images/homepage-carousel2.jpg',
     },
   ];
-  public subscriptionToListenRouteChange : Subscription;
   ngOnInit(): void {
     if (this.location.path() == '') this.isLeftSliderTextActive = true
     else this.isLeftSliderTextActive = false
@@ -123,8 +124,9 @@ export class CommonLayoutHeaderCarouselComponent implements OnInit, OnDestroy {
     if (this.slides.length > 1) this.setIntervalForCarouselImageChange();
   }
   ngOnDestroy() {
-    this.subscriptionToListenRouteChange.unsubscribe()
     window.clearInterval(this.activeInterval);
+    this.componentDestroyed$.next(true)
+    this.componentDestroyed$.complete()
   }
   public isLeftSliderTextActive = false;
   public currentActivatedCarouselImageUrl: string = '';

@@ -14,6 +14,7 @@ namespace MyTeacher.JWT.TokenGenerator
     public class TokenGenerator(JwtTokenSettings jwtTokenSettings) : ITokenGenerator
     {
         private readonly JwtTokenSettings _jwtTokenSettings = jwtTokenSettings;
+
         public string GenerateJwtToken(string userId, string username, string email, string role, TimeSpan expireTime)
         {
             // Set the token descriptor with required information

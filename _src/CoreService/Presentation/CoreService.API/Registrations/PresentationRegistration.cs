@@ -12,6 +12,8 @@ namespace CoreService.API.Registrations
     {
         public static void AddPresentationRegistrations(this IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+
             #region RATE_LIMITING_POLICY
 
             services.AddRateLimiter(rateOptions =>

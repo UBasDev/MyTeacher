@@ -15,5 +15,14 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
+  constructor(
+    //private state_store: Store<{ globalUserState: IUserInitialState }>,
+    
+  ){}
+  // tg1(){
+  //   this.state_store.select("globalUserState").subscribe((data: IUserInitialState)=>{
+  //     console.log("USER DATA",data)
+  //   })
+  // }
   
 }

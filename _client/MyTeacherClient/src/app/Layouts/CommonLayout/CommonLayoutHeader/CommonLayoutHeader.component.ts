@@ -1,23 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatMenuModule } from '@angular/material/menu';
 import {
   IBreadcrumbItems,
   INavDropdownItems,
   INavItems,
 } from './CommonLayoutHeaderComponent.types';
 import { Router } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IUserInitialState } from '../../../StateStore/User/UserReducers/UserReducers';
+import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
+import {
+  faUser,
+  faPowerOff
+} from '@fortawesome/free-solid-svg-icons';
+import { CommonLayoutHeaderLoginModalComponent } from './CommonLayoutHeaderLoginModal/CommonLayoutHeaderLoginModal.component';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-common-layout-header',
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatIconModule],
+  imports: [CommonModule, MatInputModule, MatIconModule, FontAwesomeModule],
   template: `
     <div class="grid grid-cols-24">
-      <div class="col-span-8 pt-2 mx-32">
+      <div class="col-span-8 pt-2">
         <div class="flex items-center justify-start gap-x-2">
           <img
             (click)="goToHomepage()"
@@ -38,7 +46,7 @@ import { Router } from '@angular/router';
           {{ textUnderIcon }}
         </p>
       </div>
-      <div class="col-span-16 py-2 mx-32">
+      <div class="col-span-16 py-2">
         <div class="flex items-center justify-end gap-x-2">
           <ng-template
             ngFor
@@ -97,20 +105,21 @@ import { Router } from '@angular/router';
             <h2
               (mouseenter)="navItemHoverAddDropdownContent(index)"
               (mouseleave)="navItemHoverRemoveDropdownContent(index)"
-              class="navMenuUnderlineEffect text-blue-900 cursor-pointer"
+              (click)="currentItem.onClickFunction()"
+              class="navMenuUnderlineEffect text-blue-900 cursor-pointer relative"
             >
               {{ currentItem.value }}
+              @if(currentItem.icon){
+              <fa-icon [icon]="currentItem.icon" />
+              } @if(currentItem?.childItems != null &&
+              currentItem.childItems.length > 0){
               <div
                 [ngClass]="
-                  'absolute flex-col items-stretch justify-center p-1 py-2 gap-y-2 bg-gray-100 text-sm font-semibold ' +
-                  (isItemActive(index) ? 'flex' : 'hidden')
+                  'absolute items-stretch justify-center p-1 py-2 gap-y-2 bg-gray-100 text-sm font-semibold z-10 rounded-sm cursor-default w-max ' +
+                  (isItemActive(index) ? 'grid grid-cols-24' : 'hidden')
                 "
               >
                 <ng-template
-                  [ngIf]="
-                    currentItem?.childItems != null &&
-                    currentItem.childItems.length > 0
-                  "
                   ngFor
                   let-currentChildItem
                   [ngForOf]="currentItem.childItems"
@@ -121,9 +130,15 @@ import { Router } from '@angular/router';
                   let-childIsEven="even"
                   let-childIsOdd="odd"
                 >
-                  <p class="childNavItem p-1">{{ currentChildItem.value }}</p>
+                  <p class="childNavItem col-span-24 p-1 cursor-pointer">
+                    {{ currentChildItem.value }}
+                    @if(currentChildItem.icon){
+                    <fa-icon [icon]="currentChildItem.icon" />
+                    }
+                  </p>
                 </ng-template>
               </div>
+              }
             </h2>
           </ng-template>
         </div>
@@ -133,8 +148,59 @@ import { Router } from '@angular/router';
   styleUrl: './CommonLayoutHeader.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonLayoutHeaderComponent {
-  @Input() navItems: INavItems[] = [];
+export class CommonLayoutHeaderComponent implements OnInit, OnDestroy {
+  componentDestroyed$: Subject<boolean> = new Subject()
+  private currentUsedDialog?: MatDialogRef<CommonLayoutHeaderLoginModalComponent, any>
+  constructor(private readonly router: Router, private state_store: Store<{ globalUserState: IUserInitialState }>, public dialog: MatDialog) {}
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next(true)
+    this.componentDestroyed$.complete()
+  }
+  ngOnInit(): void {
+    this.state_store.select("globalUserState").pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((data: IUserInitialState)=>{
+      console.log(data)
+      if(data.isLoggedIn) {
+        this.navItems = this.authenticatedNavItems
+        this.authenticatedNavItems.push({
+          id: 4,
+          key: "profile",
+          value: `${data.firstname} ${data.lastname}`,
+          href: "/profile",
+          icon: faUser,
+          onClickFunction: this.doNothingWhenClicked.bind(this),
+          childItems:[
+            {
+              id: 1,
+              href: "/profile",
+              key: "profile",
+              value: "My profile",
+              icon: null,
+              onClickFunction: this.doNothingWhenClicked.bind(this)
+            },
+            {
+              id: 2,
+              href: "/profileSettings",
+              key: "profileSettings",
+              value: "Profile Settings",
+              icon: null,
+              onClickFunction: this.doNothingWhenClicked.bind(this)
+            },
+            {
+              id: 2,
+              href: "/logout",
+              key: "logout",
+              value: "Logout",
+              icon: faPowerOff,
+              onClickFunction: this.doNothingWhenClicked.bind(this)
+            }
+          ]
+        })
+      }
+      else this.navItems = this.unAuthenticatedNavItems
+    })
+  }
 
   navDropdownItems: INavDropdownItems[] = [];
 
@@ -162,7 +228,7 @@ export class CommonLayoutHeaderComponent {
     if (foundActiveItem == null) return;
     else foundActiveItem.isACtive = false;
   }
-  constructor(private readonly router: Router) {}
+
   public readonly textUnderIcon: string = 'To Inspire You To Learn';
   public searchText: string = '';
   public readonly breadcrumbItems: IBreadcrumbItems[] = [
@@ -197,6 +263,237 @@ export class CommonLayoutHeaderComponent {
       href: '/',
     },
   ];
+  public navItems: INavItems[] = []
+  public unAuthenticatedNavItems: INavItems[] = [
+    {
+      id: 1,
+      key: 'publicProtection',
+      value: 'Public Protection',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/',
+          key: 'subscribeForCouncilMeetingNews',
+          value: 'Subscribe for Council Meeting News',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'greatTeaching',
+          value: 'Great Teaching',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 3,
+          href: '/',
+          key: 'ourFreePublicNewspaper',
+          value: 'Our Free Public Newspaper',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    },
+    {
+      id: 2,
+      key: 'parents',
+      value: 'Parents',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/',
+          key: 'ourFreePublicNewspaper',
+          value: 'Our Free Public Newspaper',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'greatTeaching',
+          value: 'Great Teaching',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    },
+    {
+      id: 3,
+      key: 'members',
+      value: 'Members',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/',
+          key: 'members',
+          value: 'Members',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'membershipAndOtherFees',
+          value: 'Membership and Other Fees',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    },
+    {
+      id: 4,
+      key: 'signUp',
+      value: 'Sign up',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/signUp',
+          key: 'applying',
+          value: 'Applying',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'requirements',
+          value: 'Requirements',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    },
+    {
+      id: 5,
+      key: 'login',
+      value: 'Login',
+      href: '/',
+      icon: null,
+      onClickFunction: this.openLoginModal.bind(this),
+      childItems: [
+      ],
+    },
+  ];
+  public authenticatedNavItems: INavItems[] = [
+    {
+      id: 1,
+      key: 'publicProtection',
+      value: 'Public Protection',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/',
+          key: 'subscribeForCouncilMeetingNews',
+          value: 'Subscribe for Council Meeting News',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'greatTeaching',
+          value: 'Great Teaching',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 3,
+          href: '/',
+          key: 'ourFreePublicNewspaper',
+          value: 'Our Free Public Newspaper',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    },
+    {
+      id: 2,
+      key: 'parents',
+      value: 'Parents',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/',
+          key: 'ourFreePublicNewspaper',
+          value: 'Our Free Public Newspaper',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'greatTeaching',
+          value: 'Great Teaching',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    },
+    {
+      id: 3,
+      key: 'members',
+      value: 'Members',
+      href: '/',
+      icon: null,
+      onClickFunction: this.doNothingWhenClicked.bind(this),
+      childItems: [
+        {
+          id: 1,
+          href: '/',
+          key: 'members',
+          value: 'Members',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+        {
+          id: 2,
+          href: '/',
+          key: 'membershipAndOtherFees',
+          value: 'Membership and Other Fees',
+          icon: null,
+          onClickFunction: this.doNothingWhenClicked.bind(this)
+        },
+      ],
+    }
+  ];
+  public doNothingWhenClicked(): void{
+
+  }
+  public openLoginModal(){
+    this.currentUsedDialog = this.dialog.open(CommonLayoutHeaderLoginModalComponent, this.CreateMatDialogConfig());
+    this.currentUsedDialog.afterClosed().pipe(
+      takeUntil(this.componentDestroyed$)
+    ).subscribe((result: any) => {
+      console.log(`Dialog result: ${result}`);
+    });  
+  } 
+  private CreateMatDialogConfig() : MatDialogConfig{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true
+    dialogConfig.hasBackdrop = true
+    dialogConfig.width = "40%"
+    return dialogConfig
+  }
   public searchForText() {
     if (this.searchText.length > 0) console.log(this.searchText);
   }

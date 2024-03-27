@@ -6,6 +6,7 @@ import {
   Component,
   ElementRef,
   inject,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -29,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   HttpClient,
   HttpClientModule,
+  HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
 import {
@@ -38,8 +40,12 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { CreateSingleUserResponse } from '../../../ResponseModels/User/CreateSingleUserResponse';
+import { CreateSingleUserResponse, ErrorCreateSingleUserResponse } from '../../../ResponseModels/User/CreateSingleUserResponse';
 import { IApplySnackbarMessage } from './ApplyModal.component.types';
+import { Store } from '@ngrx/store';
+import { IUserInitialState } from '../../../StateStore/User/UserReducers/UserReducers';
+import { UserStateActions } from '../../../StateStore/User/UserActions/UserActions';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-apply-modal',
@@ -51,7 +57,7 @@ import { IApplySnackbarMessage } from './ApplyModal.component.types';
       >
     </div>
     <div class="text-center p-0 m-0">
-      <h3 mat-dialog-title>Application Form</h3>
+      <h3 mat-dialog-title>Are you ready to join us?</h3>
     </div>
     <mat-dialog-content class="mat-typography !pt-0 !mt-0">
       <form
@@ -361,15 +367,15 @@ import { IApplySnackbarMessage } from './ApplyModal.component.types';
   styleUrl: './ApplyModal.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ApplyModalComponent implements OnInit {
+export class ApplyModalComponent implements OnInit, OnDestroy {
   @ViewChild('fileInputElement') fileInputElement: ElementRef | null = null;
   @ViewChild('fileInputLabelElement') fileInputLabelElement: ElementRef | null =
     null;
   @ViewChild('submitFormButton') submitFormButton: ElementRef | null = null;
+  componentDestroyed$: Subject<boolean> = new Subject()
   public currentMatDialogRef = inject(MatDialogRef);
   public readonly turkishAlphabetRegex =
     /[abcçdefgğhıijklmnoöprsştuüvwxyzABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVWXYZ]/;
-
   public onFormSubmitHandle(event: any) {
     event.preventDefault();
     var formData1: any = new FormData();
@@ -389,11 +395,45 @@ export class ApplyModalComponent implements OnInit {
       formData1.append('ProfilePicture', this.selectedProfilePictureData);
     }
     this._httpClient
-      .post<CreateSingleUserResponse>('http://localhost:5028/api/users/create-single-user', formData1)
-      .subscribe((res : CreateSingleUserResponse) => {
-        if(res.isSuccessful) this.currentMatDialogRef.close();
-        else this.openSnackBar(res.errorMessage ?? "Something went wrong while registering")
+      .post<CreateSingleUserResponse>('http://localhost:5028/api/users/create-single-user', formData1,{
+        withCredentials: true
+      }).pipe(
+        takeUntil(this.componentDestroyed$)
+      )
+      .subscribe({
+        next: (res: CreateSingleUserResponse) =>{
+          console.log('SUCCESS WOKRS', res)
+          if(res.isSuccessful) {
+            localStorage.setItem("userProfile", JSON.stringify(res.payload))
+            this.state_store.dispatch(UserStateActions.userLoggedIn({
+              loggedInUser: {
+                username: res.payload?.username ?? "",
+                email: res.payload?.email ?? "",
+                firstname: res.payload?.firstname ?? "",
+                lastname: res.payload?.lastname ?? "",
+                roleName: res.payload?.roleName ?? "",
+                birthDate: res.payload?.birthDate ?? 0,
+                age: res.payload?.age ?? 0
+              }
+            }))
+            this.currentMatDialogRef.close()
+          };
+        },
+        error: (err: ErrorCreateSingleUserResponse)=>{
+          console.log('ERROR WOKRS', err)
+          this.openSnackBar(err.error.errorMessage ?? "Something went wrong while registering")
+        },
+        complete: ()=>{
+          console.log('OPERATION IS FINISHED')
+        }
       });
+      /*
+        if(res.isSuccessful) this.currentMatDialogRef.close();
+        else {
+          console.log(res.errorMessage)
+          this.openSnackBar(res.errorMessage ?? "Something went wrong while registering")
+        }
+      */
   }
   public handleFormApply() {
     Object.keys(this.applyForm.controls).forEach((field) => {
@@ -410,13 +450,20 @@ export class ApplyModalComponent implements OnInit {
     private readonly _changeDetector: ChangeDetectorRef,
     private readonly _formBuilder: FormBuilder,
     private readonly _snackBar: MatSnackBar,
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private state_store: Store<{ globalUserState: IUserInitialState }>
   ) {}
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next(true)
+    this.componentDestroyed$.complete()
+  }
   ngOnInit(): void {
     this.imagePreviewSource = this.initialImagePreviewSource;
     this._httpClient
       .get<GetRolesWithoutAdminResponse>(
         'http://localhost:5028/api/Roles/get-roles-without-admin'
+      ).pipe(
+        takeUntil(this.componentDestroyed$)
       )
       .subscribe((response: GetRolesWithoutAdminResponse) => {
         if (response.isSuccessful) {
@@ -822,7 +869,9 @@ export class ApplyModalComponent implements OnInit {
         }
       );
       this.isFormValidationSnackBarOpen = true;
-      snackbarRef.afterDismissed().subscribe((e: any) => {
+      snackbarRef.afterDismissed().pipe(
+        takeUntil(this.componentDestroyed$)
+      ).subscribe((e: any) => {
         this.isFormValidationSnackBarOpen = false;
       });
     }

@@ -17,12 +17,13 @@ using System.Threading.Tasks;
 
 namespace CoreService.Application.Features.Commands.User.CreateSingleUser
 {
-    internal class CreateSingleUserCommandHandler(ILogger<CreateSingleUserCommandHandler> logger, IUnitOfWork unitOfWork, IPublisher publisher, ITokenGenerator tokenGenerator) : IRequestHandler<CreateSingleUserCommandRequest, CreateSingleUserCommandResponse>
+    internal class CreateSingleUserCommandHandler(ILogger<CreateSingleUserCommandHandler> logger, IUnitOfWork unitOfWork, IPublisher publisher, ITokenGenerator tokenGenerator, IHttpContextAccessor httpContextAccessor) : IRequestHandler<CreateSingleUserCommandRequest, CreateSingleUserCommandResponse>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         private readonly ILogger<CreateSingleUserCommandHandler> _logger = logger;
-        private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IPublisher _publisher = publisher;
         private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task<CreateSingleUserCommandResponse> Handle(CreateSingleUserCommandRequest request, CancellationToken cancellationToken)
         {
@@ -81,8 +82,44 @@ namespace CoreService.Application.Features.Commands.User.CreateSingleUser
                 {
                     await _publisher.Publish(currentEvent, cancellationToken);
                 }
-                response.Payload.AccessToken = _tokenGenerator.GenerateJwtToken(userToCreate.Id.ToString(), userToCreate.Username, userToCreate.Email, foundRole.Name, TimeSpan.FromSeconds(300));
-                response.Payload.RefreshToken = _tokenGenerator.GenerateJwtToken(userToCreate.Id.ToString(), userToCreate.Username, userToCreate.Email, foundRole.Name, TimeSpan.FromSeconds(600));
+                _httpContextAccessor.HttpContext.Response.Cookies.Append(
+                key: "AccessToken",
+                value: _tokenGenerator.GenerateJwtToken(userToCreate.Id.ToString(), userToCreate.Username, userToCreate.Email, foundRole.Name, TimeSpan.FromSeconds(300)),
+                new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false,
+                    IsEssential = false,
+                    SameSite = SameSiteMode.Strict,
+                    Domain = "localhost",
+                    MaxAge = TimeSpan.FromSeconds(15),
+                    Path = "/"
+                }
+                );
+                _httpContextAccessor.HttpContext.Response.Cookies.Append(
+                key: "RefreshToken",
+                value: _tokenGenerator.GenerateJwtToken(userToCreate.Id.ToString(), userToCreate.Username, userToCreate.Email, foundRole.Name, TimeSpan.FromSeconds(300)),
+                new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false,
+                    IsEssential = true,
+                    SameSite = SameSiteMode.Strict,
+                    Domain = "localhost",
+                    MaxAge = TimeSpan.FromSeconds(30),
+                    Path = "/"
+                }
+                );
+                response.Payload = new CreateSingleUserCommandResponseModel()
+                {
+                    Username = userToCreate.Username,
+                    Email = userToCreate.Email,
+                    Firstname = userToCreate.Profile?.Firstname,
+                    Lastname = request.Lastname,
+                    Age = request.Age,
+                    BirthDate = request.BirthDate,
+                    RoleName = foundRole.Name
+                };
             }
             catch (Exception ex)
             {

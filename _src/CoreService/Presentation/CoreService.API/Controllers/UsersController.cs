@@ -5,6 +5,7 @@ using CoreService.Application.Features.Commands.User.Login;
 using MyTeacher.Helper.Attributes;
 using MyTeacher.Helper.Models;
 using CoreService.Application.Repositories;
+using System.Net;
 
 namespace CoreService.API.Controllers
 {
@@ -29,7 +30,7 @@ namespace CoreService.API.Controllers
         public async Task<CreateSingleUserCommandResponse> CreateSingleUser([FromForm] CreateSingleUserCommandRequest requestBody, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(requestBody, cancellationToken);
-            if (!response.IsSuccessful) Response.StatusCode = 400;
+            if (response.StatusCode != HttpStatusCode.OK) Response.StatusCode = (int)response.StatusCode;
             response.TraceId = HttpContext.TraceIdentifier;
             return response;
         }
@@ -38,9 +39,15 @@ namespace CoreService.API.Controllers
         public async Task<LoginCommandResponse> Login([FromBody] LoginCommandRequest requestBody, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(requestBody, cancellationToken);
-            if (!response.IsSuccessful) Response.StatusCode = 400;
+            if (response.StatusCode != HttpStatusCode.OK) Response.StatusCode = (int)response.StatusCode;
             response.TraceId = HttpContext.TraceIdentifier;
             return response;
+        }
+
+        [HttpGet("check-cookie1")]
+        public IActionResult CheckCookie1()
+        {
+            return Ok();
         }
 
         [GlobalAuthorize]

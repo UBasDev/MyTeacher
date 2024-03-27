@@ -14,9 +14,9 @@ import {
   imports: [CommonModule, FontAwesomeModule],
   template: `
     <div class="grid grid-cols-24 gap-y-2">
-      <h2 class="col-span-24 !m-0">Let's Connect</h2>
+      <h2 class="col-span-24 !m-0 text-center">Let's Connect</h2>
       <div
-        class="col-span-24 flex items-center justify-start gap-x-4"
+        class="col-span-24 flex items-center justify-center gap-x-4"
       >
       <ng-template ngFor
                     let-currentIcon
